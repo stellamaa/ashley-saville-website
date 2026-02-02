@@ -1,5 +1,7 @@
-import project from './project-schema';
+import artist from "./artist-schema";
+import exhibition from "./exhibition-schema";
+import fair from "./fair-schema";
 
-const schemas = [project];
+const schemas = [ artist, exhibition, fair];
 
 export default schemas;

@@ -1,0 +1,20 @@
+import { getCurrentExhibition } from "@/sanity/sanity-utils";
+import { redirect } from "next/navigation";
+import Link from "next/link";
+
+export default async function ExhibitionsPage() {
+  const currentExhibition = await getCurrentExhibition();
+
+  if (currentExhibition?.slug) {
+    redirect(`/exhibitions/${currentExhibition.slug}`);
+  }
+
+  return (
+    <div className="min-h-screen bg-neutral-100 pt-24 px-8 pb-8">
+      <p className="text-neutral-500">No current exhibition</p>
+      <Link href="/exhibitions/archive" className="mt-4 inline-block text-sm underline text-neutral-600 hover:text-neutral-900">
+        Archive
+      </Link>
+    </div>
+  );
+}

@@ -1,8 +1,8 @@
 import { defineType, defineField } from "sanity";
 
-const project = defineType({
-    name: "project",
-    title: "Projects",
+const fair = defineType({
+    name: "fair",
+    title: "Fairs",
     type: "document",
     fields: [
         defineField({
@@ -12,17 +12,32 @@ const project = defineType({
         }),
         defineField({
             name: "slug",
-            title: "Slug", 
-            type: "slug", 
-            options: { source: "name" }
+            title: "Slug",
+            type: "slug",
+            options: { source: "name" },
+        }),
+        defineField({
+            name: "location",
+            title: "Location",
+            type: "string",
+        }),
+        defineField({
+            name: "startDate",
+            title: "Start Date",
+            type: "date",
+            options: { dateFormat: "DD-MM-YYYY" },
+        }),
+        defineField({
+            name: "endDate",
+            title: "End Date",
+            type: "date",
+            options: { dateFormat: "DD-MM-YYYY" },
         }),
         defineField({
             name: "image",
             title: "Image",
             type: "image",
-            options: {
-                hotspot: true,
-            },
+            options: { hotspot: true },
             fields: [
                 defineField({
                     name: "alt",
@@ -43,6 +58,6 @@ const project = defineType({
             of: [{ type: "block" }],
         }),
     ],
-})
+});
 
-export default project;
+export default fair;
