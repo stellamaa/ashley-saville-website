@@ -34,41 +34,40 @@ export default async function ExhibitionPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-16">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
      
-        <h1 className="text-1xl font-medium text-center mb-12">
+        <h1 className="text-1xl font-light text-center mt-0 sm:mt-20 mb-16">
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
+     
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <h2 className="text-1xl font-medium mt-0text-neutral-900">
+            <h2 className="text-sm font-light mb-0 mt-0text-neutral-900">
               {exhibition.artistName}
             </h2>
-            <p className="text-lg text-neutral-600 mt-0">
+            <p className="text-sm text-neutral-600 mt-0">
               {exhibition.exhibitionName}
             </p>
-            <p className="text-neutral-600 mt-0">
+            <p className="text-sm text-neutral-600 mt-0">
               {formatDate(exhibition.startDate)} - {formatDate(exhibition.endDate)}
             </p>
             {exhibition.content && exhibition.content.length > 0 && (
-              <div className="mt-6">
+              <div className="mt-3 text-sm">
                 <ReadMore content={exhibition.content} />
               </div>
             )}
           </div>
 
           <div className="lg:col-span-1 lg:text-right">
-            <h3 className="text-sm font-medium text-neutral-900 mb-4">
-              Documents
-            </h3>
+            
             <div className="flex flex-col items-start lg:items-end gap-2">
               {exhibition.download && (
                 <a
                   href={exhibition.download}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm underline text-neutral-600 hover:text-neutral-900"
+                  className="text-sm text-neutral-600 hover:text-neutral-900"
                 >
                   Download
                 </a>
@@ -78,7 +77,7 @@ export default async function ExhibitionPage({ params }: Props) {
                   href={exhibition.pressRelease}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm underline text-neutral-600 hover:text-neutral-900"
+                  className="text-sm mt-20 text-neutral-600 hover:text-neutral-900"
                 >
                  Download Press Release
                 </a>
@@ -97,33 +96,34 @@ export default async function ExhibitionPage({ params }: Props) {
             />
           </div>
         )}
-        {exhibition.images && exhibition.images.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {exhibition.images.map((image, idx) => {
-              // Handle if image is a string (URL) or an object with asset
-              if (typeof image === 'string') {
-                return (
-                  <Image
-                    key={idx}
-                    src={image}
-                    alt={exhibition.artistName}
-                    width={100}
-                    height={100}
-                  />
-                );
-              } else if (image?.asset?.url) {
-                return (
-                  <Image
-                    key={image.asset._key || idx}
-                    src={image.asset.url}
-                    alt={exhibition.artistName}
-                    width={100}
-                    height={100}
-                  />
-                );
-              }
-              return null;
-            })}
+        <h3 className="text-sm justify-center text-center font-light text-neutral-600 mt-20">Exhibition</h3>
+        {exhibition.exhibitionImages && exhibition.exhibitionImages.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20">
+            {exhibition.exhibitionImages.map((item, idx) => (
+              <Link key={idx} href={`/exhibitions/${slug}/exhibition/${idx}`}>
+                <Image
+                  src={item.url}
+                  alt={exhibition.artistName}
+                  width={500}
+                  height={500}
+                />
+              </Link>
+            ))}
+          </div>
+        )}
+        <h3 className="text-sm justify-center text-center font-light text-neutral-600 mt-20">Works</h3>
+        {exhibition.worksImages && exhibition.worksImages.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20">
+            {exhibition.worksImages.map((item, idx) => (
+              <Link key={idx} href={`/exhibitions/${slug}/works/${idx}`}>
+                <Image
+                  src={item.url}
+                  alt={exhibition.artistName}
+                  width={500}
+                  height={500}
+                />
+              </Link>
+            ))}
           </div>
         )}
       </div>

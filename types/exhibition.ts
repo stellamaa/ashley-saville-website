@@ -1,5 +1,7 @@
 import { PortableTextBlock } from "sanity";
 
+export type ExhibitionImage = { url: string; caption?: string };
+
 export type Exhibition = {
     _id: string;
     _createdAt: string;
@@ -7,7 +9,8 @@ export type Exhibition = {
     exhibitionName: string;
     startDate: string;
     endDate: string;
-    images: string[];
+    exhibitionImages: ExhibitionImage[];
+    worksImages: ExhibitionImage[];
     slug: string;
     image: string;
     url?: string;

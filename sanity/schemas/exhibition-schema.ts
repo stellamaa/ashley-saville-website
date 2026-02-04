@@ -47,10 +47,30 @@ const exhibition = defineType({
             ],
         }),
         defineField({
-            name: "images",
-            title: "Images",
+            name: "exhibitionImages",
+            title: "Exhibition Images",
             type: "array",
-            of: [{ type: "image" }],
+            of: [{
+                type: "image",
+                options: { hotspot: true },
+                fields: [
+                    defineField({ name: "alt", title: "Alt", type: "string" }),
+                    defineField({ name: "caption", title: "Caption", type: "string" }),
+                ],
+            }],
+        }),
+        defineField({
+            name: "worksImages",
+            title: "Works Images",
+            type: "array",
+            of: [{
+                type: "image",
+                options: { hotspot: true },
+                fields: [
+                    defineField({ name: "alt", title: "Alt", type: "string" }),
+                    defineField({ name: "caption", title: "Caption", type: "string" }),
+                ],
+            }],
         }),
     
         defineField({

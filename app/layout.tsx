@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 
-const clashGrotesk = localFont({
-  src: "./fonts/ClashGrotesk-Light.otf",
-  variable: "--font-clash-grotesk",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${clashGrotesk.variable} antialiased`}
+        className={`${inter.variable} font-sans antialiased`}
       >
         <Header />
         {children}

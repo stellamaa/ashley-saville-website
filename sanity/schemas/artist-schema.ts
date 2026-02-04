@@ -29,13 +29,49 @@ const artist = defineType({
                 }),
             ],
         }),
+   
         defineField({
-            name: "images",
-            title: "Images",
+            name: "exhibitionImages",
+            title: "Exhibition Images",
             type: "array",
-            of: [{ type: "image" }],
+            of: [
+                {
+                  type: 'image',
+                  options: {
+                    hotspot: true, // Enables cropping UI
+                  },
+                  fields: [
+                    // --- Custom fields go here ---
+                    {
+                      name: 'alt',
+                      type: 'string',
+                      title: 'Alternative Text',
+                      description: 'Important for accessibility and SEO',
+                      validation: (Rule) => Rule.required(), // Highly recommended
+                    },
+                    {
+                      name: 'caption',
+                      type: 'string',
+                      title: 'Caption',
+                    },
+                  ],
+                },
+              ],
+        
         }),
-
+        defineField({
+            name: "worksImages",
+            title: "Works Images",
+            type: "array",
+            of: [{
+                type: "image",
+                options: { hotspot: true },
+                fields: [
+                    { name: "alt", type: "string", title: "Alt" },
+                    { name: "caption", type: "string", title: "Caption" },
+                ],
+            }],
+        }),
         defineField({
             name: "biography",
             title: "Biography",
@@ -48,16 +84,27 @@ const artist = defineType({
             title: "CV",
             type: "file",
          }),
-         defineField({ 
-          name: "press",
-          title: "Press",
-          type: "file",
-         }),
-         defineField({ 
-          name: "pressLink",
-          title: "Press link",
-          type: "url",
-         })
+    
+        defineField({
+            name: "pressLink",
+            title: "Press link",
+            type: "object",
+            fields: [
+                defineField({
+                    name: "label",
+                    title: "Label",
+                    type: "string",
+                    description: "Text to show for the link (e.g. \"Vogue\")",
+                }),
+                defineField({
+                    name: "url",
+                    title: "URL",
+                    type: "url",
+                   
+                }),
+            ],
+            
+        }),
     ],
 });
 

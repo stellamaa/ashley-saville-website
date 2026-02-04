@@ -12,9 +12,7 @@ export default async function ExhibitionsPage() {
   return (
     <div className="min-h-screen bg-neutral-100 pt-24 px-8 pb-8">
       <p className="text-neutral-500">No current exhibition</p>
-      <Link href="/exhibitions/archive" className="mt-4 inline-block text-sm underline text-neutral-600 hover:text-neutral-900">
-        Archive
-      </Link>
+     
     </div>
   );
 }

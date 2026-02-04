@@ -23,16 +23,16 @@ export default async function ExhibitionsArchivePage() {
   const archivedExhibitions = await getArchivedExhibitions();
 
   return (
-    <div className="min-h-screen bg-neutral-800 pt-24 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-white pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-5xl mx-auto bg-white rounded-lg p-8 md:p-12">
         <Link
           href="/exhibitions"
-          className="mb-8 inline-block text-sm underline text-neutral-600 hover:text-neutral-900"
+          className="mb-8 inline-block text-sm  text-neutral-900 hover:text-neutral-600"
         >
-          ← Back to current exhibition
+        Current exhibition
         </Link>
 
-        <h1 className="text-2xl font-medium text-center mb-12">Archive</h1>
+        <h1 className="text-md text-neutral-900 text-center mb-12">Archive</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {archivedExhibitions.map((exhibition: Exhibition) =>
@@ -40,7 +40,7 @@ export default async function ExhibitionsArchivePage() {
               <Link
                 key={exhibition._id}
                 href={`/exhibitions/${exhibition.slug}`}
-                className="group relative aspect-[4/3] overflow-hidden rounded-lg bg-neutral-200"
+                className="group relative aspect-[4/3] overflow-hidden bg-neutral-200"
               >
                 <Image
                   src={exhibition.image}
@@ -48,10 +48,10 @@ export default async function ExhibitionsArchivePage() {
                   fill
                   className="object-cover transition group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition flex items-end justify-center p-6">
-                  <div className="text-white text-center opacity-0 group-hover:opacity-100 transition">
-                    <p className="font-medium">{exhibition.artistName}</p>
-                    <p className="text-sm text-white/90">
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/70 transition flex items-center justify-center p-6">
+                  <div className="text-black text-center opacity-0 group-hover:opacity-100 transition">
+                    <p className=" text-sm font-medium">{exhibition.artistName}</p>
+                    <p className="text-sm text-black/90 font-medium">
                       {formatDate(exhibition.startDate)} -{" "}
                       {formatDate(exhibition.endDate)}
                     </p>

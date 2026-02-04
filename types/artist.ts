@@ -6,10 +6,14 @@ export type Artist = {
     name: string;
     slug: string;
     image: string;
-    url?: string;
     biography: PortableTextBlock[];
-    images?: string[];
+    exhibitionImagesAlt: string[];
+    exhibitionImagesCaption: string[];
+    worksImagesAlt: string[];
+    worksImagesCaption: string[];
+    exhibitionImages: string[];
+    worksImages: string[];
     CV?: string;
     press?: string;
-    pressLink?: string;
+    pressLink?: { label?: string; url: string };
 }
