@@ -6,6 +6,7 @@ export type Artist = {
     name: string;
     slug: string;
     image: string;
+    imageCaption?: string;
     biography: PortableTextBlock[];
     exhibitionImagesAlt: string[];
     exhibitionImagesCaption: string[];

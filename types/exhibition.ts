@@ -13,6 +13,7 @@ export type Exhibition = {
     worksImages: ExhibitionImage[];
     slug: string;
     image: string;
+    imageCaption?: string;
     url?: string;
     isCurrent?: boolean;
     download?: string;

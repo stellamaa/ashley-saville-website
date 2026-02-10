@@ -14,10 +14,24 @@ export default async function ArtistWorksGalleryPage({ params }: Props) {
   const index = parseInt(indexStr, 10);
   const worksImages = artist.worksImages ?? [];
   const worksCaptions = artist.worksImagesCaption ?? [];
-  const images = worksImages.map((url, i) => ({
-    url,
-    caption: worksCaptions[i],
-  }));
+
+  const heroImages =
+    artist.image
+      ? [
+          {
+            url: artist.image,
+            caption: artist.imageCaption,
+          },
+        ]
+      : [];
+
+  const images = [
+    ...heroImages,
+    ...worksImages.map((url, i) => ({
+      url,
+      caption: worksCaptions[i],
+    })),
+  ];
 
   if (Number.isNaN(index) || index < 0 || index >= images.length) notFound();
 

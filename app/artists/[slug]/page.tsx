@@ -41,14 +41,17 @@ export default async function ArtistPage({ params }: Props) {
             <ArtistSidebar CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
           </div>
           {artist.image && (
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-200 lg:col-span-3 mt-20">
+            <Link
+              href={`/artists/${slug}/works/0`}
+              className="lg:col-span-3 mt-20 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
+            >
               <Image
                 src={artist.image}
                 alt={artist.name}
                 fill
                 className="object-cover"
               />
-            </div>
+            </Link>
           )}
         </div>
 
@@ -76,7 +79,10 @@ export default async function ArtistPage({ params }: Props) {
         {artist.worksImages && artist.worksImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-10 mt-20">
             {artist.worksImages.map((img, idx) => (
-              <Link key={idx} href={`/artists/${slug}/works/${idx}`}>
+              <Link
+                key={idx}
+                href={`/artists/${slug}/works/${artist.image ? idx + 1 : idx}`}
+              >
                 <Image
                   src={img}
                   alt={artist.name}

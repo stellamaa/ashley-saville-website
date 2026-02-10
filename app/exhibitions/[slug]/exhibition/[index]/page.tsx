@@ -12,7 +12,17 @@ export default async function ExhibitionImagesGalleryPage({ params }: Props) {
   if (!exhibition) notFound();
 
   const index = parseInt(indexStr, 10);
-  const images = exhibition.exhibitionImages ?? [];
+  const heroImages =
+    exhibition.image
+      ? [
+          {
+            url: exhibition.image,
+            caption: exhibition.imageCaption,
+          },
+        ]
+      : [];
+
+  const images = [...heroImages, ...(exhibition.exhibitionImages ?? [])];
 
   if (Number.isNaN(index) || index < 0 || index >= images.length) notFound();
 
