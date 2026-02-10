@@ -15,5 +15,5 @@ export type Artist = {
     worksImages: string[];
     CV?: string;
     press?: string;
-    pressLink?: { label?: string; url: string };
+    pressLinks?: { label?: string; url: string }[];
 }

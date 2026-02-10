@@ -17,5 +17,6 @@ export type Exhibition = {
     isCurrent?: boolean;
     download?: string;
     pressRelease?: string;
+    pressLinks?: { label: string; url: string }[];
     content: PortableTextBlock[];
 }

@@ -83,6 +83,15 @@ export default async function ExhibitionPage({ params }: Props) {
                 </a>
               )}
             </div>
+            {exhibition.pressLinks && exhibition.pressLinks.length > 0 && (
+              <div className="flex flex-col items-start lg:items-end gap-2">
+                {exhibition.pressLinks.map((link, idx) => (
+                  <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-600 hover:text-neutral-900">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 

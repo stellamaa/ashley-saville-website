@@ -89,6 +89,32 @@ const exhibition = defineType({
             title: "Press Release",
             type: "file",
         }),
+        defineField({
+            name: "pressLinks",
+            title: "Press links",
+            type: "array",
+            of: [
+                {
+                    name: "pressLink",
+                    title: "Press link",
+                    type: "object",
+                    fields: [
+                        defineField({
+                            name: "label",
+                            title: "Label",
+                            type: "string",
+                            description: "Text to show for the link (e.g. \"Vogue\")",
+                        }),
+                        defineField({
+                            name: "url",
+                            title: "URL",
+                            type: "url",
+                            validation: (Rule) => Rule.required(),
+                        }),
+                    ],
+                },
+            ],
+        }),
         defineField({ 
             name: "isCurrent",
             title: "Is Exhibition Current?",

@@ -38,7 +38,7 @@ export default async function ArtistPage({ params }: Props) {
             )}
           </div>
           <div className="lg:col-span-1 lg:text-right">
-            <ArtistSidebar CV={artist.CV} press={artist.press} pressLink={artist.pressLink} />
+            <ArtistSidebar CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
           </div>
           {artist.image && (
             <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-200 lg:col-span-3 mt-20">

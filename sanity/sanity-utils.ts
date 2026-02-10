@@ -17,6 +17,7 @@ const exhibitionProjection = groq`{
     content,
     "download": download.asset->url,
     "pressRelease": pressRelease.asset->url,
+    "pressLinks": pressLinks,
     isCurrent,
 }`;
 
@@ -93,7 +94,7 @@ export async function getArtists(): Promise<Artist[]> {
             biography,
             "CV": CV.asset->url,
             "press": press.asset->url,
-            "pressLink": pressLink,
+            "pressLinks": pressLinks,
             "exhibitionImages": exhibitionImages[].asset->url,
             "exhibitionImagesAlt": exhibitionImages[].alt,
             "exhibitionImagesCaption": exhibitionImages[].caption,
@@ -121,7 +122,7 @@ export async function getArtistBySlug(slug: string): Promise<Artist | null> {
             biography,
             "CV": CV.asset->url,
             "press": press.asset->url,
-            "pressLink": pressLink,
+            "pressLinks": pressLinks,
             "images": images[].asset->url,
             "exhibitionImages": exhibitionImages[].asset->url,
             "exhibitionImagesCaption": exhibitionImages[].caption,

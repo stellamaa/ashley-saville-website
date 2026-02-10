@@ -79,31 +79,36 @@ const artist = defineType({
             of: [{ type: "block" }],
         }),
         defineField({
-            
             name: "CV",
             title: "CV",
             type: "file",
-         }),
-    
+        }),
+
         defineField({
-            name: "pressLink",
-            title: "Press link",
-            type: "object",
-            fields: [
-                defineField({
-                    name: "label",
-                    title: "Label",
-                    type: "string",
-                    description: "Text to show for the link (e.g. \"Vogue\")",
-                }),
-                defineField({
-                    name: "url",
-                    title: "URL",
-                    type: "url",
-                   
-                }),
+            name: "pressLinks",
+            title: "Press links",
+            type: "array",
+            of: [
+                {
+                    name: "pressLink",
+                    title: "Press link",
+                    type: "object",
+                    fields: [
+                        defineField({
+                            name: "label",
+                            title: "Label",
+                            type: "string",
+                            description: "Text to show for the link (e.g. \"Vogue\")",
+                        }),
+                        defineField({
+                            name: "url",
+                            title: "URL",
+                            type: "url",
+                            validation: (Rule) => Rule.required(),
+                        }),
+                    ],
+                },
             ],
-            
         }),
     ],
 });

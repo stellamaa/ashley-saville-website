@@ -7,10 +7,10 @@ type SectionId = "biography" | "works" | "exhibitions";
 type Props = {
   CV?: string;
   press?: string;
-  pressLink?: { label?: string; url: string };
+  pressLinks?: { label?: string; url: string }[];
 };
 
-export default function ArtistSidebar({ CV, press, pressLink }: Props) {
+export default function ArtistSidebar({ CV, press, pressLinks }: Props) {
   const [activeSection, setActiveSection] = useState<SectionId>("biography");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -80,16 +80,19 @@ export default function ArtistSidebar({ CV, press, pressLink }: Props) {
           )}
         </div>
         <p className="text-sm font-medium text-neutral-600 mt-2">Press</p>
-        {pressLink?.url && (
-          
-          <a
-            href={pressLink.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-neutral-600 hover:text-neutral-900 mt-0"
-          >
-            {pressLink.label || "Press link"}
-          </a>
+        {pressLinks?.map(
+          (link, idx) =>
+            link.url && (
+              <a
+                key={link.url + idx}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-neutral-600 hover:text-neutral-900 mt-0"
+              >
+                {link.label || "Press link"}
+              </a>
+            ),
         )}
       </div>
     </div>
