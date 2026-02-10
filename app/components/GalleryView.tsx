@@ -90,12 +90,24 @@ export default function GalleryView({
       className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-20 md:pb-16 cursor-default"
       onClick={() => router.push(backHref)}
       aria-label="Close gallery (click outside or press Escape)"
+        
     >
       <div
         className="max-w-4xl mx-auto flex flex-col items-center w-full cursor-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col items-center">
+          {/* Top-right Close button */}
+          <div className="w-full flex justify-end mb-4 md:mb-6">
+            <button
+              type="button"
+              onClick={() => router.push(backHref)}
+              className="text-sm text-neutral-600 hover:text-neutral-900"
+            >
+              Close
+            </button>
+          </div>
+
           <div className="relative w-full h-[60vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-50 mb-0">
             <Image
               src={current.url}
