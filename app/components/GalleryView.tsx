@@ -106,7 +106,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="w-full mt-10 mb-10 text-sm font-light text-neutral-600 text-left">
+            <p className="w-full mt-10 mb-10 text-sm font-medium text-neutral-600 text-left">
               {current.caption}
             </p>
           )}

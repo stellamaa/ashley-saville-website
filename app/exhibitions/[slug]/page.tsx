@@ -36,14 +36,14 @@ export default async function ExhibitionPage({ params }: Props) {
     <div className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
      
-        <h1 className="text-1xl font-light text-center mt-0 sm:mt-20 mb-16">
+        <h1 className="text-1xl font-medium text-center mt-0 sm:mt-20 mb-16">
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
      
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <h2 className="text-sm font-light mb-0 mt-0text-neutral-900">
+            <h2 className="text-sm font-medium mb-0 mt-0text-neutral-900">
               {exhibition.artistName}
             </h2>
             <p className="text-sm text-neutral-600 mt-0">
@@ -96,7 +96,7 @@ export default async function ExhibitionPage({ params }: Props) {
             />
           </div>
         )}
-        <h3 className="text-sm justify-center text-center font-light text-neutral-600 mt-20">Exhibition</h3>
+        <h3 className="text-sm justify-center text-center font-medium text-neutral-600 mt-20">Exhibition</h3>
         {exhibition.exhibitionImages && exhibition.exhibitionImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20">
             {exhibition.exhibitionImages.map((item, idx) => (
@@ -111,7 +111,7 @@ export default async function ExhibitionPage({ params }: Props) {
             ))}
           </div>
         )}
-        <h3 className="text-sm justify-center text-center font-light text-neutral-600 mt-20">Works</h3>
+        <h3 className="text-sm justify-center text-center font-medium text-neutral-600 mt-20">Works</h3>
         {exhibition.worksImages && exhibition.worksImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20">
             {exhibition.worksImages.map((item, idx) => (

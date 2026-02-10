@@ -52,7 +52,7 @@ export default async function ArtistPage({ params }: Props) {
           )}
         </div>
 
-        <h3 id="exhibitions" className="text-sm justify-center text-center font-light text-neutral-600 mt-20 scroll-mt-32">
+        <h3 id="exhibitions" className="text-sm justify-center text-center font-medium text-neutral-600 mt-20 scroll-mt-32">
           Exhibitions
         </h3>
         {artist.exhibitionImages && artist.exhibitionImages.length > 0 && (
@@ -70,7 +70,7 @@ export default async function ArtistPage({ params }: Props) {
           </div>
         )}
 
-        <h3 id="works" className="text-sm justify-center text-center font-light text-neutral-600 mt-20 scroll-mt-32">
+        <h3 id="works" className="text-sm justify-center text-center font-medium text-neutral-600 mt-20 scroll-mt-32">
           Works
         </h3>
         {artist.worksImages && artist.worksImages.length > 0 && (

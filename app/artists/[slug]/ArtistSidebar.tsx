@@ -39,7 +39,7 @@ export default function ArtistSidebar({ CV, press, pressLink }: Props) {
   };
 
   const navClass = (id: SectionId) =>
-    `block w-full text-left lg:text-right text-sm font-light ${
+    `block w-full text-left lg:text-right text-sm font-medium ${
       activeSection === id ? "underline text-neutral-900" : "text-neutral-600 hover:text-neutral-900"
     }`;
 
@@ -79,7 +79,7 @@ export default function ArtistSidebar({ CV, press, pressLink }: Props) {
             </a>
           )}
         </div>
-        <p className="text-sm font-light text-neutral-600 mt-2">Press</p>
+        <p className="text-sm font-medium text-neutral-600 mt-2">Press</p>
         {pressLink?.url && (
           
           <a
