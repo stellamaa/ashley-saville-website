@@ -50,36 +50,36 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full flex justify-between items-center md:mt-8 fixed bottom-0 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 md:bg-transparent">
+    <div className="w-full flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 md:bg-transparent">
       <div className="min-w-[5rem]">
         {hasPrev ? (
           <Link
             href={`${basePath}/${prevIndex}`}
-            className="text-sm text-neutral-600 hover:text-neutral-900"
+            className="text-md text-neutral-900 hover:text-neutral-600"
           >
             Previous
           </Link>
         ) : backLabel ? (
           <Link
             href={backHref}
-            className="text-sm text-neutral-600 hover:text-neutral-900"
+            className="text-md text-neutral-900 hover:text-neutral-600"
           >
             {backLabel}
           </Link>
         ) : (
-          <span className="text-sm text-neutral-400">Previous</span>
+          <span className="text-md text-neutral-400">Previous</span>
         )}
       </div>
       <div className="min-w-[5rem] text-right">
         {hasNext ? (
           <Link
             href={`${basePath}/${nextIndex}`}
-            className="text-sm text-neutral-600 hover:text-neutral-900"
+            className="text-md text-neutral-900 hover:text-neutral-600"
           >
             Next
           </Link>
         ) : (
-          <span className="text-sm text-neutral-400">Next</span>
+          <span className="text-md text-neutral-400">Next</span>
         )}
       </div>
     </div>
@@ -102,7 +102,7 @@ export default function GalleryView({
             <button
               type="button"
               onClick={() => router.push(backHref)}
-              className="text-sm text-neutral-600 hover:text-neutral-900"
+              className="text-md text-neutral-900 hover:text-neutral-600"
             >
               Close
             </button>
@@ -118,7 +118,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="w-full mt-10 mb-10 text-sm font-medium text-neutral-600 text-left">
+            <p className="w-full mt-10 md:mt-5 mb-10 text-md font-medium text-neutral-900 text-center md:mb-5">
               {current.caption}
             </p>
           )}

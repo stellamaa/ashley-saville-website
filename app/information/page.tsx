@@ -1,20 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function InformationPage() {
   return (
     <div className="min-h-screen bg-white pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-lg font-medium text-neutral-600 text-center mb-14">Information</h1>
+        <h1 className="text-lg font-medium text-neutral-900 text-center mb-14">Information</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 mb-10">
           <div>
           
-            <p className="text-neutral-600 font-medium text-sm leading-relaxed">
+            <p className="text-neutral-900 font-medium text-md leading-relaxed">
             The gallery is located on the corner of Fleet Street and Chancery Lane. The entrance is on Chancery Lane. On arrival, please ring the bell to be let in. Kindly note that the gallery is on the first floor and is accessible via stairs only.            </p>
           </div>
 
           <div>
-            <h2 className="text-sm font-medium text-neutral-600 mb-0">
+            <h2 className="text-md font-medium text-neutral-900 mb-0">
               Newsletter
             </h2>
             <form className="space-y-4">
@@ -37,7 +38,7 @@ export default function InformationPage() {
               </div>
               <button
                 type="submit"
-                className="text-sm font-medium text-neutral-600 hover:text-neutral-600"
+                className="text-md font-medium text-neutral-900 hover:text-neutral-900"
               >
                 Subscribe
               </button>
@@ -46,27 +47,12 @@ export default function InformationPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-16 mb-16 font-medium ">
-          <div>
-            <h2 className="text-sm text-neutral-900 mb-1">
-              Address:
-            </h2>
-            <p className="text-neutral-600 text-sm leading-relaxed mb-0">
-            193 Fleet Street, London, EC4A 2AH, United Kingdom
-            </p>
-            <Link
-              href="https://www.google.com/maps/place/193+Fleet+St,+Greater,+Temple,+London+EC4A+2AH/@51.5139068,-0.1161117,17z/data=!3m1!4b1!4m6!3m5!1s0x487604b35ebcb6ef:0x638f3b4b5a6d1513!8m2!3d51.5139036!4d-0.1112408!16s%2Fg%2F11q2vvrxg2?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm underline text-neutral-600 hover:text-neutral-900"
-            >
-              Google maps.
-            </Link>
-          </div>
+          
           <div>
             <h2 className="text-sm text-neutral-900 mb-2">
               Opening Hours:
             </h2>
-            <p className="text-neutral-600 text-sm">
+            <p className="text-neutral-900 text-md">
           
 Wednesday - Saturday <br />
  10am - 6pm <br />
@@ -74,10 +60,29 @@ and by appointment
             </p>
           </div>
           <div>
+
+            <h2 className="text-sm text-neutral-900 mb-1">
+              Address:
+            </h2>
+            <p className="text-neutral-900 text-md leading-relaxed mb-0">
+            193 Fleet Street, London, EC4A 2AH, United Kingdom
+            </p>
+            <Link
+              href="https://www.google.com/maps/place/193+Fleet+St,+Greater,+Temple,+London+EC4A+2AH/@51.5139068,-0.1161117,17z/data=!3m1!4b1!4m6!3m5!1s0x487604b35ebcb6ef:0x638f3b4b5a6d1513!8m2!3d51.5139036!4d-0.1112408!16s%2Fg%2F11q2vvrxg2?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-md underline text-neutral-900 hover:text-neutral-900"
+            >
+              Google maps.
+            </Link>
+            <Image src="/building.jpg" alt="Map" width={300} height={300} className="mt-4" />
+
+          </div>
+          <div>
             <h2 className="text-sm  text-neutral-900 mb-2">
               Contact:
             </h2>
-            <div className="space-y-2 text-sm text-neutral-600 mb-8">
+            <div className="space-y-2 text-md text-neutral-900 mb-8">
               <p>
 
               Ashley Saville, Director <br /> <br />

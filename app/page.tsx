@@ -9,12 +9,12 @@ function formatDate(dateStr: string): string {
   const month = date.toLocaleDateString("en-GB", { month: "long" });
   const suffix =
     day === 1 || day === 21 || day === 31
-      ? "st"
+      ? ""
       : day === 2 || day === 22
-        ? "nd"
+        ? ""
         : day === 3 || day === 23
-          ? "rd"
-          : "th";
+          ? ""
+          : "";
   return `${day}${suffix} of ${month}`;
 }
 
@@ -47,11 +47,11 @@ export default async function Home() {
             {exhibition.artistName}
           </h2>
           <div className="flex-1 min-h-[1px]" />
-          <div className="flex flex-col items-start gap-1 text-left pb-8 md:absolute md:bottom-16 md:right-45 md:pb-0 font-medium">
-            <p className="text-sm text-white/95">
-              &ldquo;{exhibition.exhibitionName}&rdquo;
+          <div className="flex flex-col items-start gap-0 text-left pb-8 md:absolute md:bottom-12 md:right-45 md:pb-0 font-medium text-base">
+            <p className=" text-white/95">
+              {exhibition.exhibitionName}
             </p>
-            <p className="text-sm text-white/90">
+            <p className="text-white/90">
               {formatDate(exhibition.startDate)} - {formatDate(exhibition.endDate)}
             </p>
             <Link

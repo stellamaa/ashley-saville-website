@@ -79,7 +79,7 @@ export default function ArtistSidebar({ CV, press, pressLinks }: Props) {
             </a>
           )}
         </div>
-        <p className="text-sm font-medium text-neutral-600 mt-2">Press</p>
+        <p className="text-sm font-bold text-neutral-600 mt-2">Press</p>
         {pressLinks?.map(
           (link, idx) =>
             link.url && (

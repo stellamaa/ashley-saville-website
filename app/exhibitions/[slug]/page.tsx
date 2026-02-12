@@ -11,12 +11,12 @@ function formatDate(dateStr: string): string {
   const month = date.toLocaleDateString("en-GB", { month: "long" });
   const suffix =
     day === 1 || day === 21 || day === 31
-      ? "st"
+      ? ""
       : day === 2 || day === 22
-        ? "nd"
+        ? ""
         : day === 3 || day === 23
-          ? "rd"
-          : "th";
+          ? ""
+          : "";
   return `${day}${suffix} of ${month}`;
 }
 
@@ -43,17 +43,17 @@ export default async function ExhibitionPage({ params }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <h2 className="text-sm font-medium mb-0 mt-0text-neutral-900">
+            <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
               {exhibition.artistName}
             </h2>
-            <p className="text-sm text-neutral-600 mt-0">
+            <p className="text-md text-neutral-900 mt-0">
               {exhibition.exhibitionName}
             </p>
-            <p className="text-sm text-neutral-600 mt-0">
+            <p className="text-md text-neutral-900 mt-0">
               {formatDate(exhibition.startDate)} - {formatDate(exhibition.endDate)}
             </p>
             {exhibition.content && exhibition.content.length > 0 && (
-              <div className="mt-3 text-sm">
+              <div className="mt-3 text-md text-justify">
                 <ReadMore content={exhibition.content} />
               </div>
             )}
@@ -67,7 +67,7 @@ export default async function ExhibitionPage({ params }: Props) {
                   href={exhibition.download}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-neutral-600 hover:text-neutral-900"
+                  className="text-md text-neutral-900 hover:text-neutral-600"
                 >
                   Download
                 </a>
@@ -77,7 +77,7 @@ export default async function ExhibitionPage({ params }: Props) {
                   href={exhibition.pressRelease}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm mt-20 text-neutral-600 hover:text-neutral-900"
+                  className="text-md mt-20 text-neutral-900 hover:text-neutral-600"
                 >
                  Download Press Release
                 </a>
@@ -86,7 +86,7 @@ export default async function ExhibitionPage({ params }: Props) {
             {exhibition.pressLinks && exhibition.pressLinks.length > 0 && (
               <div className="flex flex-col items-start lg:items-end gap-2">
                 {exhibition.pressLinks.map((link, idx) => (
-                  <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-600 hover:text-neutral-900">
+                  <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="text-md text-neutral-900 hover:text-neutral-600">
                     {link.label}
                   </a>
                 ))}
@@ -108,7 +108,7 @@ export default async function ExhibitionPage({ params }: Props) {
             />
           </Link>
         )}
-        <h3 className="text-sm justify-center text-center font-medium text-neutral-600 mt-20">Exhibition</h3>
+        <h3 className="text-md justify-center text-center font-medium text-neutral-900 mt-20">Installations</h3>
         {exhibition.exhibitionImages && exhibition.exhibitionImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20">
             {exhibition.exhibitionImages.map((item, idx) => (
@@ -126,7 +126,7 @@ export default async function ExhibitionPage({ params }: Props) {
             ))}
           </div>
         )}
-        <h3 className="text-sm justify-center text-center font-medium text-neutral-600 mt-20">Works</h3>
+        <h3 className="text-md justify-center text-center font-medium text-neutral-900 mt-20">Works</h3>
         {exhibition.worksImages && exhibition.worksImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20">
             {exhibition.worksImages.map((item, idx) => (

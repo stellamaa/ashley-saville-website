@@ -4,11 +4,11 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-white pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-lg font-medium text-sm text-center mb-14">Privacy Policy</h1>
+        <h1 className="text-lg font-medium text-neutral-900 text-center mb-14">Privacy Policy</h1>
 
-        <div className="text-neutral-600 text-sm leading-relaxed space-y-6">
+        <div className="text-neutral-900 text-md leading-relaxed space-y-6">
           <p>
-            <strong className="text-neutral-900 text-sm font-medium ">Ashley Saville Art Advisor Ltd (&quot;Ashley Saville&quot;) Privacy Policy</strong>
+            <strong className="text-neutral-900 text-md font-medium">Ashley Saville Art Advisor Ltd (&quot;Ashley Saville&quot;) Privacy Policy</strong>
           </p>
           <p>
             This policy applies to information held about clients and prospective clients, suppliers and prospective suppliers, artists, contacts and all other persons about whom Ashley Saville Art Advisor Ltd (trading as Ashley Saville) holds information. Ashley Saville Art Advisor Ltd is a company registered in England and Wales with No. 16662251. The registered office address is Harrison House Sheep Walk, Langford Road, Biggleswade, Bedfordshire, England, SG18 9RB.

@@ -17,19 +17,29 @@ export default function Header() {
     return null;
   }
 
-  const linkHoverClass = "hover:text-neutral-600";
+  const isLanding = pathname === "/";
+
+  // On the landing page (with the hero image), header/nav text should be white.
+  // On all other pages, it stays black.
+
+  const navTextClass = isLanding ? "text-white" : "text-neutral-900";
+  const linkHoverClass = isLanding
+    ? "hover:text-white/70"
+    : "hover:text-neutral-600";
+
+    const invertLogo = isLanding ? "invert" : "";
 
   // Desktop only: Exhibitions is a normal nav link; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
   const isOnExhibitionsSection = pathname?.startsWith("/exhibitions");
   const exhibitionsBlockDesktop = (
     <div className="relative">
-      <Link href="/exhibitions" className={linkHoverClass}>
+      <Link href="/exhibitions" className={`${linkHoverClass}`}>
         Exhibitions
       </Link>
       {isOnExhibitionsSection && (
         <Link
           href="/exhibitions/archive"
-          className="absolute left-0 top-full mt-0.5 text-sm text-neutral-900 hover:text-neutral-600 whitespace-nowrap"
+          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap ${navTextClass} ${linkHoverClass}`}
         >
           Archive
         </Link>
@@ -93,26 +103,26 @@ export default function Header() {
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-20 flex items-center justify-between px-3 py-1 md:px-3">
+    <header className={`fixed left-0 right-0 top-0 z-20 flex items-center justify-between px-3 py-1 md:px-2 `}>
       <Link href="/" className="flex">
         <Image
           src={logo}
           alt="Ashley Saville"
           width={150}
           height={25}
-          className="h-11 w-auto"
+          className={`h-11 w-auto ${invertLogo}`}
         />
       </Link>
 
       {/* Desktop nav: Exhibitions goes to current exhibition, Archive underneath */}
-      <nav className="hidden md:flex md:px-3 gap-6 text-sm text-neutral-900 items-baseline">
+      <nav className={`hidden md:flex md:px-3 gap-6 items-baseline text-base ${navTextClass}`}>
         {desktopNavLinks}
       </nav>
 
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="md:hidden p-0 text-neutral-900"
+        className={`md:hidden p-0 ${isLanding ? "text-white" : "text-neutral-900"}`}
         aria-label="Toggle menu"
       >
         <Image
@@ -120,7 +130,7 @@ export default function Header() {
           alt="Menu"
           width={24}
           height={24}
-          className={`mt-2 w-13 h-14 transition-transform duration-200 ease-in-out ${mobileMenuOpen ? "rotate-45" : ""}`}
+          className={`${invertLogo} mt-2 w-13 h-14 transition-transform duration-200 ease-in-out ${mobileMenuOpen ? "rotate-45" : ""}`}
         />
       </button>
 

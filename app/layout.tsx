@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
+// Local VinterTrial Medium font. Make sure the OTF file is placed at:
+// app/fonts/VinterTrial-Medium.otf
+const vinter = localFont({
+  src: "./fonts/VinterTrial-Medium.otf",
+  variable: "--font-inter", // reused CSS variable for the sans font
+  weight: "400",
+  style: "normal",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} font-sans font-medium antialiased`}
+        className={`${vinter.variable} font-sans font-medium text-neutral-900 text-md antialiased`}
       >
         <Header />
         {children}
