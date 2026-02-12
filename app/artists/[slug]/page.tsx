@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
-import ArtistSidebar from "./ArtistSidebar";
+import ArtistNavigation from "./ArtistNavigation";
+import ArtistDocuments from "./ArtistDocuments";
 import { Exhibition } from "@/types/exhibition";
 
 function formatDate(dateStr: string): string {
@@ -13,12 +14,12 @@ function formatDate(dateStr: string): string {
   const month = date.toLocaleDateString("en-GB", { month: "long" });
   const suffix =
     day === 1 || day === 21 || day === 31
-      ? "st"
+      ? ""
       : day === 2 || day === 22
-        ? "nd"
+        ? ""
         : day === 3 || day === 23
-          ? "rd"
-          : "th";
+          ? ""
+          : "";
   return `${day}${suffix} of ${month}`;
 }
 
@@ -45,23 +46,37 @@ export default async function ArtistPage({ params }: Props) {
         <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
           {artist.name}
         </h1>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-          <div id="biography" className="lg:col-span-2 scroll-mt-32">
+        {/* Mobile Navigation */}
+        <div className="lg:hidden mb-5">
+          <ArtistNavigation />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
+          <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify">
            
             {artist.biography && artist.biography.length > 0 && (
-              <div className="mt-3 text-md font-medium text-justify">
+              <div className="mt-3 text-md font-medium">
                 <ReadMore content={artist.biography} />
               </div>
             )}
           </div>
           <div className="lg:col-span-1 lg:text-right">
-            <ArtistSidebar CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
+            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-6 hidden lg:flex">
+              <div className="mt-3">
+                <ArtistNavigation />
+              </div>
+              <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
+            </div>
           </div>
+        
+          {/* Mobile: Documents above image */}
+          <div className="lg:col-span-3 lg:hidden mb-5">
+            <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
+          </div>
+          
           {artist.image && (
             <Link
               href={`/artists/${slug}/works/0`}
-              className="lg:col-span-3 mt-20 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
+              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
             >
               <Image
                 src={artist.image}
@@ -140,7 +155,7 @@ export default async function ArtistPage({ params }: Props) {
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/70 transition flex items-center justify-center p-6">
                     <div className="text-black text-center opacity-0 group-hover:opacity-100 transition">
                       <p className=" text-sm font-medium">
-                        {exhibition.artistName}
+                        {exhibition.exhibitionName}
                       </p>
                       <p className="text-sm text-black/90 font-medium">
                         {formatDate(exhibition.startDate)} -{" "}
