@@ -29,7 +29,17 @@ export default function ArtistNavigation() {
   }, []);
 
   const scrollTo = (id: SectionId) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(id);
+    if (element) {
+      const headerHeight = 50; // pt-24 = 96px
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
   };
 
   const navClass = (id: SectionId) =>

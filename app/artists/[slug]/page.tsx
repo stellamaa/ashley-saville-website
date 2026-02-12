@@ -60,7 +60,7 @@ export default async function ArtistPage({ params }: Props) {
             )}
           </div>
           <div className="lg:col-span-1 lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-6 hidden lg:flex">
+            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
               <div className="mt-3">
                 <ArtistNavigation />
               </div>
@@ -88,7 +88,7 @@ export default async function ArtistPage({ params }: Props) {
           )}
         </div>
 
-        <h3 id="exhibitions" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
+        <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
           Installations
         </h3>
         {artist.exhibitionImages && artist.exhibitionImages.length > 0 && (

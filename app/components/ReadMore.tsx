@@ -31,6 +31,14 @@ export default function ReadMore({ content }: Props) {
     },
   };
 
+  const handleToggle = () => {
+    if (expanded) {
+      // When collapsing (Read less), scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setExpanded(!expanded);
+  };
+
   return (
     <div>
       <div className="prose prose-neutral max-w-none text-neutral-900 text-md">
@@ -46,8 +54,8 @@ export default function ReadMore({ content }: Props) {
       {/* Only show the button if there actually is a hidden part */}
       {hiddenBlocks.length > 0 && (
         <button
-          onClick={() => setExpanded(!expanded)}
-          className="mt-2 text-md underline text-neutral-900 hover:text-neutral-600"
+          onClick={handleToggle}
+          className="mt-0 text-md underline text-neutral-900 hover:text-neutral-600"
         >
           {expanded ? "Read less" : "Read more"}
         </button>
