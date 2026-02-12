@@ -92,7 +92,15 @@ const exhibition = defineType({
           type: "object",
           name: "readMoreBreak",
           title: "Read more Break",
-          fields: [],
+          fields: [
+            defineField({
+              name: "marker",
+              title: "Marker",
+              type: "string",
+              initialValue: "readMoreBreak",
+              hidden: true,
+            }),
+          ],
         },
       ],
     }),

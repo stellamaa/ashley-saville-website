@@ -82,11 +82,20 @@ const artist = defineType({
             title: "Biography",
             type: "array",
             of: [{ type: "block" },
-                {type: "object",
-                name: "readMoreBreak",
-               title: "Read more Break",
-               fields: []
-                            }
+                {
+                    type: "object",
+                    name: "readMoreBreak",
+                    title: "Read more Break",
+                    fields: [
+                        defineField({
+                            name: "marker",
+                            title: "Marker",
+                            type: "string",
+                            initialValue: "readMoreBreak",
+                            hidden: true,
+                        }),
+                    ],
+                }
             ],
         }),
         defineField({
