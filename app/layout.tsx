@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
+import { getCurrentFair } from "@/sanity/sanity-utils";
 
-// Local VinterTrial Medium font. Make sure the OTF file is placed at:
-// app/fonts/VinterTrial-Medium.otf
+
 const vinter = localFont({
   src: "./fonts/VinterTrial-Medium.otf",
   variable: "--font-inter", // reused CSS variable for the sans font
@@ -15,19 +15,25 @@ const vinter = localFont({
 export const metadata: Metadata = {
   title: "Ashley Saville",
   description: "Ashley Saville",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentFair = await getCurrentFair();
+  const hasCurrentFair = !!currentFair;
+
   return (
     <html lang="en">
       <body
         className={`${vinter.variable} font-sans font-medium text-neutral-900 text-md antialiased`}
       >
-        <Header />
+        <Header hasCurrentFair={hasCurrentFair} />
         {children}
       </body>
     </html>

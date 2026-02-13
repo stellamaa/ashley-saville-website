@@ -5,7 +5,21 @@ export type Fair = {
     _createdAt: string;
     name: string;
     slug: string;
+    location: string;
+    startDate: string;
+    endDate: string;
     image: string;
-    url: string;
-    content: PortableTextBlock[];
+    imageCaption?: string;
+    fairImages?: Array<{
+        url: string;
+        caption?: string;
+    }>;
+    content?: PortableTextBlock[];
+    download?: string;
+    pressRelease?: string;
+    pressLinks?: Array<{
+        label: string;
+        url: string;
+    }>;
+    isCurrent?: boolean;
 }

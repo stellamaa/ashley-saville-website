@@ -44,18 +44,90 @@ const fair = defineType({
                     title: "Alt",
                     type: "string",
                 }),
+                defineField({
+                    name: "caption",
+                    title: "Caption",
+                    type: "string",
+                }),
             ],
         }),
         defineField({
-            name: "url",
-            title: "URL",
-            type: "url",
+            name: "fairImages",
+            title: "Fair Images",
+            type: "array",
+            of: [
+                {
+                    type: "image",
+                    options: { hotspot: true },
+                    fields: [
+                        defineField({ name: "alt", title: "Alt", type: "string" }),
+                        defineField({ name: "caption", title: "Caption", type: "string" }),
+                    ],
+                },
+            ],
         }),
         defineField({
             name: "content",
             title: "Content",
             type: "array",
-            of: [{ type: "block" }],
+            of: [
+                { type: "block" },
+                {
+                    type: "object",
+                    name: "readMoreBreak",
+                    title: "Read more Break",
+                    fields: [
+                        defineField({
+                            name: "marker",
+                            title: "Marker",
+                            type: "string",
+                            initialValue: "readMoreBreak",
+                            hidden: true,
+                        }),
+                    ],
+                },
+            ],
+        }),
+        defineField({
+            name: "download",
+            title: "Download",
+            type: "file",
+        }),
+        defineField({
+            name: "pressRelease",
+            title: "Press Release",
+            type: "file",
+        }),
+        defineField({
+            name: "pressLinks",
+            title: "Press links",
+            type: "array",
+            of: [
+                {
+                    name: "pressLink",
+                    title: "Press link",
+                    type: "object",
+                    fields: [
+                        defineField({
+                            name: "label",
+                            title: "Label",
+                            type: "string",
+                            description: 'Text to show for the link (e.g. "Vogue")',
+                        }),
+                        defineField({
+                            name: "url",
+                            title: "URL",
+                            type: "url",
+                            validation: (Rule) => Rule.required(),
+                        }),
+                    ],
+                },
+            ],
+        }),
+        defineField({
+            name: "isCurrent",
+            title: "Is Fair Current?",
+            type: "boolean",
         }),
     ],
 });

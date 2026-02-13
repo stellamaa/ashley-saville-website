@@ -31,7 +31,7 @@ export default function ExhibitionNavigation() {
   const scrollTo = (id: SectionId) => {
     const element = document.getElementById(id);
     if (element) {
-      const headerHeight = 96; // pt-24 = 96px
+      const headerHeight = 50; // pt-24 = 96px
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - headerHeight;
       

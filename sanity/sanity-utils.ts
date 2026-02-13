@@ -137,6 +137,63 @@ export async function getArtistBySlug(slug: string): Promise<Artist | null> {
   return result;
 }
 
+const fairProjection = groq`{
+    _id,
+    _createdAt,
+    name,
+    location,
+    startDate,
+    endDate,
+    "fairImages": fairImages[]{"url": asset->url, "caption": caption},
+    "slug": slug.current,
+    "image": image.asset->url,
+    "imageCaption": image.caption,
+    content,
+    "download": download.asset->url,
+    "pressRelease": pressRelease.asset->url,
+    "pressLinks": pressLinks,
+    isCurrent,
+}`;
+
+export async function getCurrentFair(): Promise<Fair | null> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+
+  const result = await client.fetch(
+    groq`* [_type == "fair" && isCurrent == true][0] ${fairProjection}`,
+  );
+  return result;
+}
+
+export async function getArchivedFairs(): Promise<Fair[]> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+
+  return client.fetch(
+    groq`* [_type == "fair" && isCurrent != true] | order(_createdAt desc) ${fairProjection}`,
+  );
+}
+
+export async function getFairBySlug(slug: string): Promise<Fair | null> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+
+  const result = await client.fetch(
+    groq`* [_type == "fair" && slug.current == $slug][0] ${fairProjection}`,
+    { slug },
+  );
+  return result;
+}
+
 export async function getFairs(): Promise<Fair[]> {
   const client = createClient({
     projectId: "chae03x8",

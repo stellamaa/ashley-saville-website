@@ -7,10 +7,15 @@ import { useState } from "react";
 import logo from "@/public/logo.png";
 import menuIcon from "@/public/menu.svg";
 
-export default function Header() {
+interface HeaderProps {
+  hasCurrentFair?: boolean;
+}
+
+export default function Header({ hasCurrentFair = false }: HeaderProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [exhibitionsOpen, setExhibitionsOpen] = useState(false);
+  const [fairsOpen, setFairsOpen] = useState(false);
 
   // Don't show header on Sanity Studio
   if (pathname?.startsWith("/admin")) {
@@ -47,16 +52,32 @@ export default function Header() {
     </div>
   );
 
+  // Desktop only: Fairs is shown conditionally; Archive shows underneath only when on a fairs page
+  const isOnFairsSection = pathname?.startsWith("/fairs");
+  const fairsBlockDesktop = hasCurrentFair ? (
+    <div className="relative">
+      <Link href="/fairs" className={`${linkHoverClass}`}>
+        Fairs
+      </Link>
+      {isOnFairsSection && (
+        <Link
+          href="/fairs/archive"
+          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap ${navTextClass} ${linkHoverClass}`}
+        >
+          Archive
+        </Link>
+      )}
+    </div>
+  ) : null;
+
   const exhibitionsBlockMobile = (
     <div className="flex flex-col items-center">
-      <Link
-        href="/exhibitions"
-        type="button"
+      <button
         onClick={() => setExhibitionsOpen((prev) => !prev)}
         className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit"
       >
         Exhibitions
-      </Link>
+      </button>
       {exhibitionsOpen && (
         <Link
           href="/exhibitions/archive"
@@ -72,15 +93,40 @@ export default function Header() {
     </div>
   );
 
+  const fairsBlockMobile = hasCurrentFair ? (
+    <div className="flex flex-col items-center">
+      <button
+        onClick={() => setFairsOpen((prev) => !prev)}
+        className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit"
+      >
+        Fairs
+      </button>
+      {fairsOpen && (
+        <Link
+          href="/fairs/archive"
+          className="text-sm text-neutral-900 hover:text-neutral-600 mt-1"
+          onClick={() => {
+            setMobileMenuOpen(false);
+            setFairsOpen(false);
+          }}
+        >
+          Archive
+        </Link>
+      )}
+    </div>
+  ) : (
+    <Link href="/fairs" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
+      Fairs
+    </Link>
+  );
+
   const mobileNavLinks = (
     <>
       <Link href="/artists" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
         Artists
       </Link>
       {exhibitionsBlockMobile}
-      <Link href="/fairs" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
-        Fairs
-      </Link>
+      {fairsBlockMobile}
       <Link href="/information" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
         Information
       </Link>
@@ -93,9 +139,7 @@ export default function Header() {
         Artists
       </Link>
       {exhibitionsBlockDesktop}
-      <Link href="/fairs" className={linkHoverClass}>
-        Fairs
-      </Link>
+      {fairsBlockDesktop}
       <Link href="/information" className={linkHoverClass}>
         Information
       </Link>
