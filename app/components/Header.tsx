@@ -9,13 +9,17 @@ import menuIcon from "@/public/menu.svg";
 
 interface HeaderProps {
   hasCurrentFair?: boolean;
+  currentExhibitionSlug?: string;
+  currentFairSlug?: string;
 }
 
-export default function Header({ hasCurrentFair = false }: HeaderProps) {
+export default function Header({ 
+  hasCurrentFair = false,
+  currentExhibitionSlug,
+  currentFairSlug,
+}: HeaderProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [exhibitionsOpen, setExhibitionsOpen] = useState(false);
-  const [fairsOpen, setFairsOpen] = useState(false);
 
   // Don't show header on Sanity Studio
   if (pathname?.startsWith("/admin")) {
@@ -31,11 +35,14 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
 
     const invertLogo = isLanding ? "invert" : "";
 
-  // Desktop only: Exhibitions is a normal nav link; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
+  // Desktop only: Exhibitions links to current exhibition if available; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
   const isOnExhibitionsSection = pathname?.startsWith("/exhibitions");
   const exhibitionsBlockDesktop = (
     <div className="relative">
-      <Link href="/exhibitions" className={`${linkHoverClass}`}>
+      <Link 
+        href={currentExhibitionSlug ? `/exhibitions/${currentExhibitionSlug}` : "/exhibitions"} 
+        className={`${linkHoverClass}`}
+      >
         Exhibitions
       </Link>
       {isOnExhibitionsSection && (
@@ -51,9 +58,9 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
 
   // Desktop only: Fairs is shown conditionally; Archive shows underneath only when on a fairs page
   const isOnFairsSection = pathname?.startsWith("/fairs");
-  const fairsBlockDesktop = hasCurrentFair ? (
+  const fairsBlockDesktop = hasCurrentFair && currentFairSlug ? (
     <div className="relative">
-      <Link href="/fairs" className={`${linkHoverClass}`}>
+      <Link href={`/fairs/${currentFairSlug}`} className={`${linkHoverClass}`}>
         Fairs
       </Link>
       {isOnFairsSection && (
@@ -67,55 +74,33 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
     </div>
   ) : null;
 
-  const exhibitionsBlockMobile = (
-    <div className="flex flex-col items-center">
-      <button
-        onClick={() => setExhibitionsOpen((prev) => !prev)}
-        className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit leading-normal h-auto"
-      >
-        Exhibitions
-      </button>
-      {exhibitionsOpen && (
-        <Link
-          href="/exhibitions/archive"
-          className="text-sm text-neutral-900 hover:text-neutral-600 mt-1 leading-normal h-auto"
-          onClick={() => {
-            setMobileMenuOpen(false);
-            setExhibitionsOpen(false);
-          }}
-        >
-          Archive
-        </Link>
-      )}
-    </div>
-  );
-
-  const fairsBlockMobile = hasCurrentFair ? (
-    <div className="flex flex-col items-center">
-      <button
-        onClick={() => setFairsOpen((prev) => !prev)}
-        className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit leading-normal h-auto"
-      >
-        Fairs
-      </button>
-      {fairsOpen && (
-        <Link
-          href="/fairs/archive"
-          className="text-sm text-neutral-900 hover:text-neutral-600 mt-1 leading-normal h-auto"
-          onClick={() => {
-            setMobileMenuOpen(false);
-            setFairsOpen(false);
-          }}
-        >
-          Archive
-        </Link>
-      )}
-    </div>
+  const exhibitionsBlockMobile = currentExhibitionSlug ? (
+    <Link
+      href={`/exhibitions/${currentExhibitionSlug}`}
+      className={`${linkHoverClass} leading-normal h-auto`}
+      onClick={() => setMobileMenuOpen(false)}
+    >
+      Exhibitions
+    </Link>
   ) : (
-    <Link href="/fairs" className={`${linkHoverClass} leading-normal h-auto`} onClick={() => setMobileMenuOpen(false)}>
-      Fairs
+    <Link
+      href="/exhibitions"
+      className={`${linkHoverClass} leading-normal h-auto`}
+      onClick={() => setMobileMenuOpen(false)}
+    >
+      Exhibitions
     </Link>
   );
+
+  const fairsBlockMobile = hasCurrentFair && currentFairSlug ? (
+    <Link
+      href={`/fairs/${currentFairSlug}`}
+      className={`${linkHoverClass} leading-normal h-auto`}
+      onClick={() => setMobileMenuOpen(false)}
+    >
+      Fairs
+    </Link>
+  ) : null;
 
   const mobileNavLinks = (
     <>

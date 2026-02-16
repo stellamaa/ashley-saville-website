@@ -14,6 +14,10 @@ export type Fair = {
         url: string;
         caption?: string;
     }>;
+    worksImages?: Array<{
+        url: string;
+        caption?: string;
+    }>;
     content?: PortableTextBlock[];
     download?: string;
     pressRelease?: string;

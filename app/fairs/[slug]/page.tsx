@@ -37,6 +37,14 @@ export default async function FairPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
+        {fair.isCurrent && (
+          <Link
+            href="/fairs/archive"
+            className="text-sm text-neutral-600 hover:text-neutral-900 mb-4 inline-block"
+          >
+            Archive
+          </Link>
+        )}
         <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
           {fair.isCurrent ? "Current Fair" : "Archive"}
         </h1>

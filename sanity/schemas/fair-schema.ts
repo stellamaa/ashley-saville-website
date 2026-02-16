@@ -6,15 +6,15 @@ const fair = defineType({
     type: "document",
     fields: [
         defineField({
-            name: "name",
-            title: "Name",
+            name: "fairName",
+            title: "Fair Name",
             type: "string",
         }),
         defineField({
             name: "slug",
             title: "Slug",
             type: "slug",
-            options: { source: "name" },
+            options: { source: "fairName" },
         }),
         defineField({
             name: "location",
@@ -66,6 +66,21 @@ const fair = defineType({
                 },
             ],
         }),
+        defineField({
+            name: "worksImages",
+            title: "Works Images",
+            type: "array",
+            of: [
+              {
+                type: "image",
+                options: { hotspot: true },
+                fields: [
+                  defineField({ name: "alt", title: "Alt", type: "string" }),
+                  defineField({ name: "caption", title: "Caption", type: "string" }),
+                ],
+              },
+            ],
+          }),
         defineField({
             name: "content",
             title: "Content",

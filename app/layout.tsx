@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
-import { getCurrentFair } from "@/sanity/sanity-utils";
+import { getCurrentFair, getCurrentExhibition } from "@/sanity/sanity-utils";
 
 
 const vinter = localFont({
@@ -26,6 +26,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const currentFair = await getCurrentFair();
+  const currentExhibition = await getCurrentExhibition();
   const hasCurrentFair = !!currentFair;
 
   return (
@@ -33,7 +34,11 @@ export default async function RootLayout({
       <body
         className={`${vinter.variable} font-sans font-medium text-neutral-900 text-md antialiased`}
       >
-        <Header hasCurrentFair={hasCurrentFair} />
+        <Header 
+          hasCurrentFair={hasCurrentFair}
+          currentExhibitionSlug={currentExhibition?.slug}
+          currentFairSlug={currentFair?.slug}
+        />
         {children}
       </body>
     </html>

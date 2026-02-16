@@ -216,11 +216,12 @@ export async function getFairs(): Promise<Fair[]> {
             "pressLinks": pressLinks,
             isCurrent,
             "fairImages": fairImages[]{"url": asset->url, "caption": caption},
+            "worksImages": worksImages[]{"url": asset->url, "caption": caption},
             "location": location,
             "startDate": startDate,
             "endDate": endDate,
             content,
-            
+
         }`,
   );
 }
