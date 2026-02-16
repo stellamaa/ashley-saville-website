@@ -131,6 +131,7 @@ export async function getArtistBySlug(slug: string): Promise<Artist | null> {
             "exhibitionImagesCaption": exhibitionImages[].caption,
             "worksImages": worksImages[].asset->url,
             "worksImagesCaption": worksImages[].caption,
+            "ArtistDocuments": ArtistDocuments[].asset->url,
         }`,
     { slug },
   );
@@ -208,7 +209,18 @@ export async function getFairs(): Promise<Fair[]> {
             name,
             "slug": slug.current,
             "image": image.asset->url,
+            "imageCaption": image.caption,
             content,
+            "download": download.asset->url,
+            "pressRelease": pressRelease.asset->url,
+            "pressLinks": pressLinks,
+            isCurrent,
+            "fairImages": fairImages[]{"url": asset->url, "caption": caption},
+            "location": location,
+            "startDate": startDate,
+            "endDate": endDate,
+            content,
+            
         }`,
   );
 }

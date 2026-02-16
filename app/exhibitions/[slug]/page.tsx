@@ -40,10 +40,6 @@ export default async function ExhibitionPage({ params }: Props) {
         <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
-        {/* Mobile Navigation */}
-        <div className="lg:hidden mb-5">
-          <ExhibitionNavigation />
-        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
             <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
@@ -60,8 +56,8 @@ export default async function ExhibitionPage({ params }: Props) {
                 <ReadMore content={exhibition.content} />
               </div>
             )}
-            {/* Desktop: Documents below content in two columns */}
-            <div className="hidden lg:block mt-6">
+            {/* Documents below content in two columns */}
+            <div className="mt-6">
               <ExhibitionDocuments 
                 download={exhibition.download} 
                 pressRelease={exhibition.pressRelease} 
@@ -70,20 +66,11 @@ export default async function ExhibitionPage({ params }: Props) {
             </div>
           </div>
           <div className="lg:col-span-1 lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-6 hidden lg:flex">
+            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7">
               <div className="mt-3">
                 <ExhibitionNavigation />
               </div>
             </div>
-          </div>
-        
-          {/* Mobile: Documents above image */}
-          <div className="lg:col-span-3 lg:hidden mb-5">
-            <ExhibitionDocuments 
-              download={exhibition.download} 
-              pressRelease={exhibition.pressRelease} 
-              pressLinks={exhibition.pressLinks} 
-            />
           </div>
           
           {exhibition.image && (

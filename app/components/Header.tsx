@@ -24,9 +24,6 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
 
   const isLanding = pathname === "/";
 
-  // On the landing page (with the hero image), header/nav text should be white.
-  // On all other pages, it stays black.
-
   const navTextClass = isLanding ? "text-white" : "text-neutral-900";
   const linkHoverClass = isLanding
     ? "hover:text-white/70"
@@ -74,14 +71,14 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
     <div className="flex flex-col items-center">
       <button
         onClick={() => setExhibitionsOpen((prev) => !prev)}
-        className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit"
+        className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit leading-normal h-auto"
       >
         Exhibitions
       </button>
       {exhibitionsOpen && (
         <Link
           href="/exhibitions/archive"
-          className="text-sm text-neutral-900 hover:text-neutral-600 mt-1"
+          className="text-sm text-neutral-900 hover:text-neutral-600 mt-1 leading-normal h-auto"
           onClick={() => {
             setMobileMenuOpen(false);
             setExhibitionsOpen(false);
@@ -97,14 +94,14 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
     <div className="flex flex-col items-center">
       <button
         onClick={() => setFairsOpen((prev) => !prev)}
-        className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit"
+        className="text-neutral-900 hover:text-neutral-600 text-md p-0 bg-transparent border-0 cursor-pointer font-inherit leading-normal h-auto"
       >
         Fairs
       </button>
       {fairsOpen && (
         <Link
           href="/fairs/archive"
-          className="text-sm text-neutral-900 hover:text-neutral-600 mt-1"
+          className="text-sm text-neutral-900 hover:text-neutral-600 mt-1 leading-normal h-auto"
           onClick={() => {
             setMobileMenuOpen(false);
             setFairsOpen(false);
@@ -115,19 +112,19 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
       )}
     </div>
   ) : (
-    <Link href="/fairs" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
+    <Link href="/fairs" className={`${linkHoverClass} leading-normal h-auto`} onClick={() => setMobileMenuOpen(false)}>
       Fairs
     </Link>
   );
 
   const mobileNavLinks = (
     <>
-      <Link href="/artists" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
+      <Link href="/artists" className={`${linkHoverClass} leading-normal h-auto`} onClick={() => setMobileMenuOpen(false)}>
         Artists
       </Link>
       {exhibitionsBlockMobile}
       {fairsBlockMobile}
-      <Link href="/information" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
+      <Link href="/information" className={`${linkHoverClass} leading-normal h-auto`} onClick={() => setMobileMenuOpen(false)}>
         Information
       </Link>
     </>
@@ -174,7 +171,7 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
           alt="Menu"
           width={24}
           height={24}
-          className={`${invertLogo} mt-2 w-13 h-14 transition-transform duration-200 ease-in-out ${mobileMenuOpen ? "rotate-45" : ""}`}
+          className={`${isLanding ? "invert" : "brightness-0"} mt-2 w-13 h-14 transition-transform duration-200 ease-in-out ${mobileMenuOpen ? "rotate-45" : ""}`}
         />
       </button>
 
@@ -211,7 +208,7 @@ export default function Header({ hasCurrentFair = false }: HeaderProps) {
               />
             </button>
           </div>
-          <nav className="flex flex-col justify-center items-center mb-50 flex-1 gap-2 text-neutral-900 text-md [&_a]:text-neutral-900 [&_a:hover]:text-neutral-600">
+          <nav className="flex flex-col justify-center items-center mb-50 flex-1 gap-2 text-neutral-900 text-md">
             {mobileNavLinks}
           </nav>
         </div>

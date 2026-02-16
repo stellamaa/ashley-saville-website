@@ -4,8 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
 import ArtistNavigation from "./ArtistNavigation";
-import ArtistDocuments from "./ArtistDocuments";
 import { Exhibition } from "@/types/exhibition";
+import ArtistDocuments from "./ArtistDocuments"; 
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -54,9 +54,17 @@ export default async function ArtistPage({ params }: Props) {
           <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify">
            
             {artist.biography && artist.biography.length > 0 && (
+              <>
               <div className="mt-3 text-md font-medium">
                 <ReadMore content={artist.biography} />
-              </div>
+                </div>
+              <div className="mt-4">
+                <Link href="mailto:ashley@ashleysaville.com" className="text underline pt-5">
+                  Enquire about available works
+                   </Link>
+                   </div>           
+               </>
+
             )}
           </div>
           <div className="lg:col-span-1 lg:text-right">
@@ -64,7 +72,10 @@ export default async function ArtistPage({ params }: Props) {
               <div className="mt-3">
                 <ArtistNavigation />
               </div>
-              <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
+                <div className="mt-3">
+                  <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
+                </div>
+              
             </div>
           </div>
         
@@ -85,6 +96,7 @@ export default async function ArtistPage({ params }: Props) {
                 className="object-cover"
               />
             </Link>
+            
           )}
         </div>
 
@@ -105,10 +117,12 @@ export default async function ArtistPage({ params }: Props) {
             ))}
           </div>
         )}
-
+       {artist.worksImages && artist.worksImages.length > 0 && (
         <h3 id="works" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
           Works
         </h3>
+
+       )}
         {artist.worksImages && artist.worksImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-10 mt-20 items-center justify-center">
             {artist.worksImages.map((img, idx) => (
@@ -150,7 +164,7 @@ export default async function ArtistPage({ params }: Props) {
                     src={exhibition.image}
                     alt={exhibition.artistName}
                     fill
-                    className="object-cover transition group-hover:scale-105"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/70 transition flex items-center justify-center p-6">
                     <div className="text-black text-center opacity-0 group-hover:opacity-100 transition">

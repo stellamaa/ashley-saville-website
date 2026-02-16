@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
-import FairNavigation from "./FairNavigation";
 import FairDocuments from "./FairDocuments";
+import FairNavigation from "./FairNavigation";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -40,10 +40,6 @@ export default async function FairPage({ params }: Props) {
         <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
           {fair.isCurrent ? "Current Fair" : "Archive"}
         </h1>
-        {/* Mobile Navigation */}
-        <div className="lg:hidden mb-5">
-          <FairNavigation />
-        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
             <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
@@ -60,8 +56,8 @@ export default async function FairPage({ params }: Props) {
                 <ReadMore content={fair.content} />
               </div>
             )}
-            {/* Desktop: Documents below content in two columns */}
-            <div className="hidden lg:block mt-6">
+            {/* Documents below content in two columns */}
+            <div className="mt-6">
               <FairDocuments 
                 download={fair.download} 
                 pressRelease={fair.pressRelease} 
@@ -70,20 +66,11 @@ export default async function FairPage({ params }: Props) {
             </div>
           </div>
           <div className="lg:col-span-1 lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-6 hidden lg:flex">
+            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7">
               <div className="mt-3">
                 <FairNavigation />
               </div>
             </div>
-          </div>
-        
-          {/* Mobile: Documents above image */}
-          <div className="lg:col-span-3 lg:hidden mb-5">
-            <FairDocuments 
-              download={fair.download} 
-              pressRelease={fair.pressRelease} 
-              pressLinks={fair.pressLinks} 
-            />
           </div>
           
           {fair.image && (
@@ -93,7 +80,7 @@ export default async function FairPage({ params }: Props) {
             >
               <Image
                 src={fair.image}
-                alt={fair.name}
+                alt={fair.imageCaption ?? fair.name}
                 fill
                 className="object-cover"
               />
@@ -101,24 +88,24 @@ export default async function FairPage({ params }: Props) {
           )}
         </div>
 
-        {/* Fair Images Gallery */}
+        <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
+          Installations
+        </h3>
         {fair.fairImages && fair.fairImages.length > 0 && (
-          <div className="mt-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {fair.fairImages.map((img, index) => (
-                <div
-                  key={index}
-                  className="relative aspect-[4/3] overflow-hidden bg-neutral-200"
-                >
-                  <Image
-                    src={img.url}
-                    alt={img.caption || `Fair image ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20 items-center justify-center">
+            {fair.fairImages.map((item, idx) => (
+              <Link
+                key={idx}
+                href={`/fairs/${slug}/fair/${fair.image ? idx + 1 : idx}`}
+              >
+              <Image
+                src={item.url}
+                alt={fair.name}
+                width={500}
+                height={500}
+              />
+              </Link>
+            ))}
           </div>
         )}
       </div>

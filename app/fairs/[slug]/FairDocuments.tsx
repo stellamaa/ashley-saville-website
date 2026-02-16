@@ -18,7 +18,7 @@ export default function FairDocuments({
           href={download}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-neutral-900 hover:text-neutral-600 underline"
+          className="text-sm text-neutral-900 hover:text-neutral-600"
         >
           Download
         </a>
@@ -28,7 +28,7 @@ export default function FairDocuments({
           href={pressRelease}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-neutral-900 hover:text-neutral-600 underline"
+          className="text-sm text-neutral-900 hover:text-neutral-600"
         >
           Press Release
         </a>
@@ -41,7 +41,7 @@ export default function FairDocuments({
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-neutral-900 hover:text-neutral-600 underline"
+              className="text-sm text-neutral-900 hover:text-neutral-600"
             >
               {link.label}
             </a>
