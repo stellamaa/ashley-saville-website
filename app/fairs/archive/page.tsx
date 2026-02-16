@@ -23,7 +23,7 @@ export default async function FairsArchivePage() {
   const archivedFairs = await getArchivedFairs();
 
   return (
-    <div className="min-h-screen bg-white pt-24 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-white pt-18 px-6 md:px-10 pb-16">
       <div className="max-w-5xl mx-auto bg-white rounded-lg p-8 md:p-12">
         <Link
           href="/fairs"

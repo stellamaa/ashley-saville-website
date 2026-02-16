@@ -35,12 +35,12 @@ export default async function ExhibitionPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-neutral-50 pt-17 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
         {exhibition.isCurrent && (
           <Link
             href="/exhibitions/archive"
-            className="text-sm text-neutral-600 hover:text-neutral-900 mb-4 inline-block"
+            className="text-sm md:text-white md:hover:text-white text-neutral-600 hover:text-neutral-900 mb-4 inline-block"
           >
             Archive
           </Link>
@@ -65,7 +65,7 @@ export default async function ExhibitionPage({ params }: Props) {
               </div>
             )}
             {/* Documents below content in two columns */}
-            <div className="mt-6">
+            <div className="mt-7">
               <ExhibitionDocuments 
                 download={exhibition.download} 
                 pressRelease={exhibition.pressRelease} 
@@ -74,8 +74,8 @@ export default async function ExhibitionPage({ params }: Props) {
             </div>
           </div>
           <div className="lg:col-span-1 lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7">
-              <div className="mt-3">
+            <div className="sticky top-33 flex flex-col items-start lg:items-end gap-7">
+              <div className="mt-1">
                 <ExhibitionNavigation />
               </div>
             </div>

@@ -10,12 +10,12 @@ function formatDate(dateStr: string): string {
   const month = date.toLocaleDateString("en-GB", { month: "long" });
   const suffix =
     day === 1 || day === 21 || day === 31
-      ? ""
+      ? "st"
       : day === 2 || day === 22
-        ? ""
+        ? "nd"
         : day === 3 || day === 23
-          ? ""
-          : "";
+          ? "rd"
+          : "th";
   return `${day}${suffix} of ${month}`;
 }
 
@@ -23,13 +23,13 @@ export default async function ExhibitionsArchivePage() {
   const archivedExhibitions = await getArchivedExhibitions();
 
   return (
-    <div className="min-h-screen bg-white pt-24 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-white pt-18 px-6 md:px-10 pb-16">
       <div className="max-w-5xl mx-auto bg-white rounded-lg p-8 md:p-12">
         <Link
           href="/exhibitions"
-          className="mb-8 inline-block text-sm  text-neutral-900 hover:text-neutral-600"
+          className="mb-8 inline-block text-sm text-neutral-900 hover:text-neutral-600"
         >
-        Current exhibition
+          Current exhibition
         </Link>
 
         <h1 className="text-md text-neutral-900 text-center mb-12">Archive</h1>
@@ -50,7 +50,7 @@ export default async function ExhibitionsArchivePage() {
                 />
                 <div className="absolute inset-0 bg-white/0 group-hover:bg-white/70 transition flex items-center justify-center p-6">
                   <div className="text-black text-center opacity-0 group-hover:opacity-100 transition">
-                    <p className=" text-sm font-medium">{exhibition.artistName}</p>
+                    <p className="text-sm font-medium">{exhibition.artistName}</p>
                     <p className="text-sm text-black/90 font-medium">
                       {formatDate(exhibition.startDate)} -{" "}
                       {formatDate(exhibition.endDate)}

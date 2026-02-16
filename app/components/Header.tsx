@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import logo from "@/public/logo.png";
-import menuIcon from "@/public/menu.svg";
 
 interface HeaderProps {
   hasCurrentFair?: boolean;
@@ -13,8 +11,8 @@ interface HeaderProps {
   currentFairSlug?: string;
 }
 
-export default function Header({ 
-  hasCurrentFair = false,
+export default function Header({
+  hasCurrentFair,
   currentExhibitionSlug,
   currentFairSlug,
 }: HeaderProps) {
@@ -26,29 +24,23 @@ export default function Header({
     return null;
   }
 
-  const isLanding = pathname === "/";
+  const linkHoverClass = "hover:text-neutral-600";
+  const navTextClass = "text-neutral-900";
 
-  const navTextClass = isLanding ? "text-white" : "text-neutral-900";
-  const linkHoverClass = isLanding
-    ? "hover:text-white/70"
-    : "hover:text-neutral-600";
-
-    const invertLogo = isLanding ? "invert" : "";
-
-  // Desktop only: Exhibitions links to current exhibition if available; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
+  // Desktop only: Exhibitions is a normal nav link; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
   const isOnExhibitionsSection = pathname?.startsWith("/exhibitions");
   const exhibitionsBlockDesktop = (
     <div className="relative">
       <Link 
         href={currentExhibitionSlug ? `/exhibitions/${currentExhibitionSlug}` : "/exhibitions"} 
-        className={`${linkHoverClass}`}
+        className={linkHoverClass}
       >
         Exhibitions
       </Link>
       {isOnExhibitionsSection && (
         <Link
           href="/exhibitions/archive"
-          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap ${navTextClass} ${linkHoverClass}`}
+          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap text-base ${navTextClass} ${linkHoverClass}`}
         >
           Archive
         </Link>
@@ -56,63 +48,25 @@ export default function Header({
     </div>
   );
 
-  // Desktop only: Fairs is shown conditionally; Archive shows underneath only when on a fairs page
+  // Desktop only: Fairs is a normal nav link; Archive shows underneath only when on a fairs page (absolute so nav links don't shift)
   const isOnFairsSection = pathname?.startsWith("/fairs");
-  const fairsBlockDesktop = hasCurrentFair && currentFairSlug ? (
+  const fairsBlockDesktop = (
     <div className="relative">
-      <Link href={`/fairs/${currentFairSlug}`} className={`${linkHoverClass}`}>
+      <Link 
+        href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"} 
+        className={linkHoverClass}
+      >
         Fairs
       </Link>
       {isOnFairsSection && (
         <Link
           href="/fairs/archive"
-          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap ${navTextClass} ${linkHoverClass}`}
+          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap text-base ${navTextClass} ${linkHoverClass}`}
         >
           Archive
         </Link>
       )}
     </div>
-  ) : null;
-
-  const exhibitionsBlockMobile = currentExhibitionSlug ? (
-    <Link
-      href={`/exhibitions/${currentExhibitionSlug}`}
-      className={`${linkHoverClass} leading-normal h-auto`}
-      onClick={() => setMobileMenuOpen(false)}
-    >
-      Exhibitions
-    </Link>
-  ) : (
-    <Link
-      href="/exhibitions"
-      className={`${linkHoverClass} leading-normal h-auto`}
-      onClick={() => setMobileMenuOpen(false)}
-    >
-      Exhibitions
-    </Link>
-  );
-
-  const fairsBlockMobile = hasCurrentFair && currentFairSlug ? (
-    <Link
-      href={`/fairs/${currentFairSlug}`}
-      className={`${linkHoverClass} leading-normal h-auto`}
-      onClick={() => setMobileMenuOpen(false)}
-    >
-      Fairs
-    </Link>
-  ) : null;
-
-  const mobileNavLinks = (
-    <>
-      <Link href="/artists" className={`${linkHoverClass} leading-normal h-auto`} onClick={() => setMobileMenuOpen(false)}>
-        Artists
-      </Link>
-      {exhibitionsBlockMobile}
-      {fairsBlockMobile}
-      <Link href="/information" className={`${linkHoverClass} leading-normal h-auto`} onClick={() => setMobileMenuOpen(false)}>
-        Information
-      </Link>
-    </>
   );
 
   const desktopNavLinks = (
@@ -128,72 +82,86 @@ export default function Header({
     </>
   );
 
+  const mobileNavLinks = (
+    <>
+      <Link href="/artists" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
+        Artists
+      </Link>
+      <div className="flex flex-col items-center">
+        <Link 
+          href={currentExhibitionSlug ? `/exhibitions/${currentExhibitionSlug}` : "/exhibitions"} 
+          className={linkHoverClass} 
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          Exhibitions
+        </Link>
+        {isOnExhibitionsSection && (
+          <Link
+            href="/exhibitions/archive"
+            className={`text-xs mt-1 ${linkHoverClass}`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Archive
+          </Link>
+        )}
+      </div>
+      <div className="flex flex-col items-center">
+        <Link 
+          href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"} 
+          className={linkHoverClass} 
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          Fairs
+        </Link>
+        {isOnFairsSection && (
+          <Link
+            href="/fairs/archive"
+            className={`text-xs mt-1 ${linkHoverClass}`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Archive
+          </Link>
+        )}
+      </div>
+      <Link href="/information" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
+        Information
+      </Link>
+    </>
+  );
+
   return (
-    <header className={`fixed left-0 right-0 top-0 z-20 flex items-center justify-between px-3 py-1 md:px-2 `}>
-      <Link href="/" className="flex">
-        <Image
-          src={logo}
-          alt="Ashley Saville"
-          width={150}
-          height={25}
-          className={`h-11 w-auto ${invertLogo}`}
-        />
+    <header className="fixed left-0 right-0 top-0 z-20 flex items-center justify-between px-6 py-6 md:px-10">
+      <Link href="/" className={`text-lg font-medium ${navTextClass} ${linkHoverClass}`}>
+        Ashley Saville
       </Link>
 
-      {/* Desktop nav: Exhibitions goes to current exhibition, Archive underneath */}
-      <nav className={`hidden md:flex md:px-3 gap-6 items-baseline text-base ${navTextClass}`}>
+      {/* Desktop nav */}
+      <nav className={`hidden md:flex gap-6 text-sm ${navTextClass}`}>
         {desktopNavLinks}
       </nav>
 
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className={`md:hidden p-0 ${isLanding ? "text-white" : "text-neutral-900"}`}
+        className={`md:hidden p-2 ${navTextClass}`}
         aria-label="Toggle menu"
       >
         <Image
-          src={menuIcon}
+          src="/menu-icon.svg"
           alt="Menu"
           width={24}
           height={24}
-          className={`${isLanding ? "invert" : "brightness-0"} mt-2 w-13 h-14 transition-transform duration-200 ease-in-out ${mobileMenuOpen ? "rotate-45" : ""}`}
+          className="w-6 h-6"
         />
       </button>
 
-      {/* Mobile menu overlay - top bar with logo + menu icon, then nav links on white */}
+      {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 z-30 bg-white md:hidden flex flex-col"
+          className="fixed inset-0 top-[72px] bg-white md:hidden z-10 px-6 py-8 flex flex-col justify-end items-center pb-24"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <div className="flex items-center justify-between px-3 py-1 flex-shrink-0">
-            <Link href="/" className="flex" onClick={() => setMobileMenuOpen(false)}>
-              <Image
-                src={logo}
-                alt="Ashley Saville"
-                width={150}
-                height={25}
-                className="h-11 w-auto"
-              />
-            </Link>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setMobileMenuOpen(false);
-              }}
-              className="p-0 text-neutral-900"
-              aria-label="Close menu"
-            >
-              <Image
-                src={menuIcon}
-                alt="Menu"
-                width={24}
-                height={24}
-                className="mt-2 w-13 h-14 rotate-45 transition-transform duration-200 ease-in-out"
-              />
-            </button>
-          </div>
-          <nav className="flex flex-col justify-center items-center mb-50 flex-1 gap-2 text-neutral-900 text-md">
+          <nav className="flex flex-col items-center gap-4 text-neutral-900 text-lg [&_a]:text-neutral-900 [&_a:hover]:text-neutral-600">
             {mobileNavLinks}
           </nav>
         </div>
