@@ -40,6 +40,13 @@ export default async function FairPage({ params }: Props) {
         <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
           {fair.isCurrent ? "Current Fair" : "Archive"}
         </h1>
+        <div className="lg:col-span-1 lg:text-right">
+            <div className="sticky top-32 flex flex-col items-end text-right lg:items-end gap-7">
+              <div className="mt-3">
+                <FairNavigation />
+              </div>
+            </div>
+          </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
             <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
@@ -65,13 +72,7 @@ export default async function FairPage({ params }: Props) {
               />
             </div>
           </div>
-          <div className="lg:col-span-1 lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7">
-              <div className="mt-3">
-                <FairNavigation />
-              </div>
-            </div>
-          </div>
+      
           
           {fair.image && (
             <Link
