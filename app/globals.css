@@ -12,7 +12,10 @@ body {
   background: #000;
   font-family: var(--font-inter), "Inter", sans-serif;
   font-optical-sizing: auto;
-  
+  font-feature-settings: "kern" 1, "liga" 0, "calt" 0, "ss01" 0, "ss02" 0, "ss03" 0, "ss04" 0, "ss05" 0, "ss06" 0, "ss07" 0, "ss08" 0;
+  font-variant-ligatures: none;
+  font-variant-alternates: normal;
+  text-rendering: optimizeLegibility;
 }
 
 /* Make all links and buttons show pointer cursor */

@@ -44,11 +44,12 @@ export default async function Home() {
 
         <div className="relative z-10 flex min-h-screen flex-col items-center px-6 py-24">
           <div className="flex-1 min-h-[1px]" />
-          <h2 className="text-center text-3xl font-medium tracking-wide text-white md:text-4xl lg:text-4xl">
+        
+          <div className="flex-1 min-h-[1px]" />
+          <div className="flex flex-col items-start gap-0 text-right pb-8 md:absolute md:bottom-12 md:right-15 md:pb-0 font-medium text-base">
+          <h2 className="text-center text-1xl font-medium tracking-wide text-white md:text-4xl lg:text-xl">
             {exhibition.artistName}
           </h2>
-          <div className="flex-1 min-h-[1px]" />
-          <div className="flex flex-col items-start gap-0 text-left pb-8 md:absolute md:bottom-12 md:right-45 md:pb-0 font-medium text-base">
             <p className=" text-white/95">
               {exhibition.exhibitionName}
             </p>

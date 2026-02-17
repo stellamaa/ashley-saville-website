@@ -6,10 +6,11 @@ import { getCurrentFair, getCurrentExhibition } from "@/sanity/sanity-utils";
 
 
 const vinter = localFont({
-  src: "./fonts/VinterTrial-Medium.otf",
+  src: "./fonts/YsabeauOffice-Regular.ttf",
   variable: "--font-inter", // reused CSS variable for the sans font
   weight: "400",
   style: "normal",
+
 });
 
 export const metadata: Metadata = {
