@@ -11,6 +11,7 @@ function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
   const day = date.getDate();
   const month = date.toLocaleDateString("en-GB", { month: "long" });
+  const year = date.getFullYear();
   const suffix =
     day === 1 || day === 21 || day === 31
       ? ""
@@ -19,7 +20,7 @@ function formatDate(dateStr: string): string {
         : day === 3 || day === 23
           ? ""
           : "";
-  return `${day}${suffix} of ${month}`;
+  return `${day}${suffix} of ${month} ${year}`;
 }
 
 type Props = {
@@ -45,9 +46,15 @@ export default async function ExhibitionPage({ params }: Props) {
             Archive
           </Link>
         )}
-        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-17 mb-16">
+        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
+        {/* Mobile Navigation - only show if there are sections to navigate */}
+        {(exhibition.exhibitionImages?.length > 0 || exhibition.worksImages?.length > 0) && (
+          <div className="lg:hidden mb-5">
+            <ExhibitionNavigation />
+          </div>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
             <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
@@ -57,42 +64,47 @@ export default async function ExhibitionPage({ params }: Props) {
               {exhibition.exhibitionName}
             </p>
             <p className="text-md text-neutral-900 mt-0">
-              {formatDate(exhibition.startDate)} - {formatDate(exhibition.endDate)}
+              {formatDate(exhibition.startDate)} -{" "}
+              {formatDate(exhibition.endDate)}
             </p>
             {exhibition.content && exhibition.content.length > 0 && (
               <div className="mt-3 text-md font-medium">
                 <ReadMore content={exhibition.content} />
               </div>
             )}
-            {/* Documents below content in two columns */}
-            {exhibition.download && exhibition.download.length > 0 && (
-              <div className="mt-7">
-                <ExhibitionDocuments 
-                  download={exhibition.download} 
-                  pressRelease={exhibition.pressRelease} 
-                  pressLinks={exhibition.pressLinks} 
-                />
-              </div>
-            )}
-            {exhibition.pressRelease && exhibition.pressRelease.length > 0 && (
-              <div className="mt-7">
-                <ExhibitionDocuments 
-                  download={exhibition.download} 
-                  pressRelease={exhibition.pressRelease} 
-                  pressLinks={exhibition.pressLinks} 
-                />
-              </div>
-            )}
-        
           </div>
           <div className="lg:col-span-1 lg:text-right">
-            <div className="sticky top-33 flex flex-col items-start lg:items-end gap-7">
-              <div className="mt-1">
-                <ExhibitionNavigation />
-              </div>
+            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
+              {/* Desktop Navigation - only show if there are sections to navigate */}
+              {(exhibition.exhibitionImages?.length > 0 || exhibition.worksImages?.length > 0) && (
+                <div className="mt-3">
+                  <ExhibitionNavigation />
+                </div>
+              )}
+              {/* Desktop Documents - only render if populated, always at bottom */}
+              {(exhibition.download || exhibition.pressRelease || exhibition.pressLinks?.some(link => link.url)) && (
+                <div className="mt-auto">
+                  <ExhibitionDocuments
+                    download={exhibition.download}
+                    pressRelease={exhibition.pressRelease}
+                    pressLinks={exhibition.pressLinks}
+                  />
+                </div>
+              )}
             </div>
           </div>
-          
+
+          {/* Mobile: Documents above image - only render if populated */}
+          {(exhibition.download || exhibition.pressRelease || exhibition.pressLinks?.some(link => link.url)) && (
+            <div className="lg:col-span-3 lg:hidden mb-5">
+              <ExhibitionDocuments
+                download={exhibition.download}
+                pressRelease={exhibition.pressRelease}
+                pressLinks={exhibition.pressLinks}
+              />
+            </div>
+          )}
+
           {exhibition.image && (
             <Link
               href={`/exhibitions/${slug}/exhibition/0`}
@@ -107,49 +119,61 @@ export default async function ExhibitionPage({ params }: Props) {
             </Link>
           )}
         </div>
- {exhibition.exhibitionImages && exhibition.exhibitionImages.length > 0 && (  
-        <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
-          Installations
-        </h3>
-        )}
-        {exhibition.exhibitionImages && exhibition.exhibitionImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20 items-center justify-center">
-            {exhibition.exhibitionImages.map((item, idx) => (
-              <Link
-                key={idx}
-                href={`/exhibitions/${slug}/exhibition/${exhibition.image ? idx + 1 : idx}`}
-              >
-                <Image
-                  src={item.url}
-                  alt={exhibition.artistName}
-                  width={500}
-                  height={500}
-                />
-              </Link>
-            ))}
-          </div>
-        )}
+        {exhibition.exhibitionImages &&
+          exhibition.exhibitionImages.length > 0 && (
+            <h3
+              id="installations"
+              className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+            >
+              Installations
+            </h3>
+          )}
+        {exhibition.exhibitionImages &&
+          exhibition.exhibitionImages.length > 0 && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20 items-center justify-center">
+              {exhibition.exhibitionImages.map((item, idx) => (
+                <Link
+                  key={idx}
+                  href={`/exhibitions/${slug}/exhibition/${exhibition.image ? idx + 1 : idx}`}
+                >
+                  <Image
+                    src={item.url}
+                    alt={exhibition.artistName}
+                    width={500}
+                    height={500}
+                  />
+                </Link>
+              ))}
+            </div>
+          )}
         {exhibition.worksImages && exhibition.worksImages.length > 0 && (
-          <>  <h3 id="works" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
-            Works
-          </h3>
-      
+          <>
+            {" "}
+            <h3
+              id="works"
+              className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+            >
+              Works
+            </h3>
           </>
         )}
+        {exhibition.worksImages && exhibition.worksImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-10 mt-20 items-center justify-center">
             {exhibition.worksImages.map((item, idx) => (
-              <Link key={idx} href={`/exhibitions/${slug}/works/${idx}`}>
-                <Image
-                  src={item.url}
-                  alt={exhibition.artistName}
-                  width={500}
-                  height={500}
-                  className="flex items-center justify-center"
-                />
-              </Link>
+              <>
+                <Link key={idx} href={`/exhibitions/${slug}/works/${idx}`}>
+                  <Image
+                    src={item.url}
+                    alt={exhibition.artistName}
+                    width={500}
+                    height={500}
+                    className="flex items-center justify-center"
+                  />
+                </Link>
+              </>
             ))}
           </div>
-        
+        )}
       </div>
     </div>
   );

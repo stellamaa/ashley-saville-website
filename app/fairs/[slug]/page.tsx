@@ -11,6 +11,7 @@ function formatDate(dateStr: string): string {
   const date = new Date(dateStr);
   const day = date.getDate();
   const month = date.toLocaleDateString("en-GB", { month: "long" });
+  const year = date.getFullYear();
   const suffix =
     day === 1 || day === 21 || day === 31
       ? ""
@@ -19,7 +20,7 @@ function formatDate(dateStr: string): string {
         : day === 3 || day === 23
           ? ""
           : "";
-  return `${day}${suffix} of ${month}`;
+  return `${day}${suffix} of ${month} ${year}`;
 }
 
 type Props = {
