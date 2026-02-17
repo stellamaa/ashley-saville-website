@@ -32,7 +32,7 @@ export default async function ExhibitionsArchivePage() {
           Current exhibition
         </Link>
 
-        <h1 className="text-md text-neutral-900 text-center mb-12">Archive</h1>
+        <h1 className="text-md text-neutral-900 text-center mb-16 ">Archive</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {archivedExhibitions.map((exhibition: Exhibition) =>
@@ -46,7 +46,7 @@ export default async function ExhibitionsArchivePage() {
                   src={exhibition.image}
                   alt={exhibition.artistName}
                   fill
-                  className="object-cover transition group-hover:scale-105"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-white/0 group-hover:bg-white/70 transition flex items-center justify-center p-6">
                   <div className="text-black text-center opacity-0 group-hover:opacity-100 transition">

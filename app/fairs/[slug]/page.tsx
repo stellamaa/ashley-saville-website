@@ -57,9 +57,7 @@ export default async function FairPage({ params }: Props) {
             <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
               {fair.name}
             </h2>
-            <p className="text-md text-neutral-900 mt-0">
-              {fair.location}
-            </p>
+            <p className="text-md text-neutral-900 mt-0">{fair.location}</p>
             <p className="text-md text-neutral-900 mt-0">
               {formatDate(fair.startDate)} - {formatDate(fair.endDate)}
             </p>
@@ -75,24 +73,24 @@ export default async function FairPage({ params }: Props) {
                 <FairNavigation />
               </div>
               <div className="mt-30">
-                <FairDocuments 
-                  download={fair.download} 
-                  pressRelease={fair.pressRelease} 
-                  pressLinks={fair.pressLinks} 
+                <FairDocuments
+                  download={fair.download}
+                  pressRelease={fair.pressRelease}
+                  pressLinks={fair.pressLinks}
                 />
               </div>
             </div>
           </div>
-        
+
           {/* Mobile: Documents above image */}
           <div className="lg:col-span-3 lg:hidden mb-5">
-            <FairDocuments 
-              download={fair.download} 
-              pressRelease={fair.pressRelease} 
-              pressLinks={fair.pressLinks} 
+            <FairDocuments
+              download={fair.download}
+              pressRelease={fair.pressRelease}
+              pressLinks={fair.pressLinks}
             />
           </div>
-          
+
           {fair.image && (
             <Link
               href={`/fairs/${slug}/fair/0`}
@@ -107,10 +105,14 @@ export default async function FairPage({ params }: Props) {
             </Link>
           )}
         </div>
-
-        <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
+ {fair.fairImages && fair.fairImages.length > 0 && (
+        <h3
+          id="installations"
+          className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+        >
           Installations
         </h3>
+        )}
         {fair.fairImages && fair.fairImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20 items-center justify-center">
             {fair.fairImages.map((item, idx) => (
@@ -118,12 +120,37 @@ export default async function FairPage({ params }: Props) {
                 key={idx}
                 href={`/fairs/${slug}/fair/${fair.image ? idx + 1 : idx}`}
               >
-              <Image
-                src={item.url}
-                alt={fair.name}
-                width={500}
-                height={500}
-              />
+                <Image
+                  src={item.url}
+                  alt={fair.name}
+                  width={500}
+                  height={500}
+                />
+              </Link>
+            ))}
+          </div>
+        )}
+        {fair.worksImages && fair.worksImages.length > 0 && (
+          <h3
+            id="works"
+            className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+          >
+            Works
+          </h3>
+        )}
+        {fair.worksImages && fair.worksImages.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20 items-center justify-center">
+            {fair.worksImages.map((item, idx) => (
+              <Link
+                key={idx}
+                href={`/fairs/${slug}/works/${idx}`}
+              >
+                <Image
+                  src={item.url}
+                  alt={fair.name}
+                  width={500}
+                  height={500}
+                />
               </Link>
             ))}
           </div>

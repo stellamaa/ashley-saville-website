@@ -24,8 +24,13 @@ export default function Header({
     return null;
   }
 
-  const linkHoverClass = "hover:text-neutral-600";
-  const navTextClass = "text-neutral-900";
+  // Light = white text (for dark/image backgrounds like home)
+  // Dark = dark text (for light backgrounds like artists, exhibitions, etc.)
+  const resolvedVariant = pathname === "/" ? "light" : "dark";
+
+  const textClass = resolvedVariant === "light" ? "text-white" : "text-neutral-900";
+  const linkHoverClass = resolvedVariant === "light" ? "hover:text-white/90" : "hover:text-neutral-600";
+  const navTextClass = textClass;
 
   // Desktop only: Exhibitions is a normal nav link; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
   const isOnExhibitionsSection = pathname?.startsWith("/exhibitions");
@@ -40,7 +45,7 @@ export default function Header({
       {isOnExhibitionsSection && (
         <Link
           href="/exhibitions/archive"
-          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap text-base ${navTextClass} ${linkHoverClass}`}
+          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap text-sm ${navTextClass} ${linkHoverClass}`}
         >
           Archive
         </Link>
@@ -53,7 +58,7 @@ export default function Header({
   const fairsBlockDesktop = (
     <div className="relative">
       <Link 
-        href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"} 
+        href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"} 
         className={linkHoverClass}
       >
         Fairs
@@ -61,7 +66,7 @@ export default function Header({
       {isOnFairsSection && (
         <Link
           href="/fairs/archive"
-          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap text-base ${navTextClass} ${linkHoverClass}`}
+          className={`absolute left-0 top-full mt-0.5 whitespace-nowrap text-sm ${navTextClass} ${linkHoverClass}`}
         >
           Archive
         </Link>
@@ -107,7 +112,7 @@ export default function Header({
       </div>
       <div className="flex flex-col items-center">
         <Link 
-          href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"} 
+          href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"} 
           className={linkHoverClass} 
           onClick={() => setMobileMenuOpen(false)}
         >
@@ -136,14 +141,14 @@ export default function Header({
       </Link>
 
       {/* Desktop nav */}
-      <nav className={`hidden md:flex gap-6 text-sm ${navTextClass}`}>
+      <nav className={`hidden md:flex gap-6 text-md ${navTextClass}`}>
         {desktopNavLinks}
       </nav>
 
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className={`md:hidden p-2 ${navTextClass}`}
+        className={`md:hidden p-2 ${textClass}`}
         aria-label="Toggle menu"
       >
         <Image
@@ -151,7 +156,7 @@ export default function Header({
           alt="Menu"
           width={24}
           height={24}
-          className="w-6 h-6"
+          className={`w-6 h-6 ${resolvedVariant === "light" ? "invert" : ""}`}
         />
       </button>
 

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Fair } from "@/types/fair";
+
 
 type SectionId = "text" | "installations" | "works";
 
@@ -49,9 +51,11 @@ export default function ExhibitionNavigation() {
 
   return (
     <nav className="space-y-1">
-      <button onClick={() => scrollTo("text")} className={navClass("text")}>
-        Text
-      </button>
+     
+        <button onClick={() => scrollTo("text")} className={navClass("text")}>
+          Text
+        </button>
+    
       <button onClick={() => scrollTo("installations")} className={navClass("installations")}>
         Installations
       </button>

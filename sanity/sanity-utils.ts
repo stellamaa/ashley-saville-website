@@ -146,6 +146,7 @@ const fairProjection = groq`{
     startDate,
     endDate,
     "fairImages": fairImages[]{"url": asset->url, "caption": caption},
+    "worksImages": worksImages[]{"url": asset->url, "caption": caption},
     "slug": slug.current,
     "image": image.asset->url,
     "imageCaption": image.caption,

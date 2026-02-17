@@ -45,7 +45,7 @@ export default async function ExhibitionPage({ params }: Props) {
             Archive
           </Link>
         )}
-        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
+        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-17 mb-16">
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
