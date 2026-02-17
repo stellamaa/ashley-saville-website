@@ -65,13 +65,25 @@ export default async function ExhibitionPage({ params }: Props) {
               </div>
             )}
             {/* Documents below content in two columns */}
-            <div className="mt-7">
-              <ExhibitionDocuments 
-                download={exhibition.download} 
-                pressRelease={exhibition.pressRelease} 
-                pressLinks={exhibition.pressLinks} 
-              />
-            </div>
+            {exhibition.download && exhibition.download.length > 0 && (
+              <div className="mt-7">
+                <ExhibitionDocuments 
+                  download={exhibition.download} 
+                  pressRelease={exhibition.pressRelease} 
+                  pressLinks={exhibition.pressLinks} 
+                />
+              </div>
+            )}
+            {exhibition.pressRelease && exhibition.pressRelease.length > 0 && (
+              <div className="mt-7">
+                <ExhibitionDocuments 
+                  download={exhibition.download} 
+                  pressRelease={exhibition.pressRelease} 
+                  pressLinks={exhibition.pressLinks} 
+                />
+              </div>
+            )}
+        
           </div>
           <div className="lg:col-span-1 lg:text-right">
             <div className="sticky top-33 flex flex-col items-start lg:items-end gap-7">
@@ -95,10 +107,11 @@ export default async function ExhibitionPage({ params }: Props) {
             </Link>
           )}
         </div>
-
+ {exhibition.exhibitionImages && exhibition.exhibitionImages.length > 0 && (  
         <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
           Installations
         </h3>
+        )}
         {exhibition.exhibitionImages && exhibition.exhibitionImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20 items-center justify-center">
             {exhibition.exhibitionImages.map((item, idx) => (
@@ -116,10 +129,13 @@ export default async function ExhibitionPage({ params }: Props) {
             ))}
           </div>
         )}
-        <h3 id="works" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
-          Works
-        </h3>
         {exhibition.worksImages && exhibition.worksImages.length > 0 && (
+          <>  <h3 id="works" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
+            Works
+          </h3>
+      
+          </>
+        )}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-10 mt-20 items-center justify-center">
             {exhibition.worksImages.map((item, idx) => (
               <Link key={idx} href={`/exhibitions/${slug}/works/${idx}`}>
@@ -133,7 +149,7 @@ export default async function ExhibitionPage({ params }: Props) {
               </Link>
             ))}
           </div>
-        )}
+        
       </div>
     </div>
   );
