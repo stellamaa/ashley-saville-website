@@ -4,12 +4,21 @@ import { useEffect, useRef, useState } from "react";
 
 type SectionId = "biography" |"installations" | "works";
 
-export default function ArtistNavigation() {
+type Props = {
+  hasInstallations?: boolean;
+  hasWorks?: boolean;
+};
+
+export default function ArtistNavigation({ hasInstallations = false, hasWorks = false }: Props) {
   const [activeSection, setActiveSection] = useState<SectionId>("biography");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  // Build sections array based on what's available
+  const sections: SectionId[] = ["biography"];
+  if (hasInstallations) sections.push("installations");
+  if (hasWorks) sections.push("works");
+
   useEffect(() => {
-    const sections: SectionId[] = ["biography", "installations" ,"works"];
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,7 +35,7 @@ export default function ArtistNavigation() {
       if (el && observerRef.current) observerRef.current.observe(el);
     });
     return () => observerRef.current?.disconnect();
-  }, []);
+  }, [hasInstallations, hasWorks]);
 
   const scrollTo = (id: SectionId) => {
     const element = document.getElementById(id);
@@ -52,13 +61,16 @@ export default function ArtistNavigation() {
       <button onClick={() => scrollTo("biography")} className={navClass("biography")}>
         Biography
       </button>
-      <button onClick={() => scrollTo("installations")} className={navClass("installations")}>
-        Installations
-      </button>
-      <button onClick={() => scrollTo("works")} className={"md:mb-10 " + navClass("works")}>
-        Works
-      </button>
-    
+      {hasInstallations && (
+        <button onClick={() => scrollTo("installations")} className={navClass("installations")}>
+          Installations
+        </button>
+      )}
+      {hasWorks && (
+        <button onClick={() => scrollTo("works")} className={"md:mb-10 " + navClass("works")}>
+          Works
+        </button>
+      )}
     </nav>
   );
 }

@@ -4,12 +4,21 @@ import { useEffect, useRef, useState } from "react";
 
 type SectionId = "text" | "installations" | "works";
 
-export default function ExhibitionNavigation() {
+type Props = {
+  hasInstallations?: boolean;
+  hasWorks?: boolean;
+};
+
+export default function ExhibitionNavigation({ hasInstallations = false, hasWorks = false }: Props) {
   const [activeSection, setActiveSection] = useState<SectionId>("text");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
+  // Build sections array based on what's available
+  const sections: SectionId[] = ["text"];
+  if (hasInstallations) sections.push("installations");
+  if (hasWorks) sections.push("works");
+
   useEffect(() => {
-    const sections: SectionId[] = ["text", "installations", "works"];
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,7 +35,7 @@ export default function ExhibitionNavigation() {
       if (el && observerRef.current) observerRef.current.observe(el);
     });
     return () => observerRef.current?.disconnect();
-  }, []);
+  }, [hasInstallations, hasWorks]);
 
   const scrollTo = (id: SectionId) => {
     const element = document.getElementById(id);
@@ -52,12 +61,16 @@ export default function ExhibitionNavigation() {
       <button onClick={() => scrollTo("text")} className={navClass("text")}>
         Text
       </button>
-      <button onClick={() => scrollTo("installations")} className={navClass("installations")}>
-        Installations
-      </button>
-      <button onClick={() => scrollTo("works")} className={navClass("works")}>
-        Works
-      </button>
+      {hasInstallations && (
+        <button onClick={() => scrollTo("installations")} className={navClass("installations")}>
+          Installations
+        </button>
+      )}
+      {hasWorks && (
+        <button onClick={() => scrollTo("works")} className={navClass("works")}>
+          Works
+        </button>
+      )}
     </nav>
   );
 }

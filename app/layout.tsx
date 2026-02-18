@@ -12,7 +12,7 @@ const light = localFont({
 });
  
 const vinter = localFont({
-  src: "./fonts/ColumbiaSans-ExtraLight.otf",
+  src: "./fonts/ColumbiaSans-Light.otf",
   variable: "--font-inter", // reused CSS variable for the sans font
   weight: "400",
   style: "normal",

@@ -48,7 +48,10 @@ export default async function ArtistPage({ params }: Props) {
         </h1>
         {/* Mobile Navigation */}
         <div className="lg:hidden mb-5">
-          <ArtistNavigation />
+          <ArtistNavigation 
+            hasInstallations={artist.exhibitionImages?.length > 0}
+            hasWorks={artist.worksImages?.length > 0}
+          />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify">
@@ -70,7 +73,10 @@ export default async function ArtistPage({ params }: Props) {
           <div className="lg:col-span-1 lg:text-right">
             <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
               <div className="mt-3">
-                <ArtistNavigation />
+                <ArtistNavigation 
+                  hasInstallations={artist.exhibitionImages?.length > 0}
+                  hasWorks={artist.worksImages?.length > 0}
+                />
               </div>
                 <div className="mt-3">
                   <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />

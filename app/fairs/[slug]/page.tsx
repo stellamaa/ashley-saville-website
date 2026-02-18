@@ -51,7 +51,10 @@ export default async function FairPage({ params }: Props) {
         </h1>
         {/* Mobile Navigation */}
         <div className="lg:hidden mb-5">
-          <FairNavigation />
+          <FairNavigation 
+            hasInstallations={fair.fairImages?.length > 0}
+            hasWorks={fair.worksImages?.length > 0}
+          />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
@@ -71,7 +74,10 @@ export default async function FairPage({ params }: Props) {
           <div className="lg:col-span-1  lg:text-right">
             <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
               <div className="mt-3">
-                <FairNavigation />
+                <FairNavigation 
+                  hasInstallations={fair.fairImages?.length > 0}
+                  hasWorks={fair.worksImages?.length > 0}
+                />
               </div>
               <div className="mt-30">
                 <FairDocuments
