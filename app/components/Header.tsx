@@ -157,7 +157,7 @@ export default function Header({
           alt="Menu"
           width={30}
           height={30}
-          className={`w-12 h-12 ${resolvedVariant === "light" ? "invert" : ""}`}
+          className={`w-12 h-12 transition-transform duration-300 ease-in-out ${resolvedVariant === "light" ? "invert" : ""} ${mobileMenuOpen ? "-rotate-45" : ""}`}
         />
       </button>
 
