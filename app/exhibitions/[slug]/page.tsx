@@ -55,12 +55,12 @@ export default async function ExhibitionPage({ params }: Props) {
             <ExhibitionNavigation />
           </div>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16 ">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
-            <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
+            <h2 className="text-md font-md mb-0 mt-0 text-neutral-900 font-[light]">
               {exhibition.artistName}
             </h2>
-            <p className="text-md text-neutral-900 mt-0">
+            <p className="text-md text-neutral-900 mt-0 font-[light]">
               {exhibition.exhibitionName}
             </p>
             <p className="text-md text-neutral-900 mt-0">

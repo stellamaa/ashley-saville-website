@@ -59,7 +59,7 @@ export default async function ArtistPage({ params }: Props) {
                 <ReadMore content={artist.biography} />
                 </div>
               <div className="mt-4">
-                <Link href="mailto:ashley@ashleysaville.com" className="text underline pt-5">
+                <Link href="mailto:ashley@ashleysaville.com" className="text underline underline decoration-1 underline underline-offset-2 pt-5">
                   Enquire about available works
                    </Link>
                    </div>           

@@ -55,7 +55,7 @@ export default function ReadMore({ content }: Props) {
       {hiddenBlocks.length > 0 && (
         <button
           onClick={handleToggle}
-          className="mt-0 text-md underline text-neutral-900 hover:text-neutral-600"
+          className="mt-0 text-md underline underline decoration-1 underline underline-offset-2 text-neutral-900 hover:text-neutral-600"
         >
           {expanded ? "Read less" : "Read more"}
         </button>

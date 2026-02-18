@@ -4,9 +4,15 @@ import "./globals.css";
 import Header from "@/app/components/Header";
 import { getCurrentFair, getCurrentExhibition } from "@/sanity/sanity-utils";
 
-
-const vinter = localFont({
+const light = localFont({
   src: "./fonts/ColumbiaSans-Light.otf",
+  variable: "--font-light",
+  weight: "400",
+  style: "normal",
+});
+ 
+const vinter = localFont({
+  src: "./fonts/ColumbiaSans-ExtraLight.otf",
   variable: "--font-inter", // reused CSS variable for the sans font
   weight: "400",
   style: "normal",
