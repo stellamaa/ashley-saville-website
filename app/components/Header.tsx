@@ -138,7 +138,7 @@ export default function Header({
   return (
     <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1">
       <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
-        <Image src="/logo.png" alt="Ashley Saville" width={120} height={120} className= {`ml-2 mt-2 z-22 ${logoClass}`} />
+        <Image src="/logo.png" alt="Ashley Saville" width={110} height={110} className= {`ml-1 mt-2 z-22 ${logoClass}`} />
       </Link>
 
       {/* Desktop nav */}
@@ -157,7 +157,7 @@ export default function Header({
           alt="Menu"
           width={30}
           height={30}
-          className={`w-12 h-12 transition-transform duration-300 ease-in-out ${resolvedVariant === "light" ? "invert" : ""} ${mobileMenuOpen ? "-rotate-45" : ""}`}
+          className={`w-12 h-12  transition-transform duration-300 ease-in-out ${resolvedVariant === "light" ? "invert" : ""} ${mobileMenuOpen ? "-rotate-45" : ""}`}
         />
       </button>
 

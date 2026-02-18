@@ -41,7 +41,7 @@ export default async function ExhibitionPage({ params }: Props) {
         {exhibition.isCurrent && (
           <Link
             href="/exhibitions/archive"
-            className="text-sm md:text-white md:hover:text-white text-neutral-600 hover:text-neutral-900 mb-4 inline-block"
+            className="text-sm md:text-white md:hover:text-white text-neutral-600 hover:text-neutral-900 mb-0 inline-block"
           >
             Archive
           </Link>
