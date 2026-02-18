@@ -102,16 +102,8 @@ export default function Header({
           onClick={() => setMobileMenuOpen(false)}
         >
           Exhibitions
+       
         </Link>
-        {isOnExhibitionsSection && (
-          <Link
-            href="/exhibitions/archive"
-            className={`text-xs mt-1 ${linkHoverClass}`}
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Archive
-          </Link>
-        )}
       </div>
       <div className="flex flex-col items-center">
         <Link 
@@ -121,15 +113,7 @@ export default function Header({
         >
           Fairs
         </Link>
-        {isOnFairsSection && (
-          <Link
-            href="/fairs/archive"
-            className={`text-xs mt-1 ${linkHoverClass}`}
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Archive
-          </Link>
-        )}
+
       </div>
       <Link href="/information" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
         Information
