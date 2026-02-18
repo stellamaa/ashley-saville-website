@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function InformationPage() {
   return (
-    <div className="min-h-screen bg-white pt-44 px-6 md:px-10 md:pb-10">
+    <div className="min-h-screen bg-white pt-30 px-6 md:px-10 md:pb-10">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-1xl font-medium text-neutral-800 text-center mb-14 ">
           Information
