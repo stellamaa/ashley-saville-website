@@ -87,7 +87,7 @@ export default function GalleryView({
 
   return (
     <div
-      className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-20 md:pb-16 cursor-default"
+      className="min-h-screen bg-neutral-50 pt-25 px-2 md:px-10 pb-20 md:pb-16 cursor-default"
       onClick={() => router.push(backHref)}
       aria-label="Close gallery (click outside or press Escape)"
         
