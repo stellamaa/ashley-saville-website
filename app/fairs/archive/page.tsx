@@ -38,7 +38,7 @@ export default async function FairsArchivePage() {
 
         <h1 className="text-md text-neutral-900 text-center mb-16 mt-17">Archive</h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {archivedFairs.map((fair: Fair) =>
             fair.image ? (
               <div key={fair._id} className="flex flex-col">
@@ -64,7 +64,7 @@ export default async function FairsArchivePage() {
                   </div>
                 </Link>
                 {/* Mobile: Name and date below image */}
-                <div className="lg:hidden mt-2 text-center">
+                <div className="lg:hidden mt-2 mb-2 text-center">
                   <p className="text-sm font-medium text-neutral-900">{fair.name}</p>
                   <p className="text-sm text-neutral-600">
                     {formatDate(fair.startDate)} -{" "}
