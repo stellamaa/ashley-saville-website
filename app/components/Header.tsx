@@ -136,9 +136,9 @@ export default function Header({
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-6 py-6 md:px-1">
-      <Link href="/" className={`text-lg font-medium ${navTextClass} ${linkHoverClass}`}>
-        <Image src="/logo.png" alt="Ashley Saville" width={110} height={110} className= {logoClass} />
+    <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1">
+      <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
+        <Image src="/logo.png" alt="Ashley Saville" width={120} height={120} className= {`ml-2 mt-2 z-22 ${logoClass}`} />
       </Link>
 
       {/* Desktop nav */}
@@ -149,25 +149,25 @@ export default function Header({
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className={`md:hidden p-2 ${textClass}`}
+        className={`md:hidden p-2 z-22 ${textClass}`}
         aria-label="Toggle menu"
       >
         <Image
-          src="/menu-icon.svg"
+          src="/menu.svg"
           alt="Menu"
-          width={24}
-          height={24}
-          className={`w-6 h-6 ${resolvedVariant === "light" ? "invert" : ""}`}
+          width={30}
+          height={30}
+          className={`w-12 h-12 ${resolvedVariant === "light" ? "invert" : ""}`}
         />
       </button>
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-[72px] bg-white md:hidden z-10 px-6 py-8 flex flex-col justify-end items-center pb-24"
+          className="fixed inset-0 top-0 bg-white md:hidden z-10 px-6 py-8 flex flex-col items-center justify-center pb-42"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <nav className="flex flex-col items-center gap-4 text-neutral-900 text-lg [&_a]:text-neutral-900 [&_a:hover]:text-neutral-600">
+          <nav className="flex flex-col items-center gap-1 text-neutral-900 text-lg [&_a]:text-neutral-900 [&_a:hover]:text-neutral-600">
             {mobileNavLinks}
           </nav>
         </div>

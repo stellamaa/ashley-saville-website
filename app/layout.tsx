@@ -6,7 +6,7 @@ import { getCurrentFair, getCurrentExhibition } from "@/sanity/sanity-utils";
 
 
 const vinter = localFont({
-  src: "./fonts/YsabeauOffice-Regular.ttf",
+  src: "./fonts/ColumbiaSans-Light.otf",
   variable: "--font-inter", // reused CSS variable for the sans font
   weight: "400",
   style: "normal",
