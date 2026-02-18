@@ -52,6 +52,7 @@ export default async function ExhibitionsArchivePage() {
                   {/* Desktop hover overlay */}
                   <div className="absolute inset-0 bg-white/0 lg:group-hover:bg-white/70 transition flex items-center justify-center p-6">
                     <div className="text-black text-center opacity-0 lg:group-hover:opacity-100 transition">
+                      <p className="text-sm font-medium">{exhibition.exhibitionName}</p>
                       <p className="text-sm font-medium">{exhibition.artistName}</p>
                       <p className="text-sm text-black/90 font-medium">
                         {formatDate(exhibition.startDate)} -{" "}
@@ -62,7 +63,8 @@ export default async function ExhibitionsArchivePage() {
                 </Link>
                 {/* Mobile: Name and date below image */}
                 <div className="lg:hidden mt-2 text-center">
-                  <p className="text-sm font-medium text-neutral-900">{exhibition.artistName}</p>
+                  <p className="text-sm font-medium text-neutral-900 uppercase">{exhibition.exhibitionName}</p>
+                  <p className="text-sm font-medium text-neutral-900 mb-2">{exhibition.artistName}</p>
                   <p className="text-sm text-neutral-600">
                     {formatDate(exhibition.startDate)} -{" "}
                     {formatDate(exhibition.endDate)}
