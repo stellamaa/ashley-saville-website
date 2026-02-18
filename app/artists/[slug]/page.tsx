@@ -174,7 +174,7 @@ export default async function ArtistPage({ params }: Props) {
                   />
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/70 transition flex items-center justify-center p-6">
                     <div className="text-black text-center opacity-0 group-hover:opacity-100 transition">
-                      <p className=" text-sm font-medium">
+                      <p className=" text-sm font-medium uppercase">
                         {exhibition.exhibitionName}
                       </p>
                       <p className="text-sm text-black/90 font-medium">
