@@ -52,8 +52,8 @@ export default async function FairPage({ params }: Props) {
         {/* Mobile Navigation */}
         <div className="lg:hidden mb-5">
           <FairNavigation 
-            hasInstallations={fair.fairImages?.length > 0}
-            hasWorks={fair.worksImages?.length > 0}
+            hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
+            hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
           />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
@@ -75,8 +75,8 @@ export default async function FairPage({ params }: Props) {
             <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
               <div className="mt-3">
                 <FairNavigation 
-                  hasInstallations={fair.fairImages?.length > 0}
-                  hasWorks={fair.worksImages?.length > 0}
+                  hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
+                  hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
                 />
               </div>
               <div className="mt-30">
