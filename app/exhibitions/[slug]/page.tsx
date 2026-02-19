@@ -76,7 +76,7 @@ export default async function ExhibitionPage({ params }: Props) {
               {formatDate(exhibition.endDate)}
             </p>
             {exhibition.content && exhibition.content.length > 0 && (
-              <div className="mt-3 text-md">
+              <div className="mt-3 text-md leading-snug">
                 <ReadMore content={exhibition.content} />
               </div>
             )}

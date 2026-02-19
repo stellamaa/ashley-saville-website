@@ -58,7 +58,7 @@ export default async function ArtistPage({ params }: Props) {
            
             {artist.biography && artist.biography.length > 0 && (
               <>
-              <div className="mt-3 text-md font-medium">
+              <div className="mt-3 text-md font-medium leading-snug">
                 <ReadMore content={artist.biography} />
                 </div>
               <div className="mt-4">

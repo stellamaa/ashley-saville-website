@@ -51,18 +51,19 @@ export default async function Home() {
           priority
         />
 
-        <div className="relative z-10 flex min-h-screen flex-col items-end pr-10  px-6 py-24">
+        <div className="relative z-10 flex min-h-screen flex-col items-center  px-6 py-10">
           <div className="flex-1 min-h-[1px]" />
         
           <div className="flex-1 min-h-[1px]" />
-          <div className="flex flex-col items-start gap-0 text-right pb-8 md:absolute md:bottom-12 md:right-15 md:pb-0 font-medium text-base">
-          <h2 className=" text-1xl font-medium tracking-wide text-white md:text-4xl lg:text-xl">
-            {exhibition.artistName}
-          </h2>
-            <p className=" text-white/95">
+          <div className="flex flex-col items-center gap-0 pb-0 md:absolute md:bottom-12 md:right-15 md:pb-0 text-sm">
+          <p className=" text-white uppercase">
               {exhibition.exhibitionName}
             </p>
-            <p className="text-white/90">
+          <h2 className=" text-1xl tracking-wide text-white  mb-2">
+            {exhibition.artistName}
+          </h2>
+         
+            <p className="text-white">
               {formatDateDDMMYYYY(exhibition.startDate)} - {formatDateDDMMYYYY(exhibition.endDate)}
             </p>
             <Link
