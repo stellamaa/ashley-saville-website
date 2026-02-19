@@ -48,7 +48,7 @@ export default async function ExhibitionPage({ params }: Props) {
             <div className="mb-4 text-right">
               <Link
                 href="/exhibitions/archive"
-                className="text-sm text-neutral-600 hover:text-neutral-900 inline-block"
+                className="text-sm mb-4 text-neutral-900 hover:text-neutral-900 inline-block"
               >
                 Archive
               </Link>

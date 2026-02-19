@@ -53,11 +53,11 @@ export default function ExhibitionNavigation({ hasInstallations = false, hasWork
 
   const navClass = (id: SectionId) =>
     `block w-full text-right lg:text-right text-sm font-medium ${
-      activeSection === id ? "underline text-neutral-900" : "text-neutral-600 hover:text-neutral-900"
+      activeSection === id ? "underline text-neutral-900" : "text-neutral-900 hover:text-neutral-900"
     }`;
 
   return (
-    <nav className="space-y-1">
+    <nav className="space-y-1 text-neutral-900">
       <button onClick={() => scrollTo("text")} className={navClass("text")}>
         Text
       </button>

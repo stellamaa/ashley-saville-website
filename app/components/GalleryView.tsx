@@ -50,7 +50,7 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 md:bg-transparent">
+    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 md:bg-transparent">
       <div className="min-w-[5rem]">
         {hasPrev ? (
           <Link
@@ -87,7 +87,7 @@ export default function GalleryView({
 
   return (
     <div
-      className="min-h-screen bg-neutral-50 pt-25 px-2 md:px-10 pb-20 md:pb-16 cursor-default"
+      className="min-h-screen bg-neutral-50 pt-35 px-2 md:px-10 pb-20 md:pb-16 cursor-default overflow-hidden"
       onClick={() => router.push(backHref)}
       aria-label="Close gallery (click outside or press Escape)"
         
