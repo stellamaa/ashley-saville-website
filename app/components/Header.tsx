@@ -122,20 +122,20 @@ export default function Header({
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1 lg:px-6 lg:py-4">
+    <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1 lg:px-6 lg:py-1">
       <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
-        <Image src="/logo.png" alt="Ashley Saville" width={110} height={110} className={`ml-1 mt-2 z-22 lg:mt-0 lg:ml-0 ${logoClass}`} />
+        <Image src="/logo.png" alt="Ashley Saville" width={110} height={110} className={`ml-1 mt-2 z-22 lg:mt-0 lg:ml-0  ${logoClass}`} />
       </Link>
 
       {/* Desktop nav */}
-      <nav className={`hidden md:flex gap-6 text-md ${navTextClass}`}>
+      <nav className={`hidden md:flex gap-6 text-md lg:mt-1 ${navTextClass}`}>
         {desktopNavLinks}
       </nav>
 
       {/* Mobile menu button */}
       <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className={`md:hidden p-2 z-22 ${textClass}`}
+        className={`md:hidden p-0 pt-1 z-22 ${textClass}`}
         aria-label="Toggle menu"
       >
         <Image

@@ -11,7 +11,7 @@ export default function InformationPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 mb-10">
           <div>
-            <p className="text-neutral-900 font-medium text-md leading-relaxed text-justify">
+            <p className="text-neutral-900 text-md leading-snug text-justify">
               The gallery is located on the corner of Fleet Street and Chancery
               Lane. The entrance is on Chancery Lane. On arrival, please ring
               the bell to be let in. Kindly note that the gallery is on the
@@ -54,7 +54,7 @@ export default function InformationPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-16 mb-16 font-medium">
           <div>
             <h2 className="text-md text-neutral-900 mb-2">Opening Hours:</h2>
-            <p className="text-neutral-900 text-md">
+            <p className="text-neutral-900 text-md leading-snug">
               Wednesday - Saturday <br />
               10am - 6pm <br />
               and by appointment
@@ -68,7 +68,7 @@ export default function InformationPage() {
               alt="Map"
               width={300}
               height={300}
-              className="mt-4 mx-auto"
+              className="mt-4 mx-left"
             />
             <p className="text-neutral-900 text-md leading-relaxed mb-0">
               193 Fleet Street, EC4A 2AH, London
