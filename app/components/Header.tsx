@@ -3,7 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+const NAVIGATED_FROM_LANDING_KEY = "ashley-saville-navigated-from-landing";
 
 interface HeaderProps {
   hasCurrentFair?: boolean;
@@ -17,7 +19,16 @@ export default function Header({
   currentFairSlug,
 }: HeaderProps) {
   const pathname = usePathname();
+  const prevPathnameRef = useRef<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const prev = prevPathnameRef.current;
+    prevPathnameRef.current = pathname;
+    if (prev === "/" && pathname && pathname !== "/") {
+      sessionStorage.setItem(NAVIGATED_FROM_LANDING_KEY, "1");
+    }
+  }, [pathname]);
 
   // Don't show header on Sanity Studio
   if (pathname?.startsWith("/admin")) {
