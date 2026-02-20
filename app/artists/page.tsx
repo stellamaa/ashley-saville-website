@@ -1,11 +1,13 @@
 import { getArtists } from "@/sanity/sanity-utils";
 import Link from "next/link";
+import Reveal from "@/app/components/Reveal";
 
 export default async function ArtistsPage() {
   const artists = await getArtists();
 
   return (
     <div className="min-h-screen bg-neutral-100 pt-0 px-8 pb-32 flex flex-col items-center justify-center">
+      <Reveal>
       <ul className="flex flex-wrap justify-center md:flex-row flex-col items-center gap-x-6 gap-y-2">
         {artists.filter((artist) => artist.slug).map((artist) => (
           <li key={artist._id}>
@@ -18,6 +20,7 @@ export default async function ArtistsPage() {
           </li>
         ))}
       </ul>
+      </Reveal>
     </div>
   );
 }

@@ -55,3 +55,15 @@ button {
 .animate-flash-in {
   animation: flash-fade-in 0.2s ease-out forwards;
 }
+
+/* Scroll reveal transition */
+.reveal-transition {
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 0.05s ease-out, transform 0.05s ease-out;
+}
+
+.reveal-transition.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

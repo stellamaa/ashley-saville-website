@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
 import ArtistNavigation from "./ArtistNavigation";
 import { Exhibition } from "@/types/exhibition";
-import ArtistDocuments from "./ArtistDocuments"; 
+import ArtistDocuments from "./ArtistDocuments";
+import Reveal from "@/app/components/Reveal"; 
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -43,9 +44,11 @@ export default async function ArtistPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
+        <Reveal>
         <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
           {artist.name}
         </h1>
+        </Reveal>
         {/* Mobile Navigation */}
         <div className="lg:hidden mb-5">
           <ArtistNavigation 
@@ -53,6 +56,7 @@ export default async function ArtistPage({ params }: Props) {
             hasWorks={artist.worksImages?.length > 0}
           />
         </div>
+        <Reveal delay={50}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify">
            
@@ -105,14 +109,17 @@ export default async function ArtistPage({ params }: Props) {
             
           )}
         </div>
+        </Reveal>
 
+        <Reveal delay={50}>
         <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
           Installations
         </h3>
         {artist.exhibitionImages && artist.exhibitionImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
             {artist.exhibitionImages.map((img, idx) => (
-              <Link key={idx} href={`/artists/${slug}/exhibition/${idx}`}>
+              <Reveal key={idx} delay={idx * 40}>
+              <Link href={`/artists/${slug}/exhibition/${idx}`}>
                 <Image
                   src={img}
                   alt={artist.name}
@@ -120,6 +127,7 @@ export default async function ArtistPage({ params }: Props) {
                   height={500}
                 />
               </Link>
+              </Reveal>
             ))}
           </div>
         )}
@@ -132,8 +140,8 @@ export default async function ArtistPage({ params }: Props) {
         {artist.worksImages && artist.worksImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-10 mt-20 items-center justify-center">
             {artist.worksImages.map((img, idx) => (
+              <Reveal key={idx} delay={idx * 40}>
               <Link
-                key={idx}
                 href={`/artists/${slug}/works/${artist.image ? idx + 1 : idx}`}
               >
                 <Image
@@ -144,9 +152,11 @@ export default async function ArtistPage({ params }: Props) {
                   className="flex items-center justify-center"
                 />
               </Link>
+              </Reveal>
             ))}
           </div>
         )}
+        </Reveal>
       </div>
       {archivedExhibitions.length > 0 && (
         <div className="max-w-4xl mx-auto mt-16">
@@ -159,10 +169,10 @@ export default async function ArtistPage({ params }: Props) {
       {archivedExhibitions.length > 0 && (
         <div className="max-w-4xl mx-auto mt-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {archivedExhibitions.map((exhibition: Exhibition) =>
+            {archivedExhibitions.map((exhibition: Exhibition, idx) =>
               exhibition.image ? (
+                <Reveal key={exhibition._id} delay={idx * 50}>
                 <Link
-                  key={exhibition._id}
                   href={`/exhibitions/${exhibition.slug}`}
                   className="group relative aspect-[4/3] overflow-hidden bg-neutral-200"
                 >
@@ -184,6 +194,7 @@ export default async function ArtistPage({ params }: Props) {
                     </div>
                   </div>
                 </Link>
+                </Reveal>
               ) : null,
             )}
           </div>

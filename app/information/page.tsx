@@ -1,15 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
+import Reveal from "@/app/components/Reveal";
 
 export default function InformationPage() {
   return (
     <div className="min-h-screen bg-white pt-30 px-6 md:px-10 md:pb-10">
       <div className="max-w-4xl mx-auto">
+        <Reveal>
         <h1 className="text-1xl font-medium text-neutral-800 text-center mb-14 ">
           Information
         </h1>
+        </Reveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 mb-10">
+          <Reveal delay={50}>
           <div>
             <p className="text-neutral-900 text-md leading-snug text-justify">
               The gallery is located on the corner of Fleet Street and Chancery
@@ -18,7 +22,9 @@ export default function InformationPage() {
               first floor and is accessible via stairs only.
             </p>
           </div>
+          </Reveal>
 
+          <Reveal delay={100}>
           <div>
             <h2 className="text-md font-medium text-neutral-900 mb-0">
               Newsletter
@@ -49,9 +55,11 @@ export default function InformationPage() {
               </button>
             </form>
           </div>
+          </Reveal>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-16 mb-16 font-medium">
+          <Reveal delay={50}>
           <div>
             <h2 className="text-md text-neutral-900 mb-2">Opening Hours:</h2>
             <p className="text-neutral-900 text-md leading-snug">
@@ -60,7 +68,9 @@ export default function InformationPage() {
               and by appointment
             </p>
           </div>
+          </Reveal>
 
+          <Reveal delay={100}>
           <div>
             <h2 className="text-md text-neutral-900 mb-1">Address:</h2>
             <Image
@@ -82,7 +92,9 @@ export default function InformationPage() {
               Google maps.
             </Link>
           </div>
+          </Reveal>
 
+          <Reveal delay={150}>
           <div>
             <h2 className="text-md text-neutral-900 mb-2">Contact:</h2>
             <div className="space-y-2 text-md text-neutral-900 mb-8">
@@ -115,8 +127,10 @@ export default function InformationPage() {
               </p>
             </div>
           </div>
+          </Reveal>
         </div>
 
+        <Reveal delay={50}>
         <footer className="lg:fixed bottom-2 left-0 right-0 pt-2 font-medium text-xs lg:text-xs text-neutral-600">
           <div className="flex justify-center items-center gap-3 text-center">
             <Link
@@ -135,6 +149,7 @@ export default function InformationPage() {
             <span>2026 Ashley Saville</span>
           </div>
         </footer>
+        </Reveal>
       </div>
     </div>
   );

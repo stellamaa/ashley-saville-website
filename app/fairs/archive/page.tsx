@@ -2,6 +2,7 @@ import { getArchivedFairs, getCurrentFair } from "@/sanity/sanity-utils";
 import { Fair } from "@/types/fair";
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/app/components/Reveal";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -39,9 +40,10 @@ export default async function FairsArchivePage() {
         <h1 className="text-md text-neutral-900 text-center mb-16 mt-17">Archive</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {archivedFairs.map((fair: Fair) =>
+          {archivedFairs.map((fair: Fair, idx) =>
             fair.image ? (
-              <div key={fair._id} className="flex flex-col">
+              <Reveal key={fair._id} delay={idx * 50}>
+              <div className="flex flex-col">
                 <Link
                   href={`/fairs/${fair.slug}`}
                   className="group relative aspect-[4/3] overflow-hidden bg-neutral-200"
@@ -72,6 +74,7 @@ export default async function FairsArchivePage() {
                   </p>
                 </div>
               </div>
+              </Reveal>
             ) : null
           )}
         </div>

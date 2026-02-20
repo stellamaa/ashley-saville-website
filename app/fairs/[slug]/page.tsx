@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
 import FairDocuments from "./FairDocuments";
 import FairNavigation from "./FairNavigation";
+import Reveal from "@/app/components/Reveal";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -46,9 +47,11 @@ export default async function FairPage({ params }: Props) {
             Archive
           </Link>
         )}
+        <Reveal>
         <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-19 mb-15">
           {fair.isCurrent ? "Current Fair" : "Archive"}
         </h1>
+        </Reveal>
         {/* Mobile Navigation */}
         <div className="lg:hidden mb-5">
           <FairNavigation 
@@ -56,6 +59,7 @@ export default async function FairPage({ params }: Props) {
             hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
           />
         </div>
+        <Reveal delay={50}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
             <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900 uppercase">
@@ -112,6 +116,7 @@ export default async function FairPage({ params }: Props) {
             </Link>
           )}
         </div>
+        </Reveal>
  {fair.fairImages && fair.fairImages.length > 0 && (
         <h3
           id="installations"
@@ -123,8 +128,8 @@ export default async function FairPage({ params }: Props) {
         {fair.fairImages && fair.fairImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
             {fair.fairImages.map((item, idx) => (
+              <Reveal key={idx} delay={idx * 40}>
               <Link
-                key={idx}
                 href={`/fairs/${slug}/fair/${fair.image ? idx + 1 : idx}`}
               >
                 <Image
@@ -134,6 +139,7 @@ export default async function FairPage({ params }: Props) {
                   height={500}
                 />
               </Link>
+              </Reveal>
             ))}
           </div>
         )}
@@ -148,8 +154,8 @@ export default async function FairPage({ params }: Props) {
         {fair.worksImages && fair.worksImages.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
             {fair.worksImages.map((item, idx) => (
+              <Reveal key={idx} delay={idx * 40}>
               <Link
-                key={idx}
                 href={`/fairs/${slug}/works/${idx}`}
               >
                 <Image
@@ -159,6 +165,7 @@ export default async function FairPage({ params }: Props) {
                   height={500}
                 />
               </Link>
+              </Reveal>
             ))}
           </div>
         )}

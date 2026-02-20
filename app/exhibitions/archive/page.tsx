@@ -2,6 +2,7 @@ import { getArchivedExhibitions } from "@/sanity/sanity-utils";
 import { Exhibition } from "@/types/exhibition";
 import Image from "next/image";
 import Link from "next/link";
+import Reveal from "@/app/components/Reveal";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -36,9 +37,10 @@ export default async function ExhibitionsArchivePage() {
         <h1 className="text-md text-neutral-900 text-center mb-16">Archive</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
-          {archivedExhibitions.map((exhibition: Exhibition) =>
+          {archivedExhibitions.map((exhibition: Exhibition, idx) =>
             exhibition.image ? (
-              <div key={exhibition._id} className="flex flex-col">
+              <Reveal key={exhibition._id} delay={idx * 50}>
+              <div className="flex flex-col">
                 <Link
                   href={`/exhibitions/${exhibition.slug}`}
                   className="group relative aspect-[4/3] overflow-hidden bg-neutral-200"
@@ -71,6 +73,7 @@ export default async function ExhibitionsArchivePage() {
                   </p>
                 </div>
               </div>
+              </Reveal>
             ) : null
           )}
         </div>
