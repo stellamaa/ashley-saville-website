@@ -107,6 +107,20 @@ export async function getArtists(): Promise<Artist[]> {
   );
 }
 
+export async function getArtistSlugByName(name: string): Promise<string | null> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+
+  const result = await client.fetch<{ slug: string } | null>(
+    groq`* [_type == "artist" && name == $name][0] { "slug": slug.current }`,
+    { name },
+  );
+  return result?.slug ?? null;
+}
+
 export async function getArtistBySlug(slug: string): Promise<Artist | null> {
   const client = createClient({
     projectId: "chae03x8",

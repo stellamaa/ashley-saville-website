@@ -1,4 +1,4 @@
-import { getCurrentExhibition } from "@/sanity/sanity-utils";
+import { getCurrentExhibition, getArtistSlugByName } from "@/sanity/sanity-utils";
 import LandingHero from "@/app/components/LandingHero";
 
 export default async function Home() {
@@ -12,12 +12,15 @@ export default async function Home() {
     );
   }
 
+  const artistSlug = await getArtistSlugByName(exhibition.artistName);
+
   return (
     <LandingHero
       image={exhibition.image}
       alt={exhibition.artistName}
       exhibitionName={exhibition.exhibitionName}
       artistName={exhibition.artistName}
+      artistSlug={artistSlug}
       startDate={exhibition.startDate}
       endDate={exhibition.endDate}
       slug={exhibition.slug}

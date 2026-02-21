@@ -1,4 +1,4 @@
-import { getExhibitionBySlug } from "@/sanity/sanity-utils";
+import { getExhibitionBySlug, getArtistSlugByName } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -36,6 +36,8 @@ export default async function ExhibitionPage({ params }: Props) {
     notFound();
   }
 
+  const artistSlug = await getArtistSlugByName(exhibition.artistName);
+
   return (
     <div className="min-h-screen bg-neutral-50 pt-17 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
@@ -72,7 +74,13 @@ export default async function ExhibitionPage({ params }: Props) {
               {exhibition.exhibitionName}
             </p>
             <h2 className="text-md font-md mb-2 mt-0 text-neutral-900 ">
-              {exhibition.artistName}
+              {artistSlug ? (
+                <Link href={`/artists/${artistSlug}`} className="hover:underline">
+                  {exhibition.artistName}
+                </Link>
+              ) : (
+                exhibition.artistName
+              )}
             </h2>
           
             <p className="text-md text-neutral-900 mt-0 mb-8">

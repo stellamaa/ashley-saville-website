@@ -29,6 +29,7 @@ type LandingHeroProps = {
   alt: string;
   exhibitionName: string;
   artistName: string;
+  artistSlug?: string | null;
   startDate: string;
   endDate: string;
   slug: string;
@@ -44,6 +45,7 @@ export default function LandingHero({
   alt,
   exhibitionName,
   artistName,
+  artistSlug,
   startDate,
   endDate,
   slug,
@@ -133,7 +135,13 @@ export default function LandingHero({
           <div className="flex flex-col items-center gap-0 pb-0 md:absolute md:bottom-12 md:right-15 md:pb-0 text-sm">
             <p className="text-white uppercase">{exhibitionName}</p>
             <h2 className="text-1xl tracking-wide text-white mb-2">
-              {artistName}
+              {artistSlug ? (
+                <Link href={`/artists/${artistSlug}`} className="hover:underline">
+                  {artistName}
+                </Link>
+              ) : (
+                artistName
+              )}
             </h2>
             <p className="text-white">
               {formatDateDDMMYYYY(startDate)} - {formatDateDDMMYYYY(endDate)}
