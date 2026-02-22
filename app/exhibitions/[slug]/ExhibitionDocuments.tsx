@@ -24,9 +24,9 @@ export default function ExhibitionDocuments({ download, pressRelease, pressLinks
               href={download}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-neutral-600 hover:text-neutral-900"
+              className="text-sm text-neutral-600 hover:text-neutral-900 lg:mt-6"
             >
-              Download
+              Download Press Release
             </a>
           )}
           {pressRelease && (

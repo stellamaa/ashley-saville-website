@@ -52,7 +52,7 @@ export default async function FairsArchivePage() {
                     src={fair.image}
                     alt={fair.name}
                     fill
-                    className="object-cover"
+                    className="object-cover uppercase"
                   />
                   {/* Desktop hover overlay */}
                   <div className="absolute inset-0 bg-white/0 lg:group-hover:bg-white/70 transition flex items-center justify-center p-6">

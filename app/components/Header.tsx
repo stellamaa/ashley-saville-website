@@ -135,7 +135,7 @@ export default function Header({
   return (
     <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1 lg:px-6 lg:py-1">
       <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
-        <Image src="/logo.png" alt="Ashley Saville" width={110} height={110} className={`ml-1 mt-2 z-22 lg:mt-0 lg:ml-0  ${logoClass}`} />
+        <Image src="/logo.png" alt="Ashley Saville" width={120} height={120} className={`ml-1 mt-2 z-22 lg:mt-0 lg:-ml-4 ${logoClass}`} />
       </Link>
 
       {/* Desktop nav */}

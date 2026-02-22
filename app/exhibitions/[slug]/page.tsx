@@ -93,8 +93,8 @@ export default async function ExhibitionPage({ params }: Props) {
               </div>
             )}
           </div>
-          <div className="lg:col-span-1 lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
+          <div className="lg:col-span-1 lg:text-right lg:flex">
+            <div className="sticky top-32 hidden lg:flex h-full w-full flex-col items-start lg:items-end justify-between">
               {/* Desktop Navigation - only show if there are sections to navigate */}
               {(exhibition.exhibitionImages?.length > 0 || exhibition.worksImages?.length > 0) && (
                 <div className="mt-3">
@@ -106,7 +106,7 @@ export default async function ExhibitionPage({ params }: Props) {
               )}
               {/* Desktop Documents - only render if populated, always at bottom */}
               {(exhibition.download || exhibition.pressRelease || exhibition.pressLinks?.some(link => link.url)) && (
-                <div className="mt-auto">
+                <div className="mt-6">
                   <ExhibitionDocuments
                     download={exhibition.download}
                     pressRelease={exhibition.pressRelease}
