@@ -87,7 +87,7 @@ export default function GalleryView({
 
   return (
     <div
-      className="min-h-screen bg-neutral-50 pt-35 px-2 md:px-10 pb-20 md:pb-16 cursor-default overflow-hidden"
+      className="min-h-screen bg-neutral-50 lg:pt-25 pt-30 px-2 md:px-10 md:pb-16 cursor-default overflow-hidden"
       onClick={() => router.push(backHref)}
       aria-label="Close gallery (click outside or press Escape)"
         
@@ -118,7 +118,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="w-full mt-10 md:mt-5 mb-10 text-md font-medium text-neutral-900 text-center md:mb-5">
+            <p className="w-full mt-5 md:mt-5 mb-5 text-md font-medium text-neutral-900 text-center md:mb-5">
               {current.caption}
             </p>
           )}

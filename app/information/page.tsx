@@ -4,8 +4,8 @@ import Reveal from "@/app/components/Reveal";
 
 export default function InformationPage() {
   return (
-    <div className="min-h-screen bg-white pt-30 px-6 md:px-10 md:pb-10">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white pt-30 px-6 md:px-10 md:pb-10 flex flex-col">
+      <div className="max-w-4xl mx-auto w-full flex-1">
         <Reveal>
         <h1 className="text-1xl font-medium text-neutral-800 text-center mb-14 ">
           Information
@@ -24,7 +24,7 @@ export default function InformationPage() {
           </div>
           </Reveal>
 
-          <Reveal delay={100}>
+          <Reveal>
           <div>
             <h2 className="text-md font-medium text-neutral-900 mb-0">
               Newsletter
@@ -59,7 +59,7 @@ export default function InformationPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-16 mb-16 font-medium">
-          <Reveal delay={50}>
+          <Reveal>
           <div>
             <h2 className="text-md text-neutral-900 mb-2">Opening Hours:</h2>
             <p className="text-neutral-900 text-md leading-snug">
@@ -70,7 +70,7 @@ export default function InformationPage() {
           </div>
           </Reveal>
 
-          <Reveal delay={100}>
+          <Reveal>
           <div>
             <h2 className="text-md text-neutral-900 mb-1">Address:</h2>
             <Image
@@ -94,7 +94,7 @@ export default function InformationPage() {
           </div>
           </Reveal>
 
-          <Reveal delay={150}>
+          <Reveal>
           <div>
             <h2 className="text-md text-neutral-900 mb-2">Contact:</h2>
             <div className="space-y-2 text-md text-neutral-900 mb-8">
@@ -130,8 +130,8 @@ export default function InformationPage() {
           </Reveal>
         </div>
 
-        <Reveal delay={50}>
-        <footer className="lg:fixed bottom-2 left-0 right-0 pt-2 font-medium text-xs lg:text-xs text-neutral-600">
+        <Reveal>
+        <footer className="pt-4 font-medium text-xs lg:text-xs text-neutral-900">
           <div className="flex justify-center items-center gap-3 text-center">
             <Link
               href="https://stellamathioudakis.com"
@@ -146,7 +146,7 @@ export default function InformationPage() {
               Privacy Policy
             </Link>
             <span className="text-neutral-500">★ </span>
-            <span>2026 Ashley Saville</span>
+            <span> © - 2026 Ashley Saville. All rights reserved.</span>
           </div>
         </footer>
         </Reveal>
