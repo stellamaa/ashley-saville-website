@@ -50,36 +50,36 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 md:bg-transparent">
+    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 bg-transparent">
       <div className="min-w-[5rem]">
         {hasPrev ? (
           <Link
             href={`${basePath}/${prevIndex}`}
-            className="text-md text-neutral-900 hover:text-neutral-600"
+            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent"
           >
             Previous
           </Link>
         ) : backLabel ? (
           <Link
             href={backHref}
-            className="text-md text-neutral-900 hover:text-neutral-600"
+            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent"
           >
             {backLabel}
           </Link>
         ) : (
-          <span className="text-md text-neutral-400">Previous</span>
+          <span className="text-md text-neutral-400 bg-transparent">Previous</span>
         )}
       </div>
       <div className="min-w-[5rem] text-right">
         {hasNext ? (
           <Link
             href={`${basePath}/${nextIndex}`}
-            className="text-md text-neutral-900 hover:text-neutral-600"
+            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent"
           >
             Next
           </Link>
         ) : (
-          <span className="text-md text-neutral-400">Next</span>
+          <span className="text-md text-neutral-400 bg-transparent">Next</span>
         )}
       </div>
     </div>
