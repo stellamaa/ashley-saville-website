@@ -4,7 +4,7 @@ import Reveal from "@/app/components/Reveal";
 
 export default function InformationPage() {
   return (
-    <div className="min-h-screen bg-white pt-30 px-6 md:px-10 md:pb-10 flex flex-col">
+    <div className="min-h-screen bg-white pt-44 px-6 md:px-10 md:pb-10 flex flex-col">
       <div className="max-w-4xl mx-auto w-full flex-1">
         <Reveal>
         <h1 className="text-1xl font-medium text-neutral-800 text-center mb-14 ">

@@ -25,7 +25,7 @@ export default async function ExhibitionsArchivePage() {
   const archivedExhibitions = await getArchivedExhibitions();
 
   return (
-    <div className="min-h-screen bg-white pt-18 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-white lg:pt-30 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
         <Link
           href="/exhibitions"

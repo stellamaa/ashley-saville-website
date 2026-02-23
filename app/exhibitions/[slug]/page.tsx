@@ -39,7 +39,7 @@ export default async function ExhibitionPage({ params }: Props) {
   const artistSlug = await getArtistSlugByName(exhibition.artistName);
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-17 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-neutral-50 lg:pt-27 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
        
         <Reveal>

@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+const STORAGE_KEY = "gallery-prev-index";
 
 export type GalleryImage = {
   url: string;
@@ -28,6 +30,18 @@ export default function GalleryView({
   alt = "",
 }: Props) {
   const router = useRouter();
+  const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(
+    null
+  );
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem(`${STORAGE_KEY}-${basePath}`);
+    const prevIndex = stored !== null ? parseInt(stored, 10) : null;
+    if (prevIndex !== null && prevIndex !== currentIndex) {
+      setSlideDirection(currentIndex > prevIndex ? "right" : "left");
+    }
+    sessionStorage.setItem(`${STORAGE_KEY}-${basePath}`, String(currentIndex));
+  }, [currentIndex, basePath]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -109,12 +123,17 @@ export default function GalleryView({
           </div>
 
           <div className="relative w-full h-[60vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-50 mb-0">
-            <Image
-              src={current.url}
-              alt={alt || current.caption || "Gallery image"}
-              fill
-              className="object-contain"
-            />
+            <div
+              key={currentIndex}
+              className={`absolute inset-0 ${slideDirection === "right" ? "animate-slide-in-right" : slideDirection === "left" ? "animate-slide-in-left" : ""}`}
+            >
+              <Image
+                src={current.url}
+                alt={alt || current.caption || "Gallery image"}
+                fill
+                className="object-contain"
+              />
+            </div>
           </div>
 
           {(current.caption ?? "").trim() && (
