@@ -1,8 +1,9 @@
-import { getArchivedExhibitions } from "@/sanity/sanity-utils";
+import { getArchivedExhibitions, getCurrentExhibition } from "@/sanity/sanity-utils";
 import { Exhibition } from "@/types/exhibition";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/app/components/Reveal";
+import ExhibitionArchiveMobileNav from "./ExhibitionArchiveMobileNav";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
@@ -22,14 +23,17 @@ function formatDate(dateStr: string): string {
 }
 
 export default async function ExhibitionsArchivePage() {
-  const archivedExhibitions = await getArchivedExhibitions();
+  const [archivedExhibitions, currentExhibition] = await Promise.all([
+    getArchivedExhibitions(),
+    getCurrentExhibition(),
+  ]);
 
   return (
-    <div className="min-h-screen bg-white lg:pt-30 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-white lg:pt-30 px-6 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
         <Link
           href="/exhibitions"
-          className="mb-8 inline-block text-sm text-neutral-900 hover:text-neutral-600"
+          className="mb-8 inline-block text-sm text-white lg:text-neutral-900 hover:text-neutral-600 "
         >
           Current exhibition
         </Link>
@@ -78,6 +82,7 @@ export default async function ExhibitionsArchivePage() {
           )}
         </div>
       </div>
+      <ExhibitionArchiveMobileNav currentExhibitionSlug={currentExhibition?.slug ?? null} />
     </div>
   );
 }
