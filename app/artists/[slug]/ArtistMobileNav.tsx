@@ -52,7 +52,7 @@ export default function ArtistMobileNav({
   return (
     <nav
       className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-4 bg-white px-6 py-4 lg:hidden border-t border-neutral-200"
-      style={{ paddingBottom: "max(env(safe-area-inset-bottom), 1rem)" }}
+      style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0rem)" }}
     >
       <button
         type="button"
