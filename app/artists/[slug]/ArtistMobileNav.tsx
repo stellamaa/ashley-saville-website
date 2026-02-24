@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 type SectionId = "biography" | "installations" | "works";
 
@@ -19,10 +20,16 @@ function scrollTo(id: string) {
   }
 }
 
+/** Only show on main artist slug page (e.g. /artists/jane-doe), not on works/exhibition gallery. */
+function isArtistSlugPage(pathname: string | null): boolean {
+  return !!pathname && /^\/artists\/[^/]+$/.test(pathname);
+}
+
 export default function ArtistMobileNav({
   hasInstallations,
   hasWorks,
 }: Props) {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<SectionId>("biography");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -49,16 +56,19 @@ export default function ArtistMobileNav({
     return () => observerRef.current?.disconnect();
   }, [hasInstallations, hasWorks]);
 
+  if (!isArtistSlugPage(pathname)) return null;
+
   return (
+ 
     <nav
-      className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-4 bg-white px-6 py-4 lg:hidden border-t border-neutral-200"
-      style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0rem)" }}
+      className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-4 bg-white px-6 py-4 lg:hidden border-t border-neutral-300"
+      style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0.4rem)" }}
     >
       <button
         type="button"
         onClick={() => scrollTo("biography")}
-        className={`text-sm font-medium text-neutral-900 pb-1 border-b border-transparent ${
-          activeSection === "biography" ? "border-neutral-900" : ""
+        className={`text-sm font-medium text-neutral-900 pb-1  ${
+          activeSection === "biography" ? "border-neutral-900 underline underline-offset-3" : ""
         }`}
       >
         Biography
@@ -68,7 +78,7 @@ export default function ArtistMobileNav({
           type="button"
           onClick={() => scrollTo("installations")}
           className={`text-sm font-medium text-neutral-900 pb-1 border-b border-transparent ${
-            activeSection === "installations" ? "border-neutral-900" : ""
+            activeSection === "installations" ? "border-neutral-900 underline underline-offset-3" : ""
           }`}
         >
           Installations
@@ -79,7 +89,7 @@ export default function ArtistMobileNav({
           type="button"
           onClick={() => scrollTo("works")}
           className={`text-sm font-medium text-neutral-900 pb-1 border-b border-transparent ${
-            activeSection === "works" ? "border-neutral-900" : ""
+            activeSection === "works" ? "border-neutral-900 underline underline-offset-3" : ""
           }`}
         >
           Works

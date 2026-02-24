@@ -161,7 +161,7 @@ export default function Header({
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-0 bg-white md:hidden z-10 px-6 py-8 flex flex-col items-center justify-center pb-42"
+          className="fixed inset-0 top-0 bg-white md:hidden z-10 px-6 py-8 flex flex-col items-center justify-center pb-42 "
           onClick={() => setMobileMenuOpen(false)}
         >
           <nav className="flex flex-col items-center gap-1 text-neutral-900 text-lg [&_a]:text-neutral-900 [&_a:hover]:text-neutral-600">

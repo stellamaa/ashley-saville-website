@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/app/components/Reveal";
+import NewsletterForm from "@/app/components/NewsletterForm";
 
 export default function InformationPage() {
   return (
@@ -29,31 +30,7 @@ export default function InformationPage() {
             <h2 className="text-md font-medium text-neutral-900 mb-0">
               Newsletter
             </h2>
-            <form className="space-y-4">
-              <div className="flex flex-wrap gap-4">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="flex-1 min-w-[120px] bg-transparent border-b border-neutral-300 py-2 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900"
-                />
-                <input
-                  type="text"
-                  placeholder="Last name"
-                  className="flex-1 min-w-[120px] bg-transparent border-b border-neutral-300 py-2 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="flex-1 min-w-[120px] bg-transparent border-b border-neutral-300 py-2 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900"
-                />
-              </div>
-              <button
-                type="submit"
-                className="text-md font-medium text-neutral-900 hover:text-neutral-900"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
           </Reveal>
         </div>
