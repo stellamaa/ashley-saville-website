@@ -40,11 +40,11 @@ export default async function ExhibitionPage({ params }: Props) {
   const artistSlug = await getArtistSlugByName(exhibition.artistName);
 
   return (
-    <div className="min-h-screen bg-neutral-50 lg:pt-27 pt-20 px-5 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-transparent lg:pt-29 pt-34 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-5 sm:mt-17 mb-3 lg:mb-16">
+        <h1 className="text-1xl text-neutral-800 font-medium text-center sm:mt-17 mb-3 lg:mb-16">
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
         

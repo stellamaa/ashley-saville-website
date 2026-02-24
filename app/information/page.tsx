@@ -4,8 +4,8 @@ import Reveal from "@/app/components/Reveal";
 
 export default function InformationPage() {
   return (
-    <div className="min-h-screen bg-white pt-44 px-6 md:px-10 md:pb-10 flex flex-col">
-      <div className="max-w-4xl mx-auto w-full flex-1">
+    <div className="min-h-screen bg-white pt-44 px-5 md:px-10 md:pb-0 flex flex-col">
+      <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col lg:min-h-[calc(100vh-12rem)]">
         <Reveal>
         <h1 className="text-1xl font-medium text-neutral-800 text-center mb-14 ">
           Information
@@ -131,8 +131,8 @@ export default function InformationPage() {
         </div>
 
         <Reveal>
-        <footer className="pt-4 font-medium text-xs lg:text-xs text-neutral-900">
-          <div className="flex justify-center items-center gap-3 text-center">
+        <footer className="mt-auto pt-8  font-medium text-xs lg:text-xs text-neutral-800">
+          <div className="flex justify-center items-start gap-3 text-center">
             <Link
               href="https://stellamathioudakis.com"
               target="_blank"

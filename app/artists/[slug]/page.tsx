@@ -43,7 +43,7 @@ export default async function ArtistPage({ params }: Props) {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-24 px-5 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-neutral-50 pt-34 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
         <Reveal>
       <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
