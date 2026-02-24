@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  const apiKey = ARTLOGIC_API_KEY as string;
+  const signupUrlFinal = signupUrl as string;
+
   let body: { email?: string; firstname?: string; lastname?: string };
   try {
     body = await request.json();
@@ -47,13 +50,13 @@ export async function POST(request: NextRequest) {
   const lastname = typeof body.lastname === "string" ? body.lastname.trim() : "";
 
   const params = new URLSearchParams();
-  params.set("api_key", ARTLOGIC_API_KEY);
+  params.set("api_key", apiKey);
   params.set("email", email);
   if (firstname) params.set("firstname", firstname);
   if (lastname) params.set("lastname", lastname);
 
   try {
-    const res = await fetch(signupUrl, {
+    const res = await fetch(signupUrlFinal, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
