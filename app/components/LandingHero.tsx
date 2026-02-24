@@ -36,7 +36,7 @@ type LandingHeroProps = {
   worksImages?: WorksImage[];
 };
 
-const FLASH_START_MS = 1000;
+const FLASH_START_MS = 800;
 const FLASH_INTERVAL_MS = 300;
 const NAVIGATED_FROM_LANDING_KEY = "ashley-saville-navigated-from-landing";
 

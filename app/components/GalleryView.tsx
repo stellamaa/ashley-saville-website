@@ -64,19 +64,19 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 bg-transparent">
-      <div className="min-w-[5rem]">
+    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-3 py-4 bg-neutral-50 md:static md:px-0 md:py-0 bg-transparent overflow-hidden">
+      <div className="min-w-[5rem] overflow-hidden">
         {hasPrev ? (
           <Link
             href={`${basePath}/${prevIndex}`}
-            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent"
+            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
           >
             Previous
           </Link>
         ) : backLabel ? (
           <Link
             href={backHref}
-            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent"
+            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
           >
             {backLabel}
           </Link>
@@ -88,7 +88,7 @@ export default function GalleryView({
         {hasNext ? (
           <Link
             href={`${basePath}/${nextIndex}`}
-            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent"
+            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
           >
             Next
           </Link>
@@ -116,7 +116,7 @@ export default function GalleryView({
             <button
               type="button"
               onClick={() => router.push(backHref)}
-              className="text-md text-neutral-900 hover:text-neutral-600"
+              className="text-md text-neutral-900 hover:text-neutral-600 transition-colors duration-150 ease-out"
             >
               Close
             </button>

@@ -30,7 +30,7 @@ button {
     opacity: 0;
   }
   18.75% {
-    transform: scale(0.3);
+    transform: scale(0.3 0.5);
     opacity: 1;
   }
   18.75%, 62.5% {

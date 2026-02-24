@@ -34,7 +34,7 @@ export default async function ExhibitionsArchivePage() {
           Current exhibition
         </Link>
 
-        <h1 className="text-md text-neutral-900 text-center mb-16">Archive</h1>
+        <h1 className="text-md text-neutral-900 text-center mb-16 mt-12">Archive</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
           {archivedExhibitions.map((exhibition: Exhibition, idx) =>

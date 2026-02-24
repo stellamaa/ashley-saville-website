@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
 import ArtistNavigation from "./ArtistNavigation";
+import ArtistMobileNav from "./ArtistMobileNav";
 import { Exhibition } from "@/types/exhibition";
 import ArtistDocuments from "./ArtistDocuments";
 import Reveal from "@/app/components/Reveal"; 
@@ -42,7 +43,7 @@ export default async function ArtistPage({ params }: Props) {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-neutral-50 pt-24 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
         <Reveal>
       <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
@@ -50,13 +51,6 @@ export default async function ArtistPage({ params }: Props) {
         </h1>
        
         </Reveal>
-        {/* Mobile Navigation */}
-        <div className="lg:hidden mb-5">
-          <ArtistNavigation 
-            hasInstallations={artist.exhibitionImages?.length > 0}
-            hasWorks={artist.worksImages?.length > 0}
-          />
-        </div>
         <Reveal>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify">
@@ -201,6 +195,10 @@ export default async function ArtistPage({ params }: Props) {
           </>
         )}
       </div>
+      <ArtistMobileNav
+        hasInstallations={(artist.exhibitionImages?.length ?? 0) > 0}
+        hasWorks={(artist.worksImages?.length ?? 0) > 0}
+      />
     </div>
   );
 }

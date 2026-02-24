@@ -40,7 +40,7 @@ export default function Header({
   const resolvedVariant = pathname === "/" ? "light" : "dark";
 
   const textClass = resolvedVariant === "light" ? "text-white" : "text-neutral-900";
-  const linkHoverClass = resolvedVariant === "light" ? "hover:text-white/90" : "hover:text-neutral-600";
+  const linkHoverClass = resolvedVariant === "light" ? "hover:text-white" : "hover:text-neutral-600";
   const navTextClass = textClass;
   // Logo and menu icon should be white only on landing page when menu is closed
   const logoClass = resolvedVariant === "light" && !mobileMenuOpen ? "invert" : "";
@@ -135,16 +135,15 @@ export default function Header({
   return (
     <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1 lg:px-6 lg:py-1">
       <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
-        <Image src="/logo.png" alt="Ashley Saville" width={120} height={120} className={`ml-1 mt-2 z-22 lg:mt-0 lg:-ml-4 ${logoClass}`} />
+        <Image src="/logo.png" alt="Ashley Saville" width={140} height={130} className={`ml-1 mt-2 z-22 lg:mt-0 lg:-ml-4 opacity-90 ${logoClass}`} />
       </Link>
 
-      {/* Desktop nav */}
-      <nav className={`hidden md:flex gap-6 text-md lg:mt-1 ${navTextClass}`}>
-        {desktopNavLinks}
-      </nav>
-
-      {/* Mobile menu button */}
-      <button
+      {/* Mobile: menu button. Desktop: all nav links on the right */}
+      <div className="flex justify-end">
+        <nav className={`hidden md:flex gap-6 text-md lg:mt-1 ${navTextClass}`}>
+          {desktopNavLinks}
+        </nav>
+        <button
         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         className={`md:hidden p-0 pt-1 z-22 ${textClass}`}
         aria-label="Toggle menu"
@@ -157,6 +156,7 @@ export default function Header({
           className={`w-12 h-12 transition-transform duration-300 ease-in-out ${menuIconClass} ${mobileMenuOpen ? "-rotate-45" : ""}`}
         />
       </button>
+      </div>
 
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (

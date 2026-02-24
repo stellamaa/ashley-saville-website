@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
 import ExhibitionNavigation from "./ExhibitionNavigation";
 import ExhibitionDocuments from "./ExhibitionDocuments";
+import ExhibitionMobileNav from "./ExhibitionMobileNav";
 import Reveal from "@/app/components/Reveal";
 
 function formatDate(dateStr: string): string {
@@ -39,7 +40,7 @@ export default async function ExhibitionPage({ params }: Props) {
   const artistSlug = await getArtistSlugByName(exhibition.artistName);
 
   return (
-    <div className="min-h-screen bg-neutral-50 lg:pt-27 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-neutral-50 lg:pt-27 pt-20 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
@@ -47,26 +48,6 @@ export default async function ExhibitionPage({ params }: Props) {
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
         
-        {/* Mobile: Archive link and Navigation */}
-        <div className="lg:hidden mb-5">
-          {exhibition.isCurrent && (
-            <div className="mb-4 text-right">
-              <Link
-                href="/exhibitions/archive"
-                className="text-sm mb-4 text-neutral-900 hover:text-neutral-900 inline-block"
-              >
-                Archive
-              </Link>
-            </div>
-          )}
-          {/* Mobile Navigation - only show if there are sections to navigate */}
-          {(exhibition.exhibitionImages?.length > 0 || exhibition.worksImages?.length > 0) && (
-            <ExhibitionNavigation 
-              hasInstallations={exhibition.exhibitionImages?.length > 0}
-              hasWorks={exhibition.worksImages?.length > 0}
-            />
-          )}
-        </div>
        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
@@ -202,6 +183,7 @@ export default async function ExhibitionPage({ params }: Props) {
         )}
       </Reveal>
       </div>
+      <ExhibitionMobileNav hasWorks={(exhibition.worksImages?.length ?? 0) > 0} />
     </div>
   );
 }
