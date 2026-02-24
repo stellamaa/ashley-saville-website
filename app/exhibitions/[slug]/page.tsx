@@ -44,7 +44,7 @@ export default async function ExhibitionPage({ params }: Props) {
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-medium text-center sm:mt-17 mb-3 lg:mb-16">
+        <h1 className="text-1xl text-neutral-800 font-medium text-center sm:mt-17 mb-25 lg:mb-16">
           {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
         </h1>
         
@@ -78,7 +78,7 @@ export default async function ExhibitionPage({ params }: Props) {
             <div className="sticky top-32 hidden lg:flex h-full w-full flex-col items-start lg:items-end justify-between">
               {/* Desktop Navigation - only show if there are sections to navigate */}
               {(exhibition.exhibitionImages?.length > 0 || exhibition.worksImages?.length > 0) && (
-                <div className="mt-3">
+                <div className="mt-3 sticky">
                   <ExhibitionNavigation 
                     hasInstallations={exhibition.exhibitionImages?.length > 0}
                     hasWorks={exhibition.worksImages?.length > 0}
