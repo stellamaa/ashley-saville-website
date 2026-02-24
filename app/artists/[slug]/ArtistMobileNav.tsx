@@ -67,7 +67,7 @@ export default function ArtistMobileNav({
       <button
         type="button"
         onClick={() => scrollTo("biography")}
-        className={`text-sm font-medium text-neutral-900 pb-1  ${
+        className={`text-sm font-medium text-neutral-900 pb-1 ${
           activeSection === "biography" ? "border-neutral-900 underline underline-offset-3" : ""
         }`}
       >
