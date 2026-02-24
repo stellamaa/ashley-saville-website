@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background: #000;
+  background: white;
   font-family: var(--font-inter), "Inter", sans-serif;
   font-optical-sizing: auto;
   font-feature-settings: "kern" 1, "liga" 0, "calt" 0, "ss01" 0, "ss02" 0, "ss03" 0, "ss04" 0, "ss05" 0, "ss06" 0, "ss07" 0, "ss08" 0;
