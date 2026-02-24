@@ -1,13 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const ARTLOGIC_SIGNUP_URL = process.env.ARTLOGIC_SIGNUP_URL;
+const ARTLOGIC_ACCOUNT_ID = process.env.ARTLOGIC_ACCOUNT_ID?.trim();
 const ARTLOGIC_API_KEY = process.env.ARTLOGIC_API_KEY;
 
+function getSignupUrl(): string | null {
+  if (!ARTLOGIC_ACCOUNT_ID) return null;
+  return `https://app.artlogic.net/${ARTLOGIC_ACCOUNT_ID}/public/api/mailings/signup`;
+}
+
 export async function POST(request: NextRequest) {
-  if (!ARTLOGIC_API_KEY || !ARTLOGIC_SIGNUP_URL) {
-    console.error("Missing ARTLOGIC_API_KEY or ARTLOGIC_SIGNUP_URL");
+  const signupUrl = getSignupUrl();
+  const missing: string[] = [];
+  if (!ARTLOGIC_API_KEY) missing.push("ARTLOGIC_API_KEY");
+  if (!ARTLOGIC_ACCOUNT_ID) missing.push("ARTLOGIC_ACCOUNT_ID");
+  if (missing.length > 0 || !signupUrl) {
+    console.error("Missing env:", missing.join(", "));
     return NextResponse.json(
-      { error: "Newsletter signup is not configured." },
+      {
+        error: "Newsletter signup is not configured.",
+        hint:
+          "Set ARTLOGIC_API_KEY and ARTLOGIC_ACCOUNT_ID (letters only, e.g. ashleysaville) in your deployment environment variables, then redeploy.",
+      },
       { status: 503 }
     );
   }
@@ -40,7 +53,7 @@ export async function POST(request: NextRequest) {
   if (lastname) params.set("lastname", lastname);
 
   try {
-    const res = await fetch(ARTLOGIC_SIGNUP_URL, {
+    const res = await fetch(signupUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",

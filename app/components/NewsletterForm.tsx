@@ -29,7 +29,8 @@ export default function NewsletterForm() {
 
       if (!res.ok) {
         setStatus("error");
-        setMessage(data.error || "Something went wrong.");
+        const msg = data.error || "Something went wrong.";
+        setMessage(data.hint ? `${msg} ${data.hint}` : msg);
         return;
       }
 

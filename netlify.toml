@@ -1,0 +1,5 @@
+# Tell Netlify secrets scanner to ignore ARTLOGIC_ACCOUNT_ID (it's the public account
+# slug from app.artlogic.net/ACCOUNT_ID, not a secret). Required because Next.js
+# can inline env vars into server bundles, which triggers the scan.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "ARTLOGIC_ACCOUNT_ID"
