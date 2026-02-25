@@ -40,21 +40,19 @@ export default async function ExhibitionPage({ params }: Props) {
   const artistSlug = await getArtistSlugByName(exhibition.artistName);
 
   return (
-    <div className="min-h-screen bg-transparent lg:pt-10 pt-14 px-5 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-transparent lg:pt-10 pt-19 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font- text-base text-center sm:mt-17 mt-2 mb-23 lg:mb-16 uppercase">
+        <h1 className="text-1xl text-neutral-800 text-base text-center sm:mt-17 mt-3 mb-5 lg:mb-16 ">
           {exhibition.isCurrent ? `${exhibition.exhibitionName}` : `${exhibition.exhibitionName}`}
         </h1>
         
     
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
-          <p className="text-md text-neutral-800 mt-0 uppercase">
-             
-            </p>
-            <h2 className="text-md lg:text-md mb-0 mt-0 text-neutral-800 ">
+            <p className="text-md text-neutral-800 mt-0 uppercase"></p>
+            <h2 className="text-sm md:text-base mb-0 mt-0 text-neutral-800 ">
               {artistSlug ? (
                 <Link href={`/artists/${artistSlug}`} className="hover:underline">
                   {exhibition.artistName}
@@ -63,29 +61,26 @@ export default async function ExhibitionPage({ params }: Props) {
                 exhibition.artistName
               )}
             </h2>
-          
-            <p className="text-md lg:text-md text-neutral-800 mt-0 mb-6">
-              {formatDate(exhibition.startDate)} -{" "}
-              {formatDate(exhibition.endDate)}
+            <p className="text-sm md:text-base text-neutral-800 mt-0 mb-6">
+              {formatDate(exhibition.startDate)} - {formatDate(exhibition.endDate)}
             </p>
             {exhibition.content && exhibition.content.length > 0 && (
-              <div className="mt-3 text-md leading-snug">
+              <div className="mt-3 text-sm md:text-base leading-snug">
                 <ReadMore content={exhibition.content} />
               </div>
             )}
           </div>
-          <div className="lg:col-span-1 lg:text-right lg:flex">
-            <div className="sticky top-32 hidden lg:flex h-full w-full flex-col items-start lg:items-end justify-between">
-              {/* Desktop Navigation - only show if there are sections to navigate */}
+          {/* Sidebar: sticky nav + documents, spans text + image rows so nav follows scroll until gallery */}
+          <div className={`lg:col-span-1 lg:text-right hidden lg:flex flex-col ${exhibition.image ? "lg:row-span-2" : ""}`}>
+            <div className="sticky top-3 flex flex-col items-start lg:items-end justify-between w-full pt-0 lg:pt-[3rem]">
               {(exhibition.exhibitionImages?.length > 0 || exhibition.worksImages?.length > 0) && (
-                <div className="mt-3 sticky">
-                  <ExhibitionNavigation 
+                <div>
+                  <ExhibitionNavigation
                     hasInstallations={exhibition.exhibitionImages?.length > 0}
                     hasWorks={exhibition.worksImages?.length > 0}
                   />
                 </div>
               )}
-              {/* Desktop Documents - only render if populated, always at bottom */}
               {(exhibition.download || exhibition.pressRelease || exhibition.pressLinks?.some(link => link.url)) && (
                 <div className="mt-6">
                   <ExhibitionDocuments
@@ -98,7 +93,7 @@ export default async function ExhibitionPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Mobile: Documents above image - only render if populated */}
+          {/* Mobile: Documents above image */}
           {(exhibition.download || exhibition.pressRelease || exhibition.pressLinks?.some(link => link.url)) && (
             <div className="lg:col-span-3 lg:hidden mb-5">
               <ExhibitionDocuments
@@ -109,13 +104,12 @@ export default async function ExhibitionPage({ params }: Props) {
             </div>
           )}
 
-        </div>
-           
-        {exhibition.image && (
-            <div className="lg:col-span-3 lg:mb-30 mt-5">
+          {/* Image: row 2 on desktop, sidebar spans this row too */}
+          {exhibition.image && (
+            <div className="lg:col-span-3 lg:mb-0 mt-5">
               <Link
                 href={`/exhibitions/${slug}/exhibition/0`}
-                className="block relative aspect-[16/9] w-full overflow-hidden"
+                className="block relative md:aspect-[16/9] aspect-[4/3] w-full overflow-hidden"
               >
                 <Image
                   src={exhibition.image}
@@ -131,6 +125,7 @@ export default async function ExhibitionPage({ params }: Props) {
               )}
             </div>
           )}
+        </div>
         
         {exhibition.exhibitionImages &&
           exhibition.exhibitionImages.length > 0 && (
