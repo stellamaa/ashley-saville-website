@@ -13,7 +13,7 @@ export default async function ArtistsPage() {
           <li key={artist._id}>
             <Link
               href={`/artists/${artist.slug}`}
-              className="text-lg font-ml text-neutral-900 hover:text-neutral-500 leading-normal h-auto"
+              className="text-lg font-ml text-neutral-800 hover:text-neutral-500 leading-normal h-auto"
             >
               {artist.name}
             </Link>

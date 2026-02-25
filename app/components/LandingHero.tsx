@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function formatDateDDMMYYYY(dateStr: string): string {
   if (!dateStr) return "";
@@ -56,10 +57,33 @@ export default function LandingHero({
     [worksImages]
   );
 
+  const router = useRouter();
   const [flashImages, setFlashImages] = useState<string[]>([]);
   const [displayImage, setDisplayImage] = useState<string>(image);
   const [phase, setPhase] = useState<"delay" | "flash" | "landing">("delay");
   const [skipAnimation, setSkipAnimation] = useState(false);
+  const [isSlidingOut, setIsSlidingOut] = useState(false);
+
+  const exhibitionHref = `/exhibitions/${slug}`;
+
+  const handleFindOutMore = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      if (isSlidingOut) return;
+      setIsSlidingOut(true);
+    },
+    [isSlidingOut]
+  );
+
+  const handleSlideEnd = useCallback(
+    (e: React.AnimationEvent) => {
+      if (e.animationName === "landing-slide-out") {
+        sessionStorage.setItem(NAVIGATED_FROM_LANDING_KEY, "1");
+        router.push(exhibitionHref);
+      }
+    },
+    [router, exhibitionHref]
+  );
 
   useEffect(() => {
     if (sessionStorage.getItem(NAVIGATED_FROM_LANDING_KEY)) {
@@ -109,8 +133,11 @@ export default function LandingHero({
   const currentSrc = displayImage;
 
   return (
-    <div className="min-h-screen">
-      <section className="relative min-h-screen w-full overflow-hidden bg-white">
+    <div className="min-h-screen overflow-x-hidden">
+      <section
+        className={`relative min-h-screen w-full overflow-hidden bg-white ${isSlidingOut ? "animate-landing-slide-out" : ""}`}
+        onAnimationEnd={handleSlideEnd}
+      >
         <div
           className={skipAnimation ? "absolute inset-0" : "absolute inset-0 animate-landing-expand"}
           style={{
@@ -147,8 +174,10 @@ export default function LandingHero({
               {formatDateDDMMYYYY(startDate)} - {formatDateDDMMYYYY(endDate)}
             </p>
             <Link
-              href={`/exhibitions/${slug}`}
+              href={exhibitionHref}
               className="mt-0 text-sm text-white underline underline decoration-0 underline underline-offset-2 hover:text-white/90"
+              onClick={handleFindOutMore}
+              prefetch
             >
               Find out more
             </Link>

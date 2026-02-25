@@ -33,6 +33,11 @@ button {
   cursor: pointer;
 }
 
+/* When mobile menu is open, hide fixed mobile bottom nav bars */
+.mobile-menu-open .mobile-bottom-nav {
+  display: none !important;
+}
+
 @keyframes landing-expand {
   0%, 12.5% {
     transform: scale(0.3);
@@ -115,5 +120,16 @@ button {
 
 .animate-gallery-fade {
   animation: gallery-fade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Landing page slide-out transition */
+.animate-landing-slide-out {
+  animation: landing-slide-out 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes landing-slide-out {
+  to {
+    transform: translateX(100%);
+  }
 }
 

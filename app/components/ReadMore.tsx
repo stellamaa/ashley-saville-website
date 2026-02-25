@@ -27,7 +27,7 @@ export default function ReadMore({ content }: Props) {
 
   const components: PortableTextComponents = {
     block: {
-      normal: ({ children }) => <p className="mb-4">{children}</p>,
+      normal: ({ children }) => <p className="mb-1">{children}</p>,
     },
   };
 
@@ -55,7 +55,7 @@ export default function ReadMore({ content }: Props) {
       {hiddenBlocks.length > 0 && (
         <button
           onClick={handleToggle}
-          className="mt-0 text-md underline underline decoration-1 underline underline-offset-2 text-neutral-900 hover:text-neutral-600"
+          className="mt-0 underline underline decoration-1 underline underline-offset-2 text-neutral-900 hover:text-neutral-600 text-sm md:text-base"
         >
           {expanded ? "Read less" : "Read more"}
         </button>

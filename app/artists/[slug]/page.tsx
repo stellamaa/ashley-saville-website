@@ -43,12 +43,14 @@ export default async function ArtistPage({ params }: Props) {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-34 px-5 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-neutral-50 pt-22 px-5 md:px-10 pb-15 lg:pb-16">
       <div className="max-w-4xl mx-auto">
         <Reveal>
-      <h1 className="text-1xl text-neutral-800 text-center mt-0 md:mt-20 mb-8">
+      <h1 className="text-1xl text-neutral-800 text-center mt-0 md:mt-20 mb-10">
           {artist.name}
         </h1>
+            
+       
        
         </Reveal>
         <Reveal>
@@ -88,8 +90,10 @@ export default async function ArtistPage({ params }: Props) {
           <div className="lg:col-span-3 lg:hidden mb-5">
             <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
           </div>
-          
-          {artist.image && (
+      
+        </div>
+        </Reveal>
+        {artist.image && (
             <Link
               href={`/artists/${slug}/works/0`}
               className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-white"
@@ -103,8 +107,6 @@ export default async function ArtistPage({ params }: Props) {
             </Link>
             
           )}
-        </div>
-        </Reveal>
 
         <Reveal>
         <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">

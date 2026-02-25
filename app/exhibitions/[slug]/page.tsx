@@ -40,15 +40,15 @@ export default async function ExhibitionPage({ params }: Props) {
   const artistSlug = await getArtistSlugByName(exhibition.artistName);
 
   return (
-    <div className="min-h-screen bg-transparent lg:pt-29 pt-34 px-5 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-transparent lg:pt-10 pt-14 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-medium text-center sm:mt-17 mb-13 lg:mb-16 uppercase">
+        <h1 className="text-1xl text-neutral-800 font- text-base text-center sm:mt-17 mt-2 mb-23 lg:mb-16 uppercase">
           {exhibition.isCurrent ? `${exhibition.exhibitionName}` : `${exhibition.exhibitionName}`}
         </h1>
         
-       
+    
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
           <p className="text-md text-neutral-800 mt-0 uppercase">
@@ -109,7 +109,9 @@ export default async function ExhibitionPage({ params }: Props) {
             </div>
           )}
 
-          {exhibition.image && (
+        </div>
+           
+        {exhibition.image && (
             <Link
               href={`/exhibitions/${slug}/exhibition/0`}
               className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
@@ -123,7 +125,6 @@ export default async function ExhibitionPage({ params }: Props) {
            
           </Link>
           )}
-        </div>
         
         {exhibition.exhibitionImages &&
           exhibition.exhibitionImages.length > 0 && (

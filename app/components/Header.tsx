@@ -30,6 +30,15 @@ export default function Header({
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.classList.remove("mobile-menu-open");
+    }
+    return () => document.body.classList.remove("mobile-menu-open");
+  }, [mobileMenuOpen]);
+
   // Don't show header on Sanity Studio
   if (pathname?.startsWith("/admin")) {
     return null;
@@ -135,7 +144,7 @@ export default function Header({
   return (
     <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1 lg:px-6 lg:py-1">
       <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
-        <Image src="/logo.png" alt="Ashley Saville" width={140} height={130} className={`ml-1 mt-2 z-22 lg:mt-0 lg:-ml-4 opacity-90 ${logoClass}`} />
+        <Image src="/logo.png" alt="Ashley Saville" width={140} height={130} className={`ml-1 mt-0 z-22 lg:mt-0 lg:-ml-4 opacity-90 ${logoClass}`} />
       </Link>
 
       {/* Mobile: menu button. Desktop: all nav links on the right */}

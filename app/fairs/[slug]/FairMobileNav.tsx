@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-type SectionId = "biography" | "installations" | "works";
+type SectionId = "text" | "installations" | "works";
 
 type Props = {
   hasInstallations: boolean;
@@ -20,20 +21,20 @@ function scrollTo(id: string) {
   }
 }
 
-/** Only show on main artist slug page (e.g. /artists/jane-doe), not on works/exhibition gallery. */
-function isArtistSlugPage(pathname: string | null): boolean {
-  return !!pathname && /^\/artists\/[^/]+$/.test(pathname);
+/** Only show on main fair slug page (e.g. /fairs/frieze), not on gallery sub-routes. */
+function isFairSlugPage(pathname: string | null): boolean {
+  return !!pathname && /^\/fairs\/[^/]+$/.test(pathname);
 }
 
-export default function ArtistMobileNav({
+export default function FairMobileNav({
   hasInstallations,
   hasWorks,
 }: Props) {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState<SectionId>("biography");
+  const [activeSection, setActiveSection] = useState<SectionId>("text");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const sections: SectionId[] = ["biography"];
+  const sections: SectionId[] = ["text"];
   if (hasInstallations) sections.push("installations");
   if (hasWorks) sections.push("works");
 
@@ -56,22 +57,22 @@ export default function ArtistMobileNav({
     return () => observerRef.current?.disconnect();
   }, [hasInstallations, hasWorks]);
 
-  if (!isArtistSlugPage(pathname)) return null;
+  if (!isFairSlugPage(pathname)) return null;
 
   return (
     <nav
-      className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between divide-x divide-neutral-300 bg-white px-4 py-4 lg:hidden border-t border-neutral-300"
+      className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between divide-x divide-neutral-300 bg-white h-8 lg:hidden border-t border-neutral-300"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0rem)" }}
     >
       <div className="flex-1 flex justify-center">
         <button
           type="button"
-          onClick={() => scrollTo("biography")}
+          onClick={() => scrollTo("text")}
           className={`text-sm font-medium text-neutral-900 pb-1 ${
-            activeSection === "biography" ? "underline underline-offset-3" : "hover:text-neutral-600"
+            activeSection === "text" ? "underline underline-offset-3" : "hover:text-neutral-600"
           }`}
         >
-          Biography
+          Text
         </button>
       </div>
       {hasInstallations && (
@@ -100,6 +101,14 @@ export default function ArtistMobileNav({
           </button>
         </div>
       )}
+      <div className="flex-1 flex justify-center">
+        <Link
+          href="/fairs/archive"
+          className="text-sm font-medium text-neutral-900 hover:text-neutral-600"
+        >
+          Archive
+        </Link>
+      </div>
     </nav>
   );
 }

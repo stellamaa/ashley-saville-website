@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
 import FairDocuments from "./FairDocuments";
 import FairNavigation from "./FairNavigation";
+import FairMobileNav from "./FairMobileNav";
 import Reveal from "@/app/components/Reveal";
 
 function formatDate(dateStr: string): string {
@@ -37,34 +38,25 @@ export default async function FairPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-15 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-neutral-50 pt-15 px-6 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
         {fair.isCurrent && (
           <Link
             href="/fairs/archive"
-            className="text-sm md:text-white md:hover:text-white text-neutral-600 hover:text-neutral-900 mb-4 inline-block"
+            className="text-sm  text-neutral-600 hover:text-neutral-900 mb-4 text-white hover:text-white inline-block"
           >
             Archive
           </Link>
         )}
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-19 mb-15">
-          {fair.isCurrent ? "Current Fair" : "Archive"}
+        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-19 mb-15 uppercase">
+          {fair.name}
         </h1>
         </Reveal>
-        {/* Mobile Navigation */}
-        <div className="lg:hidden mb-5">
-          <FairNavigation 
-            hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
-            hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
-          />
-        </div>
         <Reveal delay={50}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
-            <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900 uppercase">
-              {fair.name}
-            </h2>
+          
             <p className="text-md text-neutral-900 mt-0">{fair.location}</p>
             <p className="text-md text-neutral-900 mt-0">
               {formatDate(fair.startDate)} - {formatDate(fair.endDate)}
@@ -103,7 +95,7 @@ export default async function FairPage({ params }: Props) {
           </div>
 
           {fair.image && (
-            <GalleryLink
+            <Link
               href={`/fairs/${slug}/fair/0`}
               className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-white"
             >
@@ -113,7 +105,7 @@ export default async function FairPage({ params }: Props) {
                 fill
                 className="object-cover"
               />
-            </GalleryLink>
+            </Link>
           )}
         </div>
         </Reveal>
@@ -129,7 +121,7 @@ export default async function FairPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
             {fair.fairImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
-              <GalleryLink
+              <Link
                 href={`/fairs/${slug}/fair/${fair.image ? idx + 1 : idx}`}
               >
                 <Image
@@ -138,7 +130,7 @@ export default async function FairPage({ params }: Props) {
                   width={500}
                   height={500}
                 />
-              </GalleryLink>
+              </Link>
               </Reveal>
             ))}
           </div>
@@ -155,7 +147,7 @@ export default async function FairPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
             {fair.worksImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
-              <GalleryLink
+              <Link
                 href={`/fairs/${slug}/works/${idx}`}
               >
                 <Image
@@ -164,12 +156,16 @@ export default async function FairPage({ params }: Props) {
                   width={500}
                   height={500}
                 />
-              </GalleryLink>
+              </Link>
               </Reveal>
             ))}
           </div>
         )}
       </div>
+      <FairMobileNav
+        hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
+        hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
+      />
     </div>
   );
 }

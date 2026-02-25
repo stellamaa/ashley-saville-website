@@ -56,35 +56,41 @@ export default function ExhibitionMobileNav({ hasWorks }: Props) {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between gap-4 bg-white px-6 py-4 lg:hidden border-t border-neutral-300"
+      className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between divide-x divide-neutral-300 bg-white  lg:hidden border-t border-neutral-300"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0rem)" }}
     >
-      <button
-        type="button"
-        onClick={() => scrollTo("text")}
-        className={`text-sm font-medium text-neutral-900 pb-1 ${
-          activeSection === "text" ? "border-neutral-900 underline underline-offset-3" : ""
-        }`}
-      >
-        Text
-      </button>
-      {hasWorks && (
+      <div className="flex-1 flex justify-center">
         <button
           type="button"
-          onClick={() => scrollTo("works")}
+          onClick={() => scrollTo("text")}
           className={`text-sm font-medium text-neutral-900 pb-1 ${
-            activeSection === "works" ? "border-neutral-900 underline underline-offset-3" : ""
+            activeSection === "text" ? "underline underline-offset-3" : "hover:text-neutral-600"
           }`}
         >
-          Works
+          Text
         </button>
+      </div>
+      {hasWorks && (
+        <div className="flex-1 flex justify-center">
+          <button
+            type="button"
+            onClick={() => scrollTo("works")}
+            className={`text-sm font-medium text-neutral-900 pb-1 ${
+              activeSection === "works" ? "underline underline-offset-3" : "hover:text-neutral-600"
+            }`}
+          >
+            Works
+          </button>
+        </div>
       )}
-      <Link
-        href="/exhibitions/archive"
-        className="text-sm font-medium text-neutral-900 hover:text-neutral-600"
-      >
-        Archive
-      </Link>
+      <div className="flex-1 flex justify-center">
+        <Link
+          href="/exhibitions/archive"
+          className="text-sm font-medium text-neutral-900 hover:text-neutral-600"
+        >
+          Archive
+        </Link>
+      </div>
     </nav>
   );
 }
