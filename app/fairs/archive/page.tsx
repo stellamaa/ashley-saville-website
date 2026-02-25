@@ -26,7 +26,7 @@ export default async function FairsArchivePage() {
   const currentFair = await getCurrentFair();
 
   return (
-    <div className="min-h-screen bg-white lg:pt-27 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-white lg:pt--1 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
         {currentFair?.slug && (
           <Link

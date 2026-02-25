@@ -38,7 +38,7 @@ export default async function FairPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-15 px-6 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-neutral-50 pt-15 px-6 md:px-10 pb-24 lg:pb-16 md:pt-0">
       <div className="max-w-4xl mx-auto">
         {fair.isCurrent && (
           <Link
@@ -49,7 +49,7 @@ export default async function FairPage({ params }: Props) {
           </Link>
         )}
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-19 mb-15 uppercase">
+        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-10 ">
           {fair.name}
         </h1>
         </Reveal>
@@ -68,14 +68,14 @@ export default async function FairPage({ params }: Props) {
             )}
           </div>
           <div className="lg:col-span-1  lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
-              <div className="mt-3">
+            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex pt-0 lg:pt-[3.75rem]">
+              <div>
                 <FairNavigation 
                   hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
                   hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
                 />
               </div>
-              <div className="mt-30">
+              <div className="mt-3">
                 <FairDocuments
                   download={fair.download}
                   pressRelease={fair.pressRelease}

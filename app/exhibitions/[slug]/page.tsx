@@ -44,7 +44,7 @@ export default async function ExhibitionPage({ params }: Props) {
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 text-base text-center sm:mt-17 mt-3 mb-5 lg:mb-16 ">
+        <h1 className="text-1xl text-neutral-800 text-base text-center sm:mt-20 mt-3 mb-5 lg:mb-10 ">
           {exhibition.isCurrent ? `${exhibition.exhibitionName}` : `${exhibition.exhibitionName}`}
         </h1>
         

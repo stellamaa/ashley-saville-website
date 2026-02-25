@@ -29,11 +29,11 @@ export default async function ExhibitionsArchivePage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-white lg:pt-30 px-6 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-white lg:pt-4 px-6 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
         <Link
           href="/exhibitions"
-          className="mb-8 inline-block text-sm text-white lg:text-neutral-900 hover:text-neutral-600 "
+          className="mb-8 inline-block text-sm text-white lg:text-neutral-900 hover:text-neutral-600 lg:mt-20"
         >
           Current exhibition
         </Link>

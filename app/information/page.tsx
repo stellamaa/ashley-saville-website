@@ -8,7 +8,7 @@ export default function InformationPage() {
     <div className="min-h-screen bg-white pt-30 px-5 md:px-10 md:pb-0 flex flex-col">
       <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
        <Reveal>
-        <h1 className="text-1xl font-medium text-neutral-800 text-center mb-24 ">
+        <h1 className="text-1xl font-medium text-neutral-800 text-center mb-10 ">
           Information
         </h1>
         </Reveal> 
