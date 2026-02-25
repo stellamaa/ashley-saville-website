@@ -112,18 +112,24 @@ export default async function ExhibitionPage({ params }: Props) {
         </div>
            
         {exhibition.image && (
-            <Link
-              href={`/exhibitions/${slug}/exhibition/0`}
-              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
-            >
-              <Image
-                src={exhibition.image}
-                alt={exhibition.artistName}
-                fill
-                className="object-cover"
-              />
-           
-          </Link>
+            <div className="lg:col-span-3 lg:mb-30 mt-5">
+              <Link
+                href={`/exhibitions/${slug}/exhibition/0`}
+                className="block relative aspect-[16/9] w-full overflow-hidden"
+              >
+                <Image
+                  src={exhibition.image}
+                  alt={exhibition.artistName}
+                  fill
+                  className="object-cover"
+                />
+              </Link>
+              {exhibition.imageCaption && (
+                <p className="block text-sm text-neutral-800 mt-2 text-center">
+                  {exhibition.imageCaption}
+                </p>
+              )}
+            </div>
           )}
         
         {exhibition.exhibitionImages &&

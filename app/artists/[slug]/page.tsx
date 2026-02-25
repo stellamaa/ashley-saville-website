@@ -43,7 +43,7 @@ export default async function ArtistPage({ params }: Props) {
   );
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-22 px-5 md:px-10 pb-15 lg:pb-16">
+    <div className="min-h-screen bg-neutral-50 pt-22 px-5 md:px-10 pb-15 lg:pb-16 md:pt-12">
       <div className="max-w-4xl mx-auto">
         <Reveal>
       <h1 className="text-1xl text-neutral-800 text-center mt-0 md:mt-20 mb-10">
@@ -54,7 +54,7 @@ export default async function ArtistPage({ params }: Props) {
        
         </Reveal>
         <Reveal>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-1">
           <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify">
            
             {artist.biography && artist.biography.length > 0 && (
@@ -94,18 +94,24 @@ export default async function ArtistPage({ params }: Props) {
         </div>
         </Reveal>
         {artist.image && (
-            <Link
-              href={`/artists/${slug}/works/0`}
-              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-white"
-            >
-              <Image
-                src={artist.image}
-                alt={artist.name}
-                fill
-                className="object-cover"
-              />
-            </Link>
-            
+            <div className="lg:col-span-3 mt-5">
+              <Link
+                href={`/artists/${slug}/works/0`}
+                className="block relative aspect-[16/9] w-full overflow-hidden bg-white"
+              >
+                <Image
+                  src={artist.image}
+                  alt={artist.name}
+                  fill
+                  className="object-cover"
+                />
+              </Link>
+              {artist.imageCaption && (
+                <p className="block text-sm text-neutral-800 mt-2 text-center">
+                  {artist.imageCaption}
+                </p>
+              )}
+            </div>
           )}
 
         <Reveal>

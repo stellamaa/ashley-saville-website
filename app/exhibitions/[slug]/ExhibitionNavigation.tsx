@@ -52,7 +52,7 @@ export default function ExhibitionNavigation({ hasInstallations = false, hasWork
   };
 
   const navClass = (id: SectionId) =>
-    `block w-full text-right lg:text-right text-sm font-medium ${
+    `block w-full text-left text-sm font-medium ${
       activeSection === id ? "underline text-neutral-900" : "text-neutral-900 hover:text-neutral-900"
     }`;
 

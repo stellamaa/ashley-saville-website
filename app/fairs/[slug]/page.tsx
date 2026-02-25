@@ -95,17 +95,24 @@ export default async function FairPage({ params }: Props) {
           </div>
 
           {fair.image && (
-            <Link
-              href={`/fairs/${slug}/fair/0`}
-              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-white"
-            >
-              <Image
-                src={fair.image}
-                alt={fair.imageCaption ?? fair.name}
-                fill
-                className="object-cover"
-              />
-            </Link>
+            <div className="lg:col-span-3 mt-5">
+              <Link
+                href={`/fairs/${slug}/fair/0`}
+                className="block relative aspect-[16/9] w-full overflow-hidden bg-white"
+              >
+                <Image
+                  src={fair.image}
+                  alt={fair.imageCaption ?? fair.name}
+                  fill
+                  className="object-cover"
+                />
+              </Link>
+              {fair.imageCaption && (
+                <p className="block text-sm text-neutral-800 mt-2 text-center">
+                  {fair.imageCaption}
+                </p>
+              )}
+            </div>
           )}
         </div>
         </Reveal>

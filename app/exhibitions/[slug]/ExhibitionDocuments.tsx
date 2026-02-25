@@ -15,10 +15,10 @@ export default function ExhibitionDocuments({ download, pressRelease, pressLinks
   }
 
   return (
-    <div className="flex flex-col items-start lg:items-end gap-0 leading-tight">
+    <div className="flex flex-col items-start gap-0 leading-tight">
       {/* Download and Press Release stacked vertically */}
       {hasDownloadOrPressRelease && (
-        <div className="flex flex-col items-start lg:items-end gap-0">
+        <div className="flex flex-col items-start gap-0">
           {download && (
             <a
               href={download}
@@ -44,7 +44,7 @@ export default function ExhibitionDocuments({ download, pressRelease, pressLinks
       
       {/* Press label and links - only show if there are press links */}
       {hasPressLinks && (
-        <div className="flex flex-col items-start lg:items-end text-right mt-2">
+        <div className="flex flex-col items-start mt-2">
           <p className="text-sm font-bold text-neutral-600">Press</p>
           {pressLinks?.map(
             (link, idx) =>
