@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-white pt-24 px-6 md:px-10 pb-16">
+    <div className="min-h-screen bg-neutral-white pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-lg font-medium text-neutral-900 text-center mb-14">Privacy Policy</h1>
+        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">Privacy Policy</h1>
 
         <div className="text-neutral-900 text-md leading-relaxed space-y-6">
           <p>

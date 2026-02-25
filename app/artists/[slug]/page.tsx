@@ -46,7 +46,7 @@ export default async function ArtistPage({ params }: Props) {
     <div className="min-h-screen bg-neutral-50 pt-34 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
         <Reveal>
-      <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
+      <h1 className="text-1xl text-neutral-800 text-center mt-0 md:mt-20 mb-8">
           {artist.name}
         </h1>
        
@@ -90,9 +90,9 @@ export default async function ArtistPage({ params }: Props) {
           </div>
           
           {artist.image && (
-            <Link
+            <GalleryLink
               href={`/artists/${slug}/works/0`}
-              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
+              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-white"
             >
               <Image
                 src={artist.image}
@@ -100,7 +100,7 @@ export default async function ArtistPage({ params }: Props) {
                 fill
                 className="object-cover"
               />
-            </Link>
+            </GalleryLink>
             
           )}
         </div>
@@ -111,17 +111,17 @@ export default async function ArtistPage({ params }: Props) {
           Installations
         </h3>
         {artist.exhibitionImages && artist.exhibitionImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-20 items-center justify-center">
             {artist.exhibitionImages.map((img, idx) => (
               <Reveal>
-              <Link key={idx} href={`/artists/${slug}/exhibition/${idx}`}>
+              <GalleryLink key={idx} href={`/artists/${slug}/exhibition/${idx}`}>
                 <Image
                   src={img}
                   alt={artist.name}
                   width={500}
                   height={500}
                 />
-              </Link>
+              </GalleryLink>
               </Reveal>
             ))}
           </div>
@@ -133,10 +133,10 @@ export default async function ArtistPage({ params }: Props) {
 
        )}
         {artist.worksImages && artist.worksImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-10 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mt-20 items-center justify-center">
             {artist.worksImages.map((img, idx) => (
               <Reveal>
-              <Link key={idx}
+              <GalleryLink key={idx}
                 href={`/artists/${slug}/works/${artist.image ? idx + 1 : idx}`}
               >
                 <Image
@@ -146,7 +146,7 @@ export default async function ArtistPage({ params }: Props) {
                   height={500}
                   className="flex items-center justify-center"
                 />
-              </Link>
+              </GalleryLink>
               </Reveal>
             ))}
           </div>
@@ -169,7 +169,7 @@ export default async function ArtistPage({ params }: Props) {
                   <Link
                     key={exhibition._id}
                     href={`/exhibitions/${exhibition.slug}`}
-                    className="group relative aspect-[4/3] overflow-hidden bg-neutral-200 block"
+                    className="group relative aspect-[4/3] overflow-hidden bg-white block"
                   >
                     <Image
                       src={imageUrl}

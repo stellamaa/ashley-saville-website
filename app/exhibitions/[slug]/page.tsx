@@ -44,17 +44,17 @@ export default async function ExhibitionPage({ params }: Props) {
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-medium text-center sm:mt-17 mb-25 lg:mb-16">
-          {exhibition.isCurrent ? "Current Exhibition" : "Archive"}
+        <h1 className="text-1xl text-neutral-800 font-medium text-center sm:mt-17 mb-13 lg:mb-16 uppercase">
+          {exhibition.isCurrent ? `${exhibition.exhibitionName}` : `${exhibition.exhibitionName}`}
         </h1>
         
        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
-          <p className="text-md text-neutral-900 mt-0 uppercase">
-              {exhibition.exhibitionName}
+          <p className="text-md text-neutral-800 mt-0 uppercase">
+             
             </p>
-            <h2 className="text-md font-md mb-2 mt-0 text-neutral-900 ">
+            <h2 className="text-md lg:text-md mb-0 mt-0 text-neutral-800 ">
               {artistSlug ? (
                 <Link href={`/artists/${artistSlug}`} className="hover:underline">
                   {exhibition.artistName}
@@ -64,7 +64,7 @@ export default async function ExhibitionPage({ params }: Props) {
               )}
             </h2>
           
-            <p className="text-md text-neutral-900 mt-0 mb-8">
+            <p className="text-md lg:text-md text-neutral-800 mt-0 mb-6">
               {formatDate(exhibition.startDate)} -{" "}
               {formatDate(exhibition.endDate)}
             </p>
@@ -120,7 +120,8 @@ export default async function ExhibitionPage({ params }: Props) {
                 fill
                 className="object-cover"
               />
-            </Link>
+           
+          </Link>
           )}
         </div>
         

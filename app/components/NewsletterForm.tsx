@@ -53,7 +53,7 @@ export default function NewsletterForm() {
           placeholder="Name"
           value={firstname}
           onChange={(e) => setFirstname(e.target.value)}
-          className="flex-1 min-w-[120px] bg-transparent border-b border-neutral-300 py-2 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900"
+          className="flex-1 min-w-[120px] bg-transparent border-b border-b-0.5 border-neutral-300 py-2 text-sm placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900"
           disabled={status === "loading"}
         />
         <input

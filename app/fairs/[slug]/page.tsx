@@ -103,9 +103,9 @@ export default async function FairPage({ params }: Props) {
           </div>
 
           {fair.image && (
-            <Link
+            <GalleryLink
               href={`/fairs/${slug}/fair/0`}
-              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
+              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-white"
             >
               <Image
                 src={fair.image}
@@ -113,7 +113,7 @@ export default async function FairPage({ params }: Props) {
                 fill
                 className="object-cover"
               />
-            </Link>
+            </GalleryLink>
           )}
         </div>
         </Reveal>
@@ -129,7 +129,7 @@ export default async function FairPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
             {fair.fairImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
-              <Link
+              <GalleryLink
                 href={`/fairs/${slug}/fair/${fair.image ? idx + 1 : idx}`}
               >
                 <Image
@@ -138,7 +138,7 @@ export default async function FairPage({ params }: Props) {
                   width={500}
                   height={500}
                 />
-              </Link>
+              </GalleryLink>
               </Reveal>
             ))}
           </div>
@@ -155,7 +155,7 @@ export default async function FairPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
             {fair.worksImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
-              <Link
+              <GalleryLink
                 href={`/fairs/${slug}/works/${idx}`}
               >
                 <Image
@@ -164,7 +164,7 @@ export default async function FairPage({ params }: Props) {
                   width={500}
                   height={500}
                 />
-              </Link>
+              </GalleryLink>
               </Reveal>
             ))}
           </div>

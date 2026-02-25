@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: var(--font-inter), "Inter", sans-serif;
+  --color-neutral-white: #fafafa;
 }
 
 html,
@@ -10,7 +11,7 @@ body {
   padding: 0;
   min-height: 100%;
   min-height: 100dvh;
-  background: white;
+  background: var(--color-neutral-white);
   font-family: var(--font-inter), "Inter", sans-serif;
   font-optical-sizing: auto;
   font-feature-settings: "kern" 1, "liga" 0, "calt" 0, "ss01" 0, "ss02" 0, "ss03" 0, "ss04" 0, "ss05" 0, "ss06" 0, "ss07" 0, "ss08" 0;
@@ -102,33 +103,17 @@ button {
   transform: translateY(0);
 }
 
-/* Gallery slide transitions */
-@keyframes slide-in-from-right {
+/* Gallery image fade transition (next/previous) */
+@keyframes gallery-fade {
   from {
     opacity: 0;
-    transform: translateY(0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@keyframes slide-in-from-left {
-  from {
-    opacity: 0;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.animate-gallery-fade {
+  animation: gallery-fade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.animate-slide-in-right {
-  animation: slide-in-from-right 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-slide-in-left {
-  animation: slide-in-from-left 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-}

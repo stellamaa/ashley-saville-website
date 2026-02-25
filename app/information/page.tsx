@@ -5,13 +5,13 @@ import NewsletterForm from "@/app/components/NewsletterForm";
 
 export default function InformationPage() {
   return (
-    <div className="min-h-screen bg-white pt-44 px-5 md:px-10 md:pb-0 flex flex-col">
-      <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col lg:min-h-[calc(100vh-12rem)]">
-        <Reveal>
-        <h1 className="text-1xl font-medium text-neutral-800 text-center mb-14 ">
+    <div className="min-h-screen bg-white pt-30 px-5 md:px-10 md:pb-0 flex flex-col">
+      <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
+       <Reveal>
+        <h1 className="text-1xl font-medium text-neutral-800 text-center mb-24 ">
           Information
         </h1>
-        </Reveal>
+        </Reveal> 
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 mb-10">
           <Reveal delay={50}>
@@ -35,11 +35,11 @@ export default function InformationPage() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-16 mb-16 font-medium">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-16 mb-36 font-medium">
           <Reveal>
           <div>
-            <h2 className="text-md text-neutral-900 mb-2">Opening Hours:</h2>
-            <p className="text-neutral-900 text-md leading-snug">
+            <h2 className="text-md text-neutral-900 mb-1 text-start">Opening Hours</h2>
+            <p className="text-neutral-900 text-md leading-snug text-start ">
               Wednesday - Saturday <br />
               10am - 6pm <br />
               and by appointment
@@ -49,22 +49,22 @@ export default function InformationPage() {
 
           <Reveal>
           <div>
-            <h2 className="text-md text-neutral-900 mb-1">Address:</h2>
+            {/* <h2 className="text-md text-neutral-900 mb-1">Address</h2> */}
             <Image
               src="/building.jpg"
               alt="Map"
-              width={300}
+              width={500}
               height={300}
-              className="mt-4 mx-left"
+              className="mt-4 mx-auto"
             />
-            <p className="text-neutral-900 text-md leading-relaxed mb-0">
+            <p className="text-neutral-900 text-md text-center leading-relaxed mb-0">
               193 Fleet Street, EC4A 2AH, London
             </p>
             <Link
               href="https://www.google.com/maps/place/193+Fleet+St,+Greater,+Temple,+London+EC4A+2AH/@51.5139068,-0.1161117,17z/data=!3m1!4b1!4m6!3m5!1s0x487604b35ebcb6ef:0x638f3b4b5a6d1513!8m2!3d51.5139036!4d-0.1112408!16s%2Fg%2F11q2vvrxg2?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D7"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm underline text-neutral-700 hover:text-neutral-900"
+              className="text-sm text-start underline text-neutral-700 hover:text-neutral-900"
             >
               Google maps.
             </Link>
@@ -73,15 +73,14 @@ export default function InformationPage() {
 
           <Reveal>
           <div>
-            <h2 className="text-md text-neutral-900 mb-2">Contact:</h2>
-            <div className="space-y-2 text-md text-neutral-900 mb-8">
+            <h2 className="text-md text-neutral-900 mb-2 text-start mt-4 lg:mt-0 ">Contact</h2>
+            <div className="space-y-2 text-md text-neutral-900 text-start">
               <p>
                 Ashley Saville, Director
                 <br />
-                <br />
                 <a
                   href="mailto:ashley@ashleysaville.com"
-                  className="hover:text-neutral-900"
+                  className="hover:text-neutral-900 mt-2"
                 >
                   ashley@ashleysaville.com
                 </a>
@@ -108,8 +107,8 @@ export default function InformationPage() {
         </div>
 
         <Reveal>
-        <footer className="mt-auto pt-8  font-medium text-xs lg:text-xs text-neutral-800">
-          <div className="flex justify-center items-start gap-3 text-center">
+        <footer className="mt-auto font-medium text-xs lg:text-xs text-neutral-800">
+          <div className="flex justify-center items-end gap-3 text-center">
             <Link
               href="https://stellamathioudakis.com"
               target="_blank"
