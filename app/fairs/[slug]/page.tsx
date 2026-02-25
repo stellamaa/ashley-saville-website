@@ -38,7 +38,7 @@ export default async function FairPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 pt-15 px-6 md:px-10 pb-24 lg:pb-16 md:pt-0">
+    <div className="min-h-screen bg-neutral-50 pt-15 px-5 md:px-10 pb-24 lg:pb-16 md:pt-0">
       <div className="max-w-4xl mx-auto">
         {fair.isCurrent && (
           <Link
