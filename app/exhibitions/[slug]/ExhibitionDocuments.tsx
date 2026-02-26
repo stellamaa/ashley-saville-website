@@ -1,50 +1,14 @@
 type Props = {
-  download?: string;
-  pressRelease?: string;
   pressLinks?: { label?: string; url: string }[];
 };
 
-export default function ExhibitionDocuments({ download, pressRelease, pressLinks }: Props) {
-  // Check if there are any valid press links
+export default function ExhibitionDocuments({ pressLinks }: Props) {
   const hasPressLinks = pressLinks && pressLinks.some((link) => link.url);
-  const hasDownloadOrPressRelease = download || pressRelease;
-
-  // Don't render if there's nothing to show
-  if (!hasDownloadOrPressRelease && !hasPressLinks) {
-    return null;
-  }
+  if (!hasPressLinks) return null;
 
   return (
     <div className="flex flex-col items-end gap-0 leading-tight lg:pt-0">
-      {/* Download and Press Release stacked vertically */}
-      {hasDownloadOrPressRelease && (
-        <div className="flex flex-col items-end gap-0">
-          {download && (
-            <a
-              href={download}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-right text-neutral-600 hover:text-neutral-900 lg:mt-6"
-            >
-              Download Press Release
-            </a>
-          )}
-          {pressRelease && (
-            <a
-              href={pressRelease}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-right text-neutral-600 hover:text-neutral-900"
-            >
-              Download Press Release
-            </a>
-          )}
-        </div>
-      )}
-      
-      {/* Press label and links - only show if there are press links */}
-      {hasPressLinks && (
-        <div className="flex flex-col items-end mt-2">
+      <div className="flex flex-col items-end mt-2">
           <p className="text-sm font-bold text-neutral-600">Press</p>
           {pressLinks?.map(
             (link, idx) =>
@@ -60,8 +24,7 @@ export default function ExhibitionDocuments({ download, pressRelease, pressLinks
                 </a>
               ),
           )}
-        </div>
-      )}
+      </div>
     </div>
   );
 }

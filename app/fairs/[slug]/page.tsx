@@ -53,9 +53,9 @@ export default async function FairPage({ params }: Props) {
           {fair.name}
         </h1>
         </Reveal>
-        <Reveal delay={50}>
+        <Reveal delay={0}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-          <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
+          <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify hyphens-auto">
           
             <p className="text-md text-neutral-900 mt-0">{fair.location}</p>
             <p className="text-md text-neutral-900 mt-0">
@@ -66,6 +66,21 @@ export default async function FairPage({ params }: Props) {
                 <ReadMore content={fair.content} />
               </div>
             )}
+            <div className="mt-4 flex flex-col gap-1">
+              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2">
+                Enquire about available works
+              </Link>
+              {fair.pressRelease && (
+                <a href={fair.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                  Download Press Release
+                </a>
+              )}
+              {fair.download && (
+                <a href={fair.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                  Download
+                </a>
+              )}
+            </div>
           </div>
           <div className="lg:col-span-1  lg:text-right">
             <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex pt-0 lg:pt-[3.75rem]">
@@ -75,24 +90,20 @@ export default async function FairPage({ params }: Props) {
                   hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
                 />
               </div>
-              <div className="mt-3">
-                <FairDocuments
-                  download={fair.download}
-                  pressRelease={fair.pressRelease}
-                  pressLinks={fair.pressLinks}
-                />
-              </div>
+              {fair.pressLinks?.some(link => link.url) && (
+                <div className="mt-3">
+                  <FairDocuments pressLinks={fair.pressLinks} />
+                </div>
+              )}
             </div>
           </div>
 
           {/* Mobile: Documents above image */}
-          <div className="lg:col-span-3 lg:hidden mb-5">
-            <FairDocuments
-              download={fair.download}
-              pressRelease={fair.pressRelease}
-              pressLinks={fair.pressLinks}
-            />
-          </div>
+          {fair.pressLinks?.some(link => link.url) && (
+            <div className="grid grid-cols-1 lg:grid-cols- gap-2 lg:col-span-3    lg:hidden mb-5">
+              <FairDocuments pressLinks={fair.pressLinks} />
+            </div>
+          )}
 
           {fair.image && (
             <div className="lg:col-span-3 mt-5">
@@ -102,16 +113,12 @@ export default async function FairPage({ params }: Props) {
               >
                 <Image
                   src={fair.image}
-                  alt={fair.imageCaption ?? fair.name}
+                  alt={fair.name}
                   fill
                   className="object-cover"
                 />
               </Link>
-              {fair.imageCaption && (
-                <p className="block text-sm text-neutral-800 mt-2 text-center">
-                  {fair.imageCaption}
-                </p>
-              )}
+          
             </div>
           )}
         </div>

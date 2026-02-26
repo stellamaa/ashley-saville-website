@@ -39,14 +39,7 @@ export default function InformationPage() {
           <Reveal className="order-1 lg:order-2 col-span-2 lg:col-span-1">
             <div>
               <h2 className="text-md text-neutral-900 mb-1 text-start">Address</h2>
-              <Image
-                src="/building.jpg"
-                alt="Map"
-                width={500}
-                height={300}
-                className="mt-4 mx-auto lg:mx-0"
-              />
-              <p className="text-neutral-900 text-md leading-relaxed mb-0 mt-4 text-center lg:text-start">
+              <p className="text-neutral-900 text-md leading-relaxed mb-0 mt-4 text-start lg:text-start">
                 193 Fleet Street, EC4A 2AH, London
               </p>
               <Link
@@ -57,11 +50,20 @@ export default function InformationPage() {
               >
                 Google maps.
               </Link>
+              <Image
+                src="/building.jpg"
+                alt="Map"
+                width={500}
+                height={300}
+                className="mt-4 mx-auto lg:mx-0"
+              />
+            
+          
             </div>
           </Reveal>
           <Reveal delay={50} className="order-2 lg:order-1">
             <div>
-              <h2 className="text-md mt-5 lg:mt-0 text-neutral-900 mb-2 text-start">
+              <h2 className="text-md mt-7 lg:mt-0 text-neutral-900 mb-2 text-start">
                 Opening Hours
               </h2>
               <p className="text-neutral-900 text-md leading-snug text-start ">
@@ -95,12 +97,12 @@ export default function InformationPage() {
                   </a>
                   <br />
                   <a
-                    href="https://www.instagram.com/ashleysaville.art/"
+                    href="https://www.instagram.com/ashleysavilleworld/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-neutral-900"
                   >
-                    @ashleysaville.art
+                    @ashleysavilleworld
                   </a>
                 </p>
               </div>

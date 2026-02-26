@@ -55,18 +55,28 @@ export default async function ArtistPage({ params }: Props) {
         </Reveal>
         <Reveal>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-1">
-          <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify">
+          <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify hyphens-auto">
            
             {artist.biography && artist.biography.length > 0 && (
               <>
               <div className="mt-3 text-md font-medium leading-snug">
                 <ReadMore content={artist.biography} />
                 </div>
-              <div className="mt-4">
-                <Link href="mailto:ashley@ashleysaville.com" className="text underline underline decoration-1 underline underline-offset-2 pt-5">
+              <div className="mt-4 flex flex-col gap-1">
+                <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2">
                   Enquire about available works
-                   </Link>
-                   </div>           
+                </Link>
+                {artist.press && (
+                  <a href={artist.press} target="_blank" rel="noopener noreferrer" className="text underline underline-offset-2">
+                    Download Press Release
+                  </a>
+                )}
+                {artist.CV && (
+                  <a href={artist.CV} target="_blank" rel="noopener noreferrer" className="text underline underline decoration-1 underline-offset-2">
+                    Download CV
+                  </a>
+                )}
+              </div>           
                </>
 
             )}
@@ -80,7 +90,7 @@ export default async function ArtistPage({ params }: Props) {
                 />
               </div>
                 <div className="mt-3">
-                  <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
+                  <ArtistDocuments pressLinks={artist.pressLinks} />
                 </div>
               
             </div>
@@ -88,7 +98,7 @@ export default async function ArtistPage({ params }: Props) {
         
           {/* Mobile: Documents above image */}
           <div className="lg:col-span-3 lg:hidden mb-5">
-            <ArtistDocuments CV={artist.CV} press={artist.press} pressLinks={artist.pressLinks} />
+            <ArtistDocuments pressLinks={artist.pressLinks} />
           </div>
       
         </div>
@@ -106,11 +116,7 @@ export default async function ArtistPage({ params }: Props) {
                   className="object-cover"
                 />
               </Link>
-              {artist.imageCaption && (
-                <p className="block text-sm text-neutral-800 mt-2 text-center">
-                  {artist.imageCaption}
-                </p>
-              )}
+           
             </div>
           )}
 

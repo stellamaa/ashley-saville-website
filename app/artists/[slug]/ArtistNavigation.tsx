@@ -53,7 +53,7 @@ export default function ArtistNavigation({ hasInstallations = false, hasWorks = 
 
   const navClass = (id: SectionId) =>
     `block w-full text-right lg:text-right text-sm font-medium ${
-      activeSection === id ? "underline text-neutral-900" : "text-neutral-900 hover:text-neutral-900"
+      activeSection === id ? "text-neutral-900" : "text-neutral-900 hover:text-neutral-900"
     }`;
 
   return (

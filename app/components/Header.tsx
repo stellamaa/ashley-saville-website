@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+
+const FADE_OUT_MS = 400;
 
 interface HeaderProps {
   hasCurrentFair?: boolean;
@@ -17,7 +19,21 @@ export default function Header({
   currentFairSlug,
 }: HeaderProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const wasOnHome = pathname === "/";
+    sessionStorage.setItem("skip-landing-flash", "1");
+    window.dispatchEvent(new CustomEvent("page-transition-navigate"));
+    setTimeout(() => {
+      router.push("/");
+      if (wasOnHome) {
+        window.dispatchEvent(new CustomEvent("page-transition-fade-in"));
+      }
+    }, FADE_OUT_MS);
+  };
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -131,13 +147,18 @@ export default function Header({
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1 lg:px-6 lg:py-1">
-      <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
+    <header className="relative md:fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 pr-14 md:px-1 md:pr-1 lg:px-6 lg:pr-6 lg:py-1 bg-transparent">
+      <Link
+        href="/"
+        className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}
+        onClick={handleLogoClick}
+        data-logo-link
+      >
         <Image src="/logo.png" alt="Ashley Saville" width={140} height={130} className={`ml-1 mt-0 z-22 lg:mt-0 lg:-ml-4 ${logoClass || "opacity-90"}`} />
       </Link>
 
-      {/* Mobile: menu button. Desktop: all nav links on the right */}
-      <div className="flex justify-end">
+      {/* Mobile: menu button sticky. Desktop: all nav links on the right */}
+      <div className="flex justify-end fixed right-0 top-0 py-2 pr-3 z-30 md:static md:py-0 md:pr-0">
         <nav className={`hidden md:flex gap-6 text-md lg:mt-1 ${navTextClass}`}>
           {desktopNavLinks}
         </nav>
@@ -159,7 +180,7 @@ export default function Header({
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-0 bg-neutral-white md:hidden z-10 px-6 py-8 flex flex-col items-center justify-center pb-42 "
+          className="fixed inset-0 top-0 bg-transparent md:hidden z-10 px-6 py-8 flex flex-col items-center justify-center pb-42 "
           onClick={() => setMobileMenuOpen(false)}
         >
           <nav className="flex flex-col items-center gap-1 text-neutral-900 text-lg [&_a]:text-neutral-900 [&_a:hover]:text-neutral-600">

@@ -36,22 +36,41 @@ export default function PageTransition({ children }: { children: React.ReactNode
     return () => cancelAnimationFrame(t);
   }, [pathname]);
 
+  // Listen for logo-triggered navigation (Header dispatches this)
+  useEffect(() => {
+    const handleTransitionNavigate = () => setIsFadingOut(true);
+    const handleFadeIn = () => {
+      setIsFadingOut(false);
+      setIsReady(false);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setIsReady(true));
+      });
+    };
+    window.addEventListener("page-transition-navigate", handleTransitionNavigate);
+    window.addEventListener("page-transition-fade-in", handleFadeIn);
+    return () => {
+      window.removeEventListener("page-transition-navigate", handleTransitionNavigate);
+      window.removeEventListener("page-transition-fade-in", handleFadeIn);
+    };
+  }, []);
+
   // Intercept internal link clicks: fade out, then navigate
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // Allow new tab, etc.
       const target = (e.target as Element).closest("a");
       if (!target?.href) return;
+      if (target.hasAttribute("data-logo-link")) return; // Logo uses its own handler
       try {
         const url = new URL(target.href);
         if (url.origin !== window.location.origin) return;
-        if (url.pathname === pathname) return;
         if (target.target === "_blank" || target.hasAttribute("download")) return;
         const isGalleryTarget =
           url.pathname.includes("/exhibition/") ||
           url.pathname.includes("/works/") ||
           url.pathname.includes("/fair/");
         if (isGalleryTarget) return; // Don't fade when opening gallery
+        if (url.pathname === pathname) return;
         const isNavigatingToHome = url.pathname === "/" || url.pathname === "";
         if (isNavigatingToHome) {
           sessionStorage.setItem("skip-landing-flash", "1"); // Logo/nav to home: show landing without flash

@@ -38,63 +38,6 @@ button {
   display: none !important;
 }
 
-@keyframes landing-expand {
-  0%, 12.5% {
-    transform: scale(0.3);
-    opacity: 0;
-  }
-  18.75% {
-    transform: scale(0.3 0.5);
-    opacity: 1;
-  }
-  18.75%, 62.5% {
-    transform: scale(0.3);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.animate-landing-expand {
-  animation: landing-expand 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Mobile: wider small flashing image (small version of full size) */
-@keyframes landing-expand-mobile {
-  0%, 12.5% {
-    transform: scale(0.4);
-    opacity: 0;
-  }
-  18.75% {
-    transform: scale(0.4 0.6);
-    opacity: 1;
-  }
-  18.75%, 62.5% {
-    transform: scale(0.4);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@media (max-width: 1023px) {
-  .animate-landing-expand {
-    animation-name: landing-expand-mobile;
-  }
-}
-
-@keyframes flash-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-flash-in {
-  animation: flash-fade-in 0.2s ease-out forwards;
-}
 
 /* Scroll reveal transition */
 .reveal-transition {

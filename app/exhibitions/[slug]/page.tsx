@@ -50,7 +50,7 @@ export default async function ExhibitionPage({ params }: Props) {
         
     
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-          <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
+          <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify hyphens-auto">
             <p className="text-md text-neutral-800 mt-0 uppercase"></p>
             <h2 className="text-base mb-0 mt-0 text-neutral-800 ">
               {artistSlug ? (
@@ -69,6 +69,21 @@ export default async function ExhibitionPage({ params }: Props) {
                 <ReadMore content={exhibition.content} />
               </div>
             )}
+            <div className="mt-4 flex flex-col gap-1">
+              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2">
+                Enquire about available works
+              </Link>
+              {exhibition.pressRelease && (
+                <a href={exhibition.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                  Download Press Release
+                </a>
+              )}
+              {exhibition.download && (
+                <a href={exhibition.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                  Download Press Release
+                </a>
+              )}
+            </div>
           </div>
           {/* Sidebar: sticky  + documents, spans text + image rows so nav follows scroll until gallery */}
           <div className={`lg:col-span-1 lg:text-right hidden lg:flex flex-col ${exhibition.image ? "lg:row-span-2" : ""}`}>
@@ -81,26 +96,18 @@ export default async function ExhibitionPage({ params }: Props) {
                   />
                 </div>
               )}
-              {(exhibition.download || exhibition.pressRelease || exhibition.pressLinks?.some(link => link.url)) && (
+              {exhibition.pressLinks?.some(link => link.url) && (
                 <div className="mt-6">
-                  <ExhibitionDocuments
-                    download={exhibition.download}
-                    pressRelease={exhibition.pressRelease}
-                    pressLinks={exhibition.pressLinks}
-                  />
+                  <ExhibitionDocuments pressLinks={exhibition.pressLinks} />
                 </div>
               )}
             </div>
           </div>
 
           {/* Mobile: Documents above image */}
-          {(exhibition.download || exhibition.pressRelease || exhibition.pressLinks?.some(link => link.url)) && (
+          {exhibition.pressLinks?.some(link => link.url) && (
             <div className="lg:col-span-3 lg:hidden mb-5">
-              <ExhibitionDocuments
-                download={exhibition.download}
-                pressRelease={exhibition.pressRelease}
-                pressLinks={exhibition.pressLinks}
-              />
+              <ExhibitionDocuments pressLinks={exhibition.pressLinks} />
             </div>
           )}
 
@@ -118,11 +125,7 @@ export default async function ExhibitionPage({ params }: Props) {
                   className="object-cover"
                 />
               </Link>
-              {exhibition.imageCaption && (
-                <p className="block text-sm text-neutral-800 mt-2 text-center">
-                  {exhibition.imageCaption}
-                </p>
-              )}
+          
             </div>
           )}
         </div>
