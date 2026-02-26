@@ -2,6 +2,7 @@ import { createClient, groq } from "next-sanity";
 import { Exhibition } from "@/types/exhibition";
 import { Artist } from "@/types/artist";
 import { Fair } from "@/types/fair";
+import { Information } from "@/types/information";
 
 const exhibitionProjection = groq`{
     _id,
@@ -206,6 +207,29 @@ export async function getFairBySlug(slug: string): Promise<Fair | null> {
   const result = await client.fetch(
     groq`* [_type == "fair" && slug.current == $slug][0] ${fairProjection}`,
     { slug },
+  );
+  return result;
+}
+
+const informationProjection = groq`{
+  _id,
+  informationText,
+  openingHours,
+  contactName,
+  contactEmail,
+  contactPhone,
+  contactInstagram,
+}`;
+
+export async function getInformation(): Promise<Information | null> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+
+  const result = await client.fetch(
+    groq`* [_type == "information"][0] ${informationProjection}`
   );
   return result;
 }

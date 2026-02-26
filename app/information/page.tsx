@@ -2,8 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/app/components/Reveal";
 import NewsletterForm from "@/app/components/NewsletterForm";
+import { getInformation } from "@/sanity/sanity-utils";
+import { PortableText } from "@portabletext/react";
 
-export default function InformationPage() {
+export default async function InformationPage() {
+  const information = await getInformation();
+
   return (
     <div className="min-h-screen bg-white pt-23 px-5 md:px-10 md:pb-0 flex flex-col">
       <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
@@ -15,13 +19,17 @@ export default function InformationPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 mb-10">
           <Reveal delay={0}>
-            <div>
-              <p className="text-neutral-900 text-md leading-snug text-justify">
-                The gallery is located on the corner of Fleet Street and Chancery
-                Lane. The entrance is on Chancery Lane. On arrival, please ring
-                the bell to be let in. Kindly note that the gallery is on the
-                first floor and is accessible via stairs only.
-              </p>
+            <div className="text-neutral-900 text-md leading-snug text-justify [&_p]:mb-1">
+              {information?.informationText && information.informationText.length > 0 ? (
+                <PortableText value={information.informationText} />
+              ) : (
+                <p>
+                  The gallery is located on the corner of Fleet Street and Chancery
+                  Lane. The entrance is on Chancery Lane. On arrival, please ring
+                  the bell to be let in. Kindly note that the gallery is on the
+                  first floor and is accessible via stairs only.
+                </p>
+              )}
             </div>
           </Reveal>
 
@@ -57,8 +65,6 @@ export default function InformationPage() {
                 height={300}
                 className="mt-4 mx-auto lg:mx-0"
               />
-            
-          
             </div>
           </Reveal>
           <Reveal delay={50} className="order-2 lg:order-1">
@@ -66,11 +72,17 @@ export default function InformationPage() {
               <h2 className="text-md mt-7 lg:mt-0 text-neutral-900 mb-2 text-start">
                 Opening Hours
               </h2>
-              <p className="text-neutral-900 text-md leading-snug text-start ">
-                Wednesday - Saturday <br />
-                10am - 6pm <br />
-                and by appointment
-              </p>
+              <div className="text-neutral-900 text-md leading-snug text-start [&_p]:mb-1">
+                {information?.openingHours && information.openingHours.length > 0 ? (
+                  <PortableText value={information.openingHours} />
+                ) : (
+                  <p>
+                    Wednesday - Saturday <br />
+                    10am - 6pm <br />
+                    and by appointment
+                  </p>
+                )}
+              </div>
             </div>
           </Reveal>
           <Reveal delay={100} className="order-3 lg:order-3">
@@ -80,29 +92,33 @@ export default function InformationPage() {
               </h2>
               <div className="space-y-2 text-md text-neutral-900 text-start">
                 <p>
-                  Ashley Saville, Director
+                  {information?.contactName ?? "Ashley Saville, Director"}
                   <br />
                   <a
-                    href="mailto:ashley@ashleysaville.com"
+                    href={`mailto:${information?.contactEmail ?? "ashley@ashleysaville.com"}`}
                     className="hover:text-neutral-900 mt-2"
                   >
-                    ashley@ashleysaville.com
+                    {information?.contactEmail ?? "ashley@ashleysaville.com"}
                   </a>
                   <br />
                   <a
-                    href="tel:0752033690"
+                    href={`tel:${(information?.contactPhone ?? "+44 (0)752033690").replace(/\D/g, "")}`}
                     className="hover:text-neutral-900"
                   >
-                    +44 (0)752033690
+                    {information?.contactPhone ?? "+44 (0)752033690"}
                   </a>
                   <br />
                   <a
-                    href="https://www.instagram.com/ashleysavilleworld/"
+                    href={
+                      (information?.contactInstagram ?? "@ashleysavilleworld").startsWith("http")
+                        ? (information?.contactInstagram ?? "https://www.instagram.com/ashleysavilleworld/")
+                        : `https://www.instagram.com/${(information?.contactInstagram ?? "ashleysavilleworld").replace("@", "")}/`
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-neutral-900"
                   >
-                    @ashleysavilleworld
+                    {information?.contactInstagram ?? "@ashleysavilleworld"}
                   </a>
                 </p>
               </div>

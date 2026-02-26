@@ -9,7 +9,7 @@ function formatDateDDMMYYYY(dateStr: string): string {
   const date = new Date(dateStr);
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
-  return `${day}/${month}`;
+  return `${day}.${month}`;
 }
 
 type WorksImage = { url: string; caption?: string };

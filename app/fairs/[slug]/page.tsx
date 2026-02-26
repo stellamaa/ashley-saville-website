@@ -22,7 +22,7 @@ function formatDate(dateStr: string): string {
         : day === 3 || day === 23
           ? ""
           : "";
-  return `${day}${suffix} of ${month} ${year}`;
+  return `${day}${suffix} ${month} ${year}`;
 }
 
 type Props = {
