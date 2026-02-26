@@ -52,7 +52,7 @@ export default async function ExhibitionPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
             <p className="text-md text-neutral-800 mt-0 uppercase"></p>
-            <h2 className="text-sm md:text-base mb-0 mt-0 text-neutral-800 ">
+            <h2 className="text-base mb-0 mt-0 text-neutral-800 ">
               {artistSlug ? (
                 <Link href={`/artists/${artistSlug}`} className="hover:underline">
                   {exhibition.artistName}
@@ -61,7 +61,7 @@ export default async function ExhibitionPage({ params }: Props) {
                 exhibition.artistName
               )}
             </h2>
-            <p className="text-sm md:text-base text-neutral-800 mt-0 mb-6">
+            <p className="text-base text-neutral-800 mt-0 mb-6">
               {formatDate(exhibition.startDate)} - {formatDate(exhibition.endDate)}
             </p>
             {exhibition.content && exhibition.content.length > 0 && (

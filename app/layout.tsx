@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/app/components/Header";
+import PageTransition from "@/app/components/PageTransition";
 import { getCurrentFair, getCurrentExhibition } from "@/sanity/sanity-utils";
 
 const light = localFont({
@@ -46,7 +47,7 @@ export default async function RootLayout({
           currentExhibitionSlug={currentExhibition?.slug}
           currentFairSlug={currentFair?.slug}
         />
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 function formatDateDDMMYYYY(dateStr: string): string {
   if (!dateStr) return "";
@@ -39,7 +38,6 @@ type LandingHeroProps = {
 
 const FLASH_START_MS = 800;
 const FLASH_INTERVAL_MS = 300;
-const NAVIGATED_FROM_LANDING_KEY = "ashley-saville-navigated-from-landing";
 
 export default function LandingHero({
   image,
@@ -57,42 +55,21 @@ export default function LandingHero({
     [worksImages]
   );
 
-  const router = useRouter();
   const [flashImages, setFlashImages] = useState<string[]>([]);
   const [displayImage, setDisplayImage] = useState<string>(image);
   const [phase, setPhase] = useState<"delay" | "flash" | "landing">("delay");
   const [skipAnimation, setSkipAnimation] = useState(false);
-  const [isSlidingOut, setIsSlidingOut] = useState(false);
-
-  const exhibitionHref = `/exhibitions/${slug}`;
-
-  const handleFindOutMore = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      if (isSlidingOut) return;
-      setIsSlidingOut(true);
-    },
-    [isSlidingOut]
-  );
-
-  const handleSlideEnd = useCallback(
-    (e: React.AnimationEvent) => {
-      if (e.animationName === "landing-slide-out") {
-        sessionStorage.setItem(NAVIGATED_FROM_LANDING_KEY, "1");
-        router.push(exhibitionHref);
-      }
-    },
-    [router, exhibitionHref]
-  );
 
   useEffect(() => {
-    if (sessionStorage.getItem(NAVIGATED_FROM_LANDING_KEY)) {
-      sessionStorage.removeItem(NAVIGATED_FROM_LANDING_KEY);
+    if (typeof window !== "undefined" && sessionStorage.getItem("skip-landing-flash")) {
+      sessionStorage.removeItem("skip-landing-flash");
       setSkipAnimation(true);
       setDisplayImage(image);
       setPhase("landing");
     }
   }, [image]);
+
+  const exhibitionHref = `/exhibitions/${slug}`;
 
   useEffect(() => {
     if (skipAnimation) return;
@@ -134,10 +111,7 @@ export default function LandingHero({
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <section
-        className={`relative min-h-screen w-full overflow-hidden bg-white ${isSlidingOut ? "animate-landing-slide-out" : ""}`}
-        onAnimationEnd={handleSlideEnd}
-      >
+      <section className="relative min-h-screen w-full overflow-hidden bg-white">
         <div
           className={skipAnimation ? "absolute inset-0" : "absolute inset-0 animate-landing-expand"}
           style={{
@@ -176,7 +150,6 @@ export default function LandingHero({
             <Link
               href={exhibitionHref}
               className="mt-0 text-sm text-white underline underline decoration-0 underline underline-offset-2 hover:text-white/90"
-              onClick={handleFindOutMore}
               prefetch
             >
               Find out more

@@ -31,7 +31,7 @@ export default async function FairsArchivePage() {
         {currentFair?.slug && (
           <Link
             href={`/fairs/${currentFair.slug}`}
-            className="mb-8 inline-block text-sm text-neutral-900 hover:text-neutral-600"
+            className="mb-8 inline-block lg:mt-23 text-sm text-neutral-900 hover:text-neutral-600"
           >
             Current fair
           </Link>

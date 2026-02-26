@@ -3,9 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
-
-const NAVIGATED_FROM_LANDING_KEY = "ashley-saville-navigated-from-landing";
+import { useState, useEffect } from "react";
 
 interface HeaderProps {
   hasCurrentFair?: boolean;
@@ -19,16 +17,7 @@ export default function Header({
   currentFairSlug,
 }: HeaderProps) {
   const pathname = usePathname();
-  const prevPathnameRef = useRef<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const prev = prevPathnameRef.current;
-    prevPathnameRef.current = pathname;
-    if (prev === "/" && pathname && pathname !== "/") {
-      sessionStorage.setItem(NAVIGATED_FROM_LANDING_KEY, "1");
-    }
-  }, [pathname]);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -51,9 +40,9 @@ export default function Header({
   const textClass = resolvedVariant === "light" ? "text-white" : "text-neutral-900";
   const linkHoverClass = resolvedVariant === "light" ? "hover:text-white" : "hover:text-neutral-600";
   const navTextClass = textClass;
-  // Logo and menu icon should be white only on landing page when menu is closed
-  const logoClass = resolvedVariant === "light" && !mobileMenuOpen ? "invert" : "";
-  const menuIconClass = resolvedVariant === "light" && !mobileMenuOpen ? "invert" : "";
+  // Logo and menu icon: pure white on landing (brightness-0 invert), dark otherwise
+  const logoClass = resolvedVariant === "light" && !mobileMenuOpen ? "brightness-0 invert" : "";
+  const menuIconClass = resolvedVariant === "light" && !mobileMenuOpen ? "brightness-0 invert" : "";
 
   // Desktop only: Exhibitions is a normal nav link; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
   const isOnExhibitionsSection = pathname?.startsWith("/exhibitions");
@@ -144,7 +133,7 @@ export default function Header({
   return (
     <header className="fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 md:px-1 lg:px-6 lg:py-1">
       <Link href="/" className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}>
-        <Image src="/logo.png" alt="Ashley Saville" width={140} height={130} className={`ml-1 mt-0 z-22 lg:mt-0 lg:-ml-4 opacity-90 ${logoClass}`} />
+        <Image src="/logo.png" alt="Ashley Saville" width={140} height={130} className={`ml-1 mt-0 z-22 lg:mt-0 lg:-ml-4 ${logoClass || "opacity-90"}`} />
       </Link>
 
       {/* Mobile: menu button. Desktop: all nav links on the right */}

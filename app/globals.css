@@ -122,14 +122,30 @@ button {
   animation: gallery-fade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Landing page slide-out transition */
-.animate-landing-slide-out {
-  animation: landing-slide-out 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+/* Page transitions: fade out then white, fade in content */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-@keyframes landing-slide-out {
-  to {
-    transform: translateX(100%);
+@keyframes page-fade-out {
+  from {
+    opacity: 1;
   }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-page-fade-in {
+  animation: page-fade-in 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-page-fade-out {
+  animation: page-fade-out 0.4s ease-out forwards;
 }
 
