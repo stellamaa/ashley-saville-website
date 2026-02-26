@@ -5,7 +5,7 @@ import NewsletterForm from "@/app/components/NewsletterForm";
 
 export default function InformationPage() {
   return (
-    <div className="min-h-screen bg-white pt-30 px-5 md:px-10 md:pb-0 flex flex-col">
+    <div className="min-h-screen bg-white pt-23 px-5 md:px-10 md:pb-0 flex flex-col">
       <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col">
        <Reveal>
         <h1 className="text-1xl font-medium text-neutral-800 text-center mb-10 ">
@@ -34,22 +34,10 @@ export default function InformationPage() {
           </div>
           </Reveal>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-16 mb-36 font-medium">
-          <Reveal>
-          <div>
-            <h2 className="text-md text-neutral-900 mb-1 text-start">Opening Hours</h2>
-            <p className="text-neutral-900 text-md leading-snug text-start ">
-              Wednesday - Saturday <br />
-              10am - 6pm <br />
-              and by appointment
-            </p>
-          </div>
-          </Reveal>
-
-          <Reveal>
+        <Reveal>
           <div>
             {/* <h2 className="text-md text-neutral-900 mb-1">Address</h2> */}
+            <h2 className="text-md text-neutral-900 mb-1 text-start">Address</h2>
             <Image
               src="/building.jpg"
               alt="Map"
@@ -64,12 +52,26 @@ export default function InformationPage() {
               href="https://www.google.com/maps/place/193+Fleet+St,+Greater,+Temple,+London+EC4A+2AH/@51.5139068,-0.1161117,17z/data=!3m1!4b1!4m6!3m5!1s0x487604b35ebcb6ef:0x638f3b4b5a6d1513!8m2!3d51.5139036!4d-0.1112408!16s%2Fg%2F11q2vvrxg2?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D7"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-start underline text-neutral-700 hover:text-neutral-900"
+              className="text-sm text-start mb-5 underline text-neutral-700 hover:text-neutral-900"
             >
               Google maps.
             </Link>
           </div>
           </Reveal>
+          <div>
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-16 mb-36 mt-5 font-medium">
+          <Reveal>
+          <div>
+            <h2 className="text-md mt-5 text-neutral-900 mb-2 text-start">Opening Hours</h2>
+            <p className="text-neutral-900 text-md leading-snug text-start ">
+              Wednesday - Saturday <br />
+              10am - 6pm <br />
+              and by appointment
+            </p>
+          </div>
+          </Reveal>
+
+
 
           <Reveal>
           <div>
@@ -104,6 +106,7 @@ export default function InformationPage() {
             </div>
           </div>
           </Reveal>
+        </div>
         </div>
 
         <Reveal>
