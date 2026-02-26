@@ -70,7 +70,7 @@ export default async function ExhibitionPage({ params }: Props) {
               </div>
             )}
           </div>
-          {/* Sidebar: sticky nav + documents, spans text + image rows so nav follows scroll until gallery */}
+          {/* Sidebar: sticky  + documents, spans text + image rows so nav follows scroll until gallery */}
           <div className={`lg:col-span-1 lg:text-right hidden lg:flex flex-col ${exhibition.image ? "lg:row-span-2" : ""}`}>
             <div className="sticky top-3 flex flex-col items-start lg:items-end justify-between w-full pt-0 lg:pt-[3rem]">
               {(exhibition.exhibitionImages?.length > 0 || exhibition.worksImages?.length > 0) && (
