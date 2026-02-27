@@ -5,7 +5,8 @@ export type ExhibitionImage = { url: string; caption?: string };
 export type Exhibition = {
     _id: string;
     _createdAt: string;
-    artistName: string;
+    artistName?: string;
+    artistNames?: string[];
     exhibitionName: string;
     startDate: string;
     endDate: string;

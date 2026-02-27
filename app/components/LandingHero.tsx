@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -39,10 +39,9 @@ export default function LandingHero({
   slug,
 }: LandingHeroProps) {
   const [phase, setPhase] = useState<"small" | "expanded">("small");
-  const [isMobile, setIsMobile] = useState(false);
   const [skipAnimation, setSkipAnimation] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window !== "undefined" && sessionStorage.getItem("skip-landing-flash")) {
       sessionStorage.removeItem("skip-landing-flash");
       setSkipAnimation(true);
@@ -51,30 +50,25 @@ export default function LandingHero({
   }, []);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  useEffect(() => {
-    if (skipAnimation || isMobile) return;
+    if (skipAnimation) return;
     const t = setTimeout(() => setPhase("expanded"), HOLD_DURATION_MS);
     return () => clearTimeout(t);
-  }, [skipAnimation, isMobile]);
+  }, [skipAnimation]);
 
   const exhibitionHref = `/exhibitions/${slug}`;
 
   const showExpanded = phase === "expanded" || skipAnimation;
-  const expandOnDesktop = showExpanded && !isMobile;
+  const transitionClass = skipAnimation
+    ? ""
+    : "transition-all duration-[2s] ease-[cubic-bezier(0.22,1,0.36,1)]";
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <section className="relative min-h-screen w-full overflow-hidden bg-white">
+    <div className="fixed inset-0 md:relative md:min-h-screen overflow-x-hidden z-0">
+      <section className="absolute inset-0 md:relative md:min-h-screen w-full overflow-hidden bg-white">
         <div className="absolute inset-0">
           <div
-            className={`absolute inset-0 transition-all duration-[2s] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              expandOnDesktop ? "scale-100" : "scale-[0.35]"
+            className={`absolute inset-0 ${transitionClass} ${
+              showExpanded ? "scale-100" : "scale-[0.35]"
             }`}
             style={{ transformOrigin: "center center" }}
           >
@@ -82,8 +76,8 @@ export default function LandingHero({
               src={image}
               alt={alt}
               fill
-              className={`transition-all duration-[2s] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                expandOnDesktop ? "object-cover" : "object-contain"
+              className={`${transitionClass} ${
+                showExpanded ? "object-cover" : "object-contain"
               }`}
               sizes="100vw"
               priority
@@ -91,7 +85,7 @@ export default function LandingHero({
           </div>
         </div>
 
-        <div className="relative z-10 flex min-h-screen flex-col items-center px-6 py-10">
+        <div className="relative z-10 flex min-h-screen flex-col md:items-center items-end px-6 py-10">
           <div className="flex-1 min-h-[1px]" />
           <div className="flex-1 min-h-[1px]" />
           <div className="flex flex-col items-center gap-0 pb-0 md:absolute md:bottom-12 md:right-15 md:pb-0 text-sm">

@@ -67,16 +67,16 @@ export default async function FairPage({ params }: Props) {
               </div>
             )}
             <div className="mt-4 flex flex-col gap-1">
-              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2">
+              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
                 Enquire about available works
               </Link>
               {fair.pressRelease && (
-                <a href={fair.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                <a href={fair.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
                   Download Press Release
                 </a>
               )}
               {fair.download && (
-                <a href={fair.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                <a href={fair.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
                   Download
                 </a>
               )}

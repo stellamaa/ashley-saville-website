@@ -26,6 +26,11 @@ export default async function ExhibitionImagesGalleryPage({ params }: Props) {
 
   if (Number.isNaN(index) || index < 0 || index >= images.length) notFound();
 
+  const displayName =
+    (exhibition.artistNames?.length
+      ? exhibition.artistNames.join(", ")
+      : exhibition.artistName) || exhibition.exhibitionName;
+
   return (
     <GalleryView
       images={images}
@@ -33,7 +38,7 @@ export default async function ExhibitionImagesGalleryPage({ params }: Props) {
       basePath={`/exhibitions/${slug}/exhibition`}
       backHref={`/exhibitions/${slug}`}
       backLabel={exhibition.exhibitionName}
-      alt={exhibition.artistName}
+      alt={displayName}
     />
   );
 }

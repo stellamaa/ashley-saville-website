@@ -53,7 +53,7 @@ export default function FairNavigation({ hasInstallations = false, hasWorks = fa
 
   const navClass = (id: SectionId) =>
     `block w-full text-right lg:text-right text-sm font-medium ${
-      activeSection === id ? "text-neutral-900" : "text-neutral-600 hover:text-neutral-900"
+      activeSection === id ? "text-neutral-900" : "text-neutral-600 hover:text-neutral-600"
     }`;
 
   return (

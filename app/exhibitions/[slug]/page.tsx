@@ -1,4 +1,4 @@
-import { getExhibitionBySlug, getArtistSlugByName } from "@/sanity/sanity-utils";
+import { getExhibitionBySlug, getArtistSlugsByNames } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -37,7 +37,13 @@ export default async function ExhibitionPage({ params }: Props) {
     notFound();
   }
 
-  const artistSlug = await getArtistSlugByName(exhibition.artistName);
+  const artistNames = (exhibition.artistNames?.length
+    ? exhibition.artistNames
+    : exhibition.artistName
+      ? [exhibition.artistName]
+      : []) as string[];
+  const artistSlugs = await getArtistSlugsByNames(artistNames);
+  const displayName = artistNames.join(", ") || exhibition.artistName || "";
 
   return (
     <div className="min-h-screen bg-transparent lg:pt-10 pt-19 px-5 md:px-10 pb-24 lg:pb-16">
@@ -45,7 +51,7 @@ export default async function ExhibitionPage({ params }: Props) {
        
         <Reveal>
         <h1 className="text-1xl text-neutral-800 text-base text-center sm:mt-20 mt-3 mb-5 lg:mb-10 ">
-          {exhibition.isCurrent ? `${exhibition.exhibitionName}` : `${exhibition.exhibitionName}`}
+          {exhibition.exhibitionName}
         </h1>
         
     
@@ -53,12 +59,23 @@ export default async function ExhibitionPage({ params }: Props) {
           <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify hyphens-auto">
             <p className="text-md text-neutral-800 mt-0 uppercase"></p>
             <h2 className="text-base mb-0 mt-0 text-neutral-800 ">
-              {artistSlug ? (
-                <Link href={`/artists/${artistSlug}`} className="hover:underline">
-                  {exhibition.artistName}
-                </Link>
+              {artistNames.length > 0 ? (
+                artistNames.map((name, i) => {
+                  const slug = artistSlugs[name];
+                  const sep = i < artistNames.length - 1 ? ", " : "";
+                  return slug ? (
+                    <span key={name}>
+                      <Link href={`/artists/${slug}`} className="hover:text-neutral-600">
+                        {name}
+                      </Link>
+                      {sep}
+                    </span>
+                  ) : (
+                    <span key={name}>{name}{sep}</span>
+                  );
+                })
               ) : (
-                exhibition.artistName
+                displayName
               )}
             </h2>
             <p className="text-base text-neutral-800 mt-0 mb-6">
@@ -70,16 +87,16 @@ export default async function ExhibitionPage({ params }: Props) {
               </div>
             )}
             <div className="mt-4 flex flex-col gap-1">
-              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2">
+              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
                 Enquire about available works
               </Link>
               {exhibition.pressRelease && (
-                <a href={exhibition.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                <a href={exhibition.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
                   Download Press Release
                 </a>
               )}
               {exhibition.download && (
-                <a href={exhibition.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2">
+                <a href={exhibition.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
                   Download Press Release
                 </a>
               )}
@@ -120,7 +137,7 @@ export default async function ExhibitionPage({ params }: Props) {
               >
                 <Image
                   src={exhibition.image}
-                  alt={exhibition.artistName}
+                  alt={displayName}
                   fill
                   className="object-cover"
                 />
@@ -149,7 +166,7 @@ export default async function ExhibitionPage({ params }: Props) {
                 >
                   <Image
                     src={item.url}
-                    alt={exhibition.artistName}
+                    alt={displayName}
                     width={500}
                     height={500}
                   />
@@ -178,7 +195,7 @@ export default async function ExhibitionPage({ params }: Props) {
               >
                 <Image
                   src={item.url}
-                  alt={exhibition.artistName}
+                  alt={displayName}
                   width={500}
                   height={500}
                   className="flex items-center justify-center"

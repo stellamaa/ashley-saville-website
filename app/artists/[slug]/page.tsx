@@ -63,16 +63,16 @@ export default async function ArtistPage({ params }: Props) {
                 <ReadMore content={artist.biography} />
                 </div>
               <div className="mt-4 flex flex-col gap-1">
-                <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2">
+                <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
                   Enquire about available works
                 </Link>
                 {artist.press && (
-                  <a href={artist.press} target="_blank" rel="noopener noreferrer" className="text underline underline-offset-2">
+                  <a href={artist.press} target="_blank" rel="noopener noreferrer" className="text underline underline-offset-2 hover:text-neutral-600">
                     Download Press Release
                   </a>
                 )}
                 {artist.CV && (
-                  <a href={artist.CV} target="_blank" rel="noopener noreferrer" className="text underline underline decoration-1 underline-offset-2">
+                  <a href={artist.CV} target="_blank" rel="noopener noreferrer" className="text underline underline decoration-1 underline-offset-2 hover:text-neutral-600">
                     Download CV
                   </a>
                 )}
@@ -172,13 +172,17 @@ export default async function ArtistPage({ params }: Props) {
             <h3 id="exhibitions" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
               Previous exhibitions
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-8 mb-16">
               {archivedExhibitions.map((exhibition: Exhibition) => {
                 const imageUrl =
                   exhibition.image ||
                   exhibition.exhibitionImages?.[0]?.url ||
                   exhibition.worksImages?.[0]?.url;
                 if (!imageUrl) return null;
+                const exhibitionAlt =
+                  (exhibition.artistNames?.length
+                    ? exhibition.artistNames.join(", ")
+                    : exhibition.artistName) || exhibition.exhibitionName;
                 return (
                   <Link
                     key={exhibition._id}
@@ -187,7 +191,7 @@ export default async function ArtistPage({ params }: Props) {
                   >
                     <Image
                       src={imageUrl}
-                      alt={exhibition.artistName}
+                      alt={exhibitionAlt}
                       fill
                       className="object-cover"
                     />

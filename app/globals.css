@@ -27,10 +27,17 @@ body {
   }
 }
 
-/* Make all links and buttons show pointer cursor */
+/* Make all clickable controls show hand cursor */
 a,
-button {
-  cursor: pointer;
+a *,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+summary,
+label[for] {
+  cursor: pointer !important;
 }
 
 /* When mobile menu is open, hide fixed mobile bottom nav bars */

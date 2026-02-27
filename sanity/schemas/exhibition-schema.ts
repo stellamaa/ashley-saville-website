@@ -6,15 +6,26 @@ const exhibition = defineType({
   type: "document",
   fields: [
     defineField({
-      name: "artistName",
-      title: "Artist Name",
-      type: "string",
-    }),
-    defineField({
       name: "exhibitionName",
       title: "Exhibition Name",
       type: "string",
     }),
+    defineField({
+      
+      name: "artistName",
+      title: "Artist Name (single, legacy)",
+      type: "string",
+      description: "Use for solo shows. For group shows, use Artist Names below.",
+   
+    }),
+    defineField({
+      name: "artistNames",
+      title: "Artist Names",
+      type: "array",
+      of: [{ type: "string" }],
+      description: "For group shows: add multiple artist names. Each artist will see this exhibition in their Previous exhibitions.",
+    }),
+  
     defineField({
       name: "startDate",
       title: "Start Date",

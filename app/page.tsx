@@ -12,15 +12,26 @@ export default async function Home() {
     );
   }
 
-  const artistSlug = await getArtistSlugByName(exhibition.artistName);
+  const artistNames = (exhibition.artistNames?.length
+    ? exhibition.artistNames
+    : exhibition.artistName
+      ? [exhibition.artistName]
+      : []) as string[];
+  const displayName = artistNames.join(", ") || exhibition.artistName || exhibition.exhibitionName;
+  const artistSlug =
+    artistNames.length > 0
+      ? await getArtistSlugByName(artistNames[0])
+      : exhibition.artistName
+        ? await getArtistSlugByName(exhibition.artistName)
+        : null;
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <LandingHero
           image={exhibition.image}
-          alt={exhibition.artistName}
+          alt={displayName}
           exhibitionName={exhibition.exhibitionName}
-          artistName={exhibition.artistName}
+          artistName={displayName}
           artistSlug={artistSlug}
           startDate={exhibition.startDate}
           endDate={exhibition.endDate}

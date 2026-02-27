@@ -8,6 +8,7 @@ const exhibitionProjection = groq`{
     _id,
     _createdAt,
     artistName,
+    artistNames,
     exhibitionName,
     startDate,
     endDate,
@@ -58,7 +59,7 @@ export async function getExhibitionsByArtistName(
   });
 
   return client.fetch(
-    groq`* [_type == "exhibition" && artistName == $artistName] | order(startDate desc) ${exhibitionProjection}`,
+    groq`* [_type == "exhibition" && ($artistName in coalesce(artistNames, []) || artistName == $artistName)] | order(startDate desc) ${exhibitionProjection}`,
     { artistName },
   );
 }
@@ -120,6 +121,25 @@ export async function getArtistSlugByName(name: string): Promise<string | null> 
     { name },
   );
   return result?.slug ?? null;
+}
+
+export async function getArtistSlugsByNames(
+  names: string[],
+): Promise<Record<string, string | null>> {
+  if (names.length === 0) return {};
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+  const results = await client.fetch<{ name: string; slug: string | null }[]>(
+    groq`* [_type == "artist" && name in $names] { name, "slug": slug.current }`,
+    { names },
+  );
+  const map: Record<string, string | null> = {};
+  for (const n of names) map[n] = null;
+  for (const r of results || []) map[r.name] = r.slug ?? null;
+  return map;
 }
 
 export async function getArtistBySlug(slug: string): Promise<Artist | null> {

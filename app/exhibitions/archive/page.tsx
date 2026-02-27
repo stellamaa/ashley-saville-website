@@ -40,9 +40,13 @@ export default async function ExhibitionsArchivePage() {
 
         <h1 className="text-md text-neutral-900 text-center mb-16 mt-12">Archive</h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
-          {archivedExhibitions.map((exhibition: Exhibition, idx) =>
-            exhibition.image ? (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {archivedExhibitions.map((exhibition: Exhibition, idx) => {
+            const displayName =
+              (exhibition.artistNames?.length
+                ? exhibition.artistNames.join(", ")
+                : exhibition.artistName) || exhibition.exhibitionName;
+            return exhibition.image ? (
               <Reveal key={exhibition._id} delay={idx * 50}>
               <div className="flex flex-col">
                 <Link
@@ -51,7 +55,7 @@ export default async function ExhibitionsArchivePage() {
                 >
                   <Image
                     src={exhibition.image}
-                    alt={exhibition.artistName}
+                    alt={displayName}
                     fill
                     className="object-cover"
                   />
@@ -59,7 +63,7 @@ export default async function ExhibitionsArchivePage() {
                   <div className="absolute inset-0 bg-white/0 lg:group-hover:bg-white/70 transition flex items-center justify-center p-6">
                     <div className="text-black text-center opacity-0 lg:group-hover:opacity-100 transition">
                       <p className="text-sm font-medium uppercase">{exhibition.exhibitionName}</p>
-                      <p className="text-sm font-medium">{exhibition.artistName}</p>
+                      <p className="text-sm font-medium">{displayName}</p>
                       <p className="text-sm text-black/90 font-medium">
                         {formatDate(exhibition.startDate)} -{" "}
                         {formatDate(exhibition.endDate)}
@@ -70,7 +74,7 @@ export default async function ExhibitionsArchivePage() {
                 {/* Mobile: Name and date below image */}
                 <div className="lg:hidden mt-2 text-center">
                   <p className="text-sm font-medium text-neutral-900 uppercase">{exhibition.exhibitionName}</p>
-                  <p className="text-sm font-medium text-neutral-900 mb-2">{exhibition.artistName}</p>
+                  <p className="text-sm font-medium text-neutral-900 mb-2">{displayName}</p>
                   <p className="text-sm text-neutral-800">
                     {formatDate(exhibition.startDate)} -{" "}
                     {formatDate(exhibition.endDate)}
@@ -78,8 +82,8 @@ export default async function ExhibitionsArchivePage() {
                 </div>
               </div>
               </Reveal>
-            ) : null
-          )}
+            ) : null;
+          })}
         </div>
       </div>
       <ExhibitionArchiveMobileNav currentExhibitionSlug={currentExhibition?.slug ?? null} />
