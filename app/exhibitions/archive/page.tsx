@@ -73,9 +73,9 @@ export default async function ExhibitionsArchivePage() {
                 </Link>
                 {/* Mobile: Name and date below image */}
                 <div className="lg:hidden mt-2 text-center">
-                  <p className="text-sm font-medium text-neutral-900 uppercase">{exhibition.exhibitionName}</p>
-                  <p className="text-sm font-medium text-neutral-900 mb-2">{displayName}</p>
-                  <p className="text-sm text-neutral-800">
+                  <p className="text-sm text-neutral-900 uppercase">{exhibition.exhibitionName}</p>
+                  <p className="text-sm text-neutral-900 mb-0">{displayName}</p>
+                  <p className="text-sm text-neutral-900">
                     {formatDate(exhibition.startDate)} -{" "}
                     {formatDate(exhibition.endDate)}
                   </p>
