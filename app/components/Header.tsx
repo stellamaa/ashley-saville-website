@@ -147,7 +147,7 @@ export default function Header({
   );
 
   return (
-    <header className="relative md:fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 pr-14 md:px-1 md:pr-1 lg:px-6 lg:pr-6 lg:py-1 bg-transparent">
+    <header className="relative md:fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 pr-14 md:px-1 md:pr-1 lg:px-6 lg:pr-6 lg:py-1 bg-neutral-white">
       <Link
         href="/"
         className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}
@@ -180,7 +180,7 @@ export default function Header({
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-0 bg-transparent md:hidden z-10 px-6 py-8 flex flex-col items-center justify-center pb-42 "
+          className="fixed inset-0 top-0 bg-neutral-white md:hidden z-10 px-6 py-8 flex flex-col items-center justify-center pb-42 "
           onClick={() => setMobileMenuOpen(false)}
         >
           <nav className="flex flex-col items-center gap-1 text-neutral-900 text-lg [&_a]:text-neutral-900 [&_a:hover]:text-neutral-600">

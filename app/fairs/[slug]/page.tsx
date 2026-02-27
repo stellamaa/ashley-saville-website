@@ -132,7 +132,7 @@ export default async function FairPage({ params }: Props) {
         </h3>
         )}
         {fair.fairImages && fair.fairImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-20 items-center justify-center">
             {fair.fairImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
               <Link
@@ -158,7 +158,7 @@ export default async function FairPage({ params }: Props) {
           </h3>
         )}
         {fair.worksImages && fair.worksImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-20 items-center justify-center">
             {fair.worksImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
               <Link

@@ -60,45 +60,44 @@ export default function ArtistMobileNav({
 
   return (
     <nav
-      className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between divide-x divide-neutral-300 bg-white px-4 py-4 lg:hidden border-t border-neutral-300"
+      className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center
+     gap-2 bg-white px-4 py-4 lg:hidden border-t border-neutral-300"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0rem)" }}
     >
-      <div className="flex-1 flex justify-center">
-        <button
-          type="button"
-          onClick={() => scrollTo("biography")}
-          className={`text-sm font-medium text-neutral-900 pb-1 ${
-            activeSection === "biography" ? "underline underline-offset-3" : "hover:text-neutral-600"
-          }`}
-        >
-          Biography
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={() => scrollTo("biography")}
+        className={`text-sm font-medium text-neutral-900 pb-1 whitespace-nowrap ${
+          activeSection === "biography" ? "underline underline-offset-3" : "hover:text-neutral-600"
+        }`}
+      >
+        Biography
+      </button>
+      {(hasInstallations || hasWorks) && <span className="text-neutral-500">★</span>}
       {hasInstallations && (
-        <div className="flex-1 flex justify-center">
+        <>
           <button
             type="button"
             onClick={() => scrollTo("installations")}
-            className={`text-sm font-medium text-neutral-900 pb-1 ${
+            className={`text-sm font-medium text-neutral-900 pb-1 whitespace-nowrap ${
               activeSection === "installations" ? "underline underline-offset-3" : "hover:text-neutral-600"
             }`}
           >
             Installations
           </button>
-        </div>
+          {hasWorks && <span className="text-neutral-500">★</span>}
+        </>
       )}
       {hasWorks && (
-        <div className="flex-1 flex justify-center">
-          <button
-            type="button"
-            onClick={() => scrollTo("works")}
-            className={`text-sm font-medium text-neutral-900 pb-1 ${
-              activeSection === "works" ? "underline underline-offset-3" : "hover:text-neutral-600"
-            }`}
-          >
-            Works
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => scrollTo("works")}
+          className={`text-sm font-medium text-neutral-900 pb-1 whitespace-nowrap ${
+            activeSection === "works" ? "underline underline-offset-3" : "hover:text-neutral-600"
+          }`}
+        >
+          Works
+        </button>
       )}
     </nav>
   );

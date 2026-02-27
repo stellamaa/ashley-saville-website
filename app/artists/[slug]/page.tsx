@@ -147,7 +147,7 @@ export default async function ArtistPage({ params }: Props) {
 
        )}
         {artist.worksImages && artist.worksImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-10 mt-20 items-center justify-center">
             {artist.worksImages.map((img, idx) => (
               <Reveal>
               <Link key={idx}
