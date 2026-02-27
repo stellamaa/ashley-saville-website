@@ -109,7 +109,7 @@ export default async function FairPage({ params }: Props) {
             <div className="lg:col-span-3 mt-5">
               <Link
                 href={`/fairs/${slug}/fair/0`}
-                className="block relative aspect-[16/9] w-full overflow-hidden bg-white"
+                className="block relative md:aspect-[16/9] aspect-[4/3] w-full overflow-hidden bg-white"
               >
                 <Image
                   src={fair.image}
