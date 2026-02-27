@@ -107,7 +107,7 @@ export default async function ArtistPage({ params }: Props) {
             <div className="lg:col-span-3 mt-5">
               <Link
                 href={`/artists/${slug}/works/0`}
-                className="block relative aspect-[16/9] w-full overflow-hidden bg-white"
+                className="block relative md:aspect-[16/9] aspect-[4/3] w-full overflow-hidden bg-white"
               >
                 <Image
                   src={artist.image}
