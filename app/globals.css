@@ -2,7 +2,12 @@
 
 @theme {
   --font-sans: var(--font-inter), "Inter", sans-serif;
-  --color-neutral-white: #fafafa;
+  --color-neutral-white: #f5f5f5;
+}
+
+/* Treat all Tailwind bg-white surfaces as the site white (#F5F5F5) */
+.bg-white {
+  background-color: var(--color-neutral-white) !important;
 }
 
 html,

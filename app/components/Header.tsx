@@ -147,7 +147,7 @@ export default function Header({
   );
 
   return (
-    <header className="relative md:fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 pr-14 md:px-1 md:pr-1 lg:px-6 lg:pr-6 lg:py-1 bg-neutral-white">
+    <header className="relative md:fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 pr-14 md:px-1 md:pr-1 lg:px-6 lg:pr-6 lg:py-1 bg-transparent">
       <Link
         href="/"
         className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}
