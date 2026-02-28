@@ -13,6 +13,10 @@ export type Exhibition = {
     exhibitionImages: ExhibitionImage[];
     worksImages: ExhibitionImage[];
     slug: string;
+    heroImage: string;
+    heroImageCaption?: string;
+    mainImage: string;
+    mainImageCaption?: string;
     image: string;
     imageCaption?: string;
     url?: string;

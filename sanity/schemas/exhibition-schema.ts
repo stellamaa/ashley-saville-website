@@ -45,8 +45,8 @@ const exhibition = defineType({
       options: { source: "exhibitionName" },
     }),
     defineField({
-      name: "image",
-      title: "Image",
+      name: "mainImage",
+      title: "Main Exhibition Page Image",
       type: "image",
       options: { hotspot: true },
       fields: [
@@ -60,6 +60,16 @@ const exhibition = defineType({
           title: "Caption",
           type: "string",
         }),
+      ],
+    }),
+    defineField({
+      name: "heroImage",
+      title: "Hero Image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: "alt", title: "Alt", type: "string" }),
+        defineField({ name: "caption", title: "Caption", type: "string" }),
       ],
     }),
     defineField({
