@@ -28,7 +28,7 @@ export default async function Home() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
       <LandingHero
-          image={exhibition.image}
+          image={exhibition.heroImage}
           alt={displayName}
           exhibitionName={exhibition.exhibitionName}
           artistName={displayName}

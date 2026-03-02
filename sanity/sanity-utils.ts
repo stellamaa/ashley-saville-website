@@ -15,6 +15,8 @@ const exhibitionProjection = groq`{
     "exhibitionImages": exhibitionImages[]{"url": asset->url, "caption": caption},
     "worksImages": worksImages[]{"url": asset->url, "caption": caption},
     "slug": slug.current,
+    "image": coalesce(mainImage.asset->url, image.asset->url, heroImage.asset->url),
+    "imageCaption": coalesce(mainImage.caption, image.caption, heroImage.caption),
     "mainImage": mainImage.asset->url,
     "mainImageCaption": mainImage.caption,
     "heroImage": heroImage.asset->url,
