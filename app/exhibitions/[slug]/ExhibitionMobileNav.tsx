@@ -56,7 +56,7 @@ export default function ExhibitionMobileNav({ hasWorks }: Props) {
 
   return (
     <nav
-      className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 flex items-center justify-center gap-2 bg-white lg:hidden border-t border-neutral-300 px-4 py-4"
+      className="mobile-bottom-nav fixed bottom-0 left-0 right-0 z-40 flex items-center justify-between bg-white lg:hidden border-t border-neutral-300 px-4 py-4"
       style={{ paddingBottom: "max(env(safe-area-inset-bottom), 0rem)" }}
     >
       <button
