@@ -136,7 +136,7 @@ export default function GalleryView({
             </button>
           </div>
 
-          <div className="relative w-full h-[48vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white mb-0">
+          <div className="relative w-full h-[52vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white mb-0">
             <div
               key={currentIndex}
               className={`absolute inset-0 ${slideDirection ? "animate-gallery-fade" : ""}`}
@@ -152,7 +152,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="w-full mt-0.5 md:mt-5 mb-0.5 text-sm font-medium text-neutral-900 text-center md:mb-5">
+            <p className="fixed left-4 right-4 bottom-[calc(env(safe-area-inset-bottom)+3rem+5px)] z-20 text-sm font-medium text-neutral-900 text-center md:static md:w-full md:mt-5 md:mb-5">
               {current.caption}
             </p>
           )}
