@@ -93,7 +93,7 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-4 py-4 bg-neutral-white md:static md:px-0 md:py-0 bg-transparent overflow-hidden">
+    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-4 py-2 bg-neutral-white md:static md:px-0 md:py-0 bg-transparent overflow-hidden">
       <div className=" overflow-hidden">
         {hasPrev ? (
           <Link
@@ -140,7 +140,7 @@ export default function GalleryView({
       >
         <div className="w-full flex flex-col items-center">
           {/* Top-right Close button */}
-          <div className="w-full flex justify-end mb-4 md:mb-6">
+          <div className="w-full flex justify-end mb-2 md:mb-6">
             <button
               type="button"
               onClick={() => router.push(backHref)}
@@ -150,7 +150,7 @@ export default function GalleryView({
             </button>
           </div>
 
-          <div className="relative w-full h-[60vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white mb-0">
+          <div className="relative w-full h-[48vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white mb-0">
             <div
               key={currentIndex}
               className={`absolute inset-0 ${slideDirection ? "animate-gallery-fade" : ""}`}
@@ -166,7 +166,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="w-full mt-1 md:mt-5 mb-1 text-sm font-medium text-neutral-900 text-center md:mb-5">
+            <p className="w-full mt-0.5 md:mt-5 mb-0.5 text-sm font-medium text-neutral-900 text-center md:mb-5">
               {current.caption}
             </p>
           )}
