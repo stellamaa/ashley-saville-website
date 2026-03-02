@@ -31,13 +31,13 @@ export default async function FairsArchivePage() {
         {currentFair?.slug && (
           <Link
             href={`/fairs/${currentFair.slug}`}
-            className="mb-8 inline-block lg:mt-23 text-sm text-neutral-900 hover:text-neutral-600"
+            className="mb-0 inline-block text-sm text-white lg:text-neutral-900 hover:text-neutral-600 lg:mt-10"
           >
             Current fair
           </Link>
         )}
 
-        <h1 className="text-md text-neutral-900 text-center mb-16 mt-17">Archive</h1>
+        <h1 className="text-md text-neutral-900 text-center mb-16 mt-32">Archive</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {archivedFairs.map((fair: Fair, idx) =>

@@ -58,20 +58,6 @@ export default function GalleryView({
     sessionStorage.setItem(`${STORAGE_KEY}-${basePath}`, String(currentIndex));
   }, [currentIndex, basePath]);
 
-  // Preload adjacent images so they're ready when switching
-  useEffect(() => {
-    const prev = currentIndex - 1;
-    const next = currentIndex + 1;
-    if (prev >= 0 && images[prev]?.url) {
-      const img = new window.Image();
-      img.src = images[prev].url;
-    }
-    if (next < images.length && images[next]?.url) {
-      const img = new window.Image();
-      img.src = images[next].url;
-    }
-  }, [currentIndex, images]);
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {

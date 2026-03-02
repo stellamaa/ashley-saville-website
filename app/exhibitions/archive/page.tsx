@@ -33,7 +33,7 @@ export default async function ExhibitionsArchivePage() {
       <div className="max-w-4xl mx-auto">
         <Link
           href="/exhibitions"
-          className="mb-8 inline-block text-sm text-white lg:text-neutral-900 hover:text-neutral-600 lg:mt-20"
+          className="mb-0 inline-block text-sm text-white lg:text-neutral-900 hover:text-neutral-600 lg:mt-10"
         >
           Current exhibition
         </Link>
