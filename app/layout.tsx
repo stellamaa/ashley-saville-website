@@ -23,6 +23,11 @@ const vinter = localFont({
 export const metadata: Metadata = {
   title: "Ashley Saville",
   description: "Ashley Saville",
+  formatDetection: {
+    telephone: false,
+    address: false,
+    email: false,
+  },
   icons: {
     icon: "/icon.png",
   },
