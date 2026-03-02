@@ -46,7 +46,7 @@ export default async function ExhibitionPage({ params }: Props) {
   const displayName = artistNames.join(", ") || exhibition.artistName || "";
 
   return (
-    <div className="min-h-screen bg-transparent lg:pt-10 pt-9 px-5 md:px-10 pb-24 lg:pb-16">
+    <div className="min-h-screen bg-transparent lg:pt-11 pt-9 px-5 md:px-10 pb-24 lg:pb-16">
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
