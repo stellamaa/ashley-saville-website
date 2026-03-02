@@ -50,6 +50,11 @@ label[for] {
   display: none !important;
 }
 
+/* Hide fixed gallery caption when mobile menu overlay is open */
+.mobile-menu-open .gallery-mobile-caption {
+  display: none !important;
+}
+
 
 /* Scroll reveal transition */
 .reveal-transition {
