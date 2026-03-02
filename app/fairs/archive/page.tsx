@@ -37,7 +37,7 @@ export default async function FairsArchivePage() {
           </Link>
         )}
 
-        <h1 className="text-md text-neutral-900 text-center mb-16 mt-32">Archive</h1>
+        <h1 className="text-md text-neutral-900 text-center mb-16 lg:mt-32 mt-11">Archive</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {archivedFairs.map((fair: Fair, idx) =>
