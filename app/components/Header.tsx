@@ -44,8 +44,8 @@ export default function Header({
     return () => document.body.classList.remove("mobile-menu-open");
   }, [mobileMenuOpen]);
 
-  // Don't show header on Sanity Studio
-  if (pathname?.startsWith("/admin")) {
+  // Don't show header on Sanity Studio or password page
+  if (pathname?.startsWith("/admin") || pathname === "/unlock") {
     return null;
   }
 
