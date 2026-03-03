@@ -33,7 +33,8 @@ function UnlockForm() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f5f5f5] px-6">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#f5f5f5] px-16">
+      <h2 className="text-base mb-8">Ashley Saville site coming soon</h2>
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-sm flex flex-col gap-4"
