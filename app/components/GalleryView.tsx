@@ -150,7 +150,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="gallery-mobile-caption mobile-bottom-nav fixed left-4 right-4 bottom-[calc(env(safe-area-inset-bottom)+3rem+5px)] z-20 text-sm font-medium text-neutral-900 text-center md:static md:w-full md:mt-2 md:mb-5">
+            <p className="gallery-mobile-caption mobile-bottom-nav fixed left-4 right-4 bottom-[calc(env(safe-area-inset-bottom)+4.5rem+5px)] z-20 text-sm font-medium text-neutral-900 text-center md:static md:w-full md:mt-2 md:mb-5">
               {current.caption}
             </p>
           )}
