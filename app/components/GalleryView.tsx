@@ -133,8 +133,8 @@ export default function GalleryView({
         className="h-full md:h-auto max-w-4xl mx-auto flex flex-col items-center w-full cursor-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex-1 min-h-0 w-full flex flex-col items-center md:flex-initial">
-          <div className="relative w-full flex-1 min-h-0 md:flex-initial md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white">
+        <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-start md:flex-initial md:justify-normal">
+          <div className="relative w-full h-[55vh] min-h-0 md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white md:flex-initial">
             <div
               key={currentIndex}
               className={`absolute inset-0 ${slideDirection ? "animate-gallery-fade" : ""}`}
@@ -150,7 +150,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="gallery-mobile-caption mobile-bottom-nav flex-shrink-0 mt-2 px-4 z-20 text-sm font-medium text-neutral-900 text-center md:w-full md:mt-2 md:mb-5 md:px-0">
+            <p className="gallery-mobile-caption mobile-bottom-nav flex-shrink-0 mt-1 px-4 z-20 text-sm font-medium text-neutral-900 text-center md:w-full md:mt-2 md:mb-5 md:px-0">
               {current.caption}
             </p>
           )}
