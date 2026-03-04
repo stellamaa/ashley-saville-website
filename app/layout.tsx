@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/app/components/Header";
 import PageTransition from "@/app/components/PageTransition";
 import { getCurrentFair, getCurrentExhibition } from "@/sanity/sanity-utils";
+export const revalidate = 60;
 
 const light = localFont({
   src: "./fonts/ColumbiaSans-Light.otf",

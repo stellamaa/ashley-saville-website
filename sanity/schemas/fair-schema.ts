@@ -101,6 +101,24 @@ const fair = defineType({
                         }),
                     ],
                 },
+                {
+                    type: "object",
+                    name: "lineBreak",
+                    title: "Line break",
+                    description: "Adds a line break. Use when you want to start a new line.",
+                    fields: [
+                        defineField({
+                            name: "marker",
+                            title: "Marker",
+                            type: "string",
+                            initialValue: "lineBreak",
+                            hidden: true,
+                        }),
+                    ],
+                    preview: {
+                        prepare: () => ({ title: "Line break", subtitle: "Adds a new line" }),
+                    },
+                },
             ],
         }),
         defineField({

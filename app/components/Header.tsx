@@ -60,7 +60,6 @@ export default function Header({
   const logoClass = resolvedVariant === "light" && !mobileMenuOpen ? "brightness-0 invert" : "";
   const menuIconClass = resolvedVariant === "light" && !mobileMenuOpen ? "brightness-0 invert" : "";
 
-  // Desktop only: Exhibitions is a normal nav link; Archive shows underneath only when on an exhibitions page (absolute so nav links don't shift)
   const isOnExhibitionsSection = pathname?.startsWith("/exhibitions");
   const exhibitionsBlockDesktop = (
     <div className="relative">
@@ -81,15 +80,14 @@ export default function Header({
     </div>
   );
 
-  // Desktop only: Fairs is a normal nav link; Archive shows underneath only when on a fairs page (absolute so nav links don't shift)
   const isOnFairsSection = pathname?.startsWith("/fairs");
-  const fairsBlockDesktop = (
+  const fairsBlockDesktop = hasCurrentFair ? (
     <div className="relative">
-      <Link 
-        href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"} 
+      <Link
+        href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"}
         className={linkHoverClass}
       >
-        Fairs
+        Fair
       </Link>
       {isOnFairsSection && (
         <Link
@@ -100,7 +98,7 @@ export default function Header({
         </Link>
       )}
     </div>
-  );
+  ) : null;
 
   const desktopNavLinks = (
     <>
@@ -130,16 +128,17 @@ export default function Header({
        
         </Link>
       </div>
-      <div className="flex flex-col items-center">
-        <Link 
-          href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"} 
-          className={linkHoverClass} 
-          onClick={() => setMobileMenuOpen(false)}
-        >
-          Fairs
-        </Link>
-
-      </div>
+      {hasCurrentFair && (
+        <div className="flex flex-col items-center">
+          <Link
+            href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"}
+            className={linkHoverClass}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Fair
+          </Link>
+        </div>
+      )}
       <Link href="/information" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
         Information
       </Link>

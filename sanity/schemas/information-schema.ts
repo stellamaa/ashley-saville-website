@@ -9,14 +9,54 @@ const information = defineType({
       name: "informationText",
       title: "Information Text",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+          type: "object",
+          name: "lineBreak",
+          title: "Line break",
+          description: "Adds a line break. Use when you want to start a new line.",
+          fields: [
+            defineField({
+              name: "marker",
+              title: "Marker",
+              type: "string",
+              initialValue: "lineBreak",
+              hidden: true,
+            }),
+          ],
+          preview: {
+            prepare: () => ({ title: "Line break", subtitle: "Adds a new line" }),
+          },
+        },
+      ],
       description: "Main text about the gallery location and access",
     }),
     defineField({
       name: "openingHours",
       title: "Opening Hours",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+          type: "object",
+          name: "lineBreak",
+          title: "Line break",
+          description: "Adds a line break. Use when you want to start a new line.",
+          fields: [
+            defineField({
+              name: "marker",
+              title: "Marker",
+              type: "string",
+              initialValue: "lineBreak",
+              hidden: true,
+            }),
+          ],
+          preview: {
+            prepare: () => ({ title: "Line break", subtitle: "Adds a new line" }),
+          },
+        },
+      ],
       description: "Opening hours text (e.g. Wednesday - Saturday, 10am - 6pm, and by appointment)",
     }),
     defineField({

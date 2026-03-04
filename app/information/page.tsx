@@ -3,7 +3,14 @@ import Image from "next/image";
 import Reveal from "@/app/components/Reveal";
 import NewsletterForm from "@/app/components/NewsletterForm";
 import { getInformation } from "@/sanity/sanity-utils";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
+
+const portableTextComponents: PortableTextComponents = {
+  hardBreak: () => <br />,
+  types: {
+    lineBreak: () => <div className="h-2 shrink-0" aria-hidden />,
+  },
+};
 
 export default async function InformationPage() {
   const information = await getInformation();
@@ -21,7 +28,7 @@ export default async function InformationPage() {
           <Reveal delay={0}>
             <div className="text-neutral-900 text-md leading-snug text-justify [&_p]:mb-1">
               {information?.informationText && information.informationText.length > 0 ? (
-                <PortableText value={information.informationText} />
+                <PortableText value={information.informationText} components={portableTextComponents} />
               ) : (
                 <p>
                   The gallery is located on the corner of Fleet Street and Chancery
@@ -74,7 +81,7 @@ export default async function InformationPage() {
               </h2>
               <div className="text-neutral-900 text-md leading-snug text-start [&_p]:mb-1">
                 {information?.openingHours && information.openingHours.length > 0 ? (
-                  <PortableText value={information.openingHours} />
+                  <PortableText value={information.openingHours} components={portableTextComponents} />
                 ) : (
                   <p>
                     Wednesday - Saturday <br />

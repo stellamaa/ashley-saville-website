@@ -27,7 +27,11 @@ export default function ReadMore({ content }: Props) {
 
   const components: PortableTextComponents = {
     block: {
-      normal: ({ children }) => <p className="mb-1">{children}</p>,
+      normal: ({ children }) => <p className="mb-1 [&+p]:mt-1">{children}</p>,
+    },
+    hardBreak: () => <br />,
+    types: {
+      lineBreak: () => <div className="h-2 shrink-0" aria-hidden />,
     },
   };
 
