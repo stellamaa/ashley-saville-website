@@ -125,16 +125,16 @@ export default function GalleryView({
 
   return (
     <div
-      className="min-h-screen bg-neutral-white lg:pt-20 pt-5 px-4 md:px-10 pb-24 md:pb-16 cursor-default overflow-hidden md:min-h-screen"
+      className="h-dvh md:min-h-screen md:h-auto bg-neutral-white lg:pt-20 pt-5 px-4 md:px-10 pb-24 md:pb-16 cursor-default overflow-hidden"
       onClick={() => router.push(backHref)}
       aria-label="Close gallery (click outside or press Escape)"
     >
       <div
-        className="max-w-4xl mx-auto flex flex-col items-center w-full cursor-auto"
+        className="h-full md:h-auto max-w-4xl mx-auto flex flex-col items-center w-full cursor-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-full flex flex-col items-center">
-          <div className="relative w-full h-[52vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white mb-0">
+        <div className="flex-1 min-h-0 w-full flex flex-col items-center md:flex-initial">
+          <div className="relative w-full flex-1 min-h-0 md:flex-initial md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white">
             <div
               key={currentIndex}
               className={`absolute inset-0 ${slideDirection ? "animate-gallery-fade" : ""}`}
@@ -150,7 +150,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="gallery-mobile-caption mobile-bottom-nav fixed left-4 right-4 bottom-[calc(env(safe-area-inset-bottom)+4.5rem+5px)] z-20 text-sm font-medium text-neutral-900 text-center md:static md:w-full md:mt-2 md:mb-5">
+            <p className="gallery-mobile-caption mobile-bottom-nav flex-shrink-0 mt-2 px-4 z-20 text-sm font-medium text-neutral-900 text-center md:w-full md:mt-2 md:mb-5 md:px-0">
               {current.caption}
             </p>
           )}
