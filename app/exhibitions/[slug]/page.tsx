@@ -44,7 +44,7 @@ export default async function ExhibitionPage({ params }: Props) {
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 text-base text-left font-bold sm:mt-20 mt-3 mb-5">
+        <h1 className="text-1xl text-neutral-800 text-base text-left font-bold sm:mt-20 mt-3 mb-0 md:mb-5">
           {exhibition.exhibitionName}
         </h1>
         

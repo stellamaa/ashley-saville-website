@@ -49,7 +49,7 @@ export default async function FairPage({ params }: Props) {
           </Link>
         )}
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-bold text-left mt-0 sm:mt-20 mb-5 ">
+        <h1 className="text-1xl text-neutral-800 font-bold text-left mt-0 sm:mt-20 mb-0 md:mb-5">
           {fair.name}
         </h1>
         </Reveal>

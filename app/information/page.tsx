@@ -94,12 +94,12 @@ export default async function InformationPage() {
           </Reveal>
           <Reveal delay={100} className="order-3 lg:order-3">
             <div>
-              <h2 className="text-md text-neutral-900 mb-2 text-start mt-4 lg:mt-0">
+              <h2 className="text-md text-neutral-900 mb-2 text-start mt-7 lg:mt-0">
                 Contact
               </h2>
               <div className="space-y-2 text-md text-neutral-900 text-start">
                 <p>
-                  {information?.contactName ?? "Ashley Saville, Director"}
+                  {information?.contactName ?? "Ashley Saville"}
                   <br />
                   <a
                     href={`mailto:${information?.contactEmail ?? "ashley@ashleysaville.com"}`}
