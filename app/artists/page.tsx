@@ -14,7 +14,7 @@ export default async function ArtistsPage() {
   const useVerticalLayout = filteredArtists.length > 6;
 
   return (
-    <div className="h-dvh md:h-auto md:min-h-screen bg-neutral-100 px-8 pb-32 flex flex-col items-center justify-center overflow-hidden md:overflow-visible">
+    <div className="h-dvh md:h-auto md:min-h-screen bg-neutral-100 px-8 pb-32 flex flex-col items-center justify-center overflow-hidden md:overflow-visible -mt-14 md:mt-0">
       <Reveal>
       <ul className={`flex justify-center items-center gap-x-6 gap-y-2 ${useVerticalLayout ? "flex-col" : "flex-wrap md:flex-row flex-col"}`}>
         {filteredArtists.map((artist) => (
