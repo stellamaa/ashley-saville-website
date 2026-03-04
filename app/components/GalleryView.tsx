@@ -50,6 +50,10 @@ export default function GalleryView({
   );
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
+  useEffect(() => {
     const stored = sessionStorage.getItem(`${STORAGE_KEY}-${basePath}`);
     const prevIndex = stored !== null ? parseInt(stored, 10) : null;
     if (prevIndex !== null && prevIndex !== currentIndex) {
