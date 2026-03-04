@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getArchivedFairs, getCurrentFair } from "@/sanity/sanity-utils";
 import { Fair } from "@/types/fair";
 import Image from "next/image";
@@ -20,6 +21,11 @@ function formatDate(dateStr: string): string {
           : "";
   return `${day}${suffix} of ${month} ${year}`;
 }
+
+export const metadata: Metadata = {
+  title: "Fair Archive | Ashley Saville",
+  description: "Archive of past art fairs featuring Ashley Saville. Contemporary art gallery in London.",
+};
 
 export default async function FairsArchivePage() {
   const archivedFairs = await getArchivedFairs();

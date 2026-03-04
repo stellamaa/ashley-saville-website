@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "@/app/components/Reveal";
+
+export const metadata: Metadata = {
+  title: "Information | Ashley Saville",
+  description: "Address, opening hours and contact for Ashley Saville. 193 Fleet Street, London.",
+};
+
 import NewsletterForm from "@/app/components/NewsletterForm";
 import { getInformation } from "@/sanity/sanity-utils";
 import { PortableText, PortableTextComponents } from "@portabletext/react";

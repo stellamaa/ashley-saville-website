@@ -258,6 +258,30 @@ export async function getInformation(): Promise<Information | null> {
   return result;
 }
 
+export async function getAllExhibitionSlugs(): Promise<string[]> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+  const results = await client.fetch<{ slug: string }[]>(
+    groq`* [_type == "exhibition"] { "slug": slug.current }`
+  );
+  return (results ?? []).map((r) => r.slug).filter(Boolean);
+}
+
+export async function getAllFairSlugs(): Promise<string[]> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+  const results = await client.fetch<{ slug: string }[]>(
+    groq`* [_type == "fair"] { "slug": slug.current }`
+  );
+  return (results ?? []).map((r) => r.slug).filter(Boolean);
+}
+
 export async function getFairs(): Promise<Fair[]> {
   const client = createClient({
     projectId: "chae03x8",

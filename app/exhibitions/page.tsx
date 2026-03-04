@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { getCurrentExhibition } from "@/sanity/sanity-utils";
 import { redirect } from "next/navigation";
-import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Exhibitions | Ashley Saville",
+  description: "Current and past exhibitions at Ashley Saville. Contemporary art gallery in London.",
+};
 
 export default async function ExhibitionsPage() {
   const currentExhibition = await getCurrentExhibition();

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getArtistBySlug, getExhibitionsByArtistName } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,6 +29,16 @@ function formatDate(dateStr: string): string {
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const artist = await getArtistBySlug(slug);
+  if (!artist) return {};
+  return {
+    title: `${artist.name} | Ashley Saville`,
+    description: `${artist.name} — artist at Ashley Saville. Contemporary art gallery in London.`,
+  };
+}
 
 export default async function ArtistPage({ params }: Props) {
   const { slug } = await params;

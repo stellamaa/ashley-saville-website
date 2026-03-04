@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getFairBySlug } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,6 +29,16 @@ function formatDate(dateStr: string): string {
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const fair = await getFairBySlug(slug);
+  if (!fair) return {};
+  return {
+    title: `${fair.name} | Ashley Saville`,
+    description: `${fair.name}${fair.location ? ` — ${fair.location}` : ""}. Ashley Saville — contemporary art gallery in London.`,
+  };
+}
 
 export default async function FairPage({ params }: Props) {
   const { slug } = await params;

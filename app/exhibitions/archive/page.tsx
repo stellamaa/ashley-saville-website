@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getArchivedExhibitions, getCurrentExhibition } from "@/sanity/sanity-utils";
 import { Exhibition } from "@/types/exhibition";
 import Image from "next/image";
@@ -21,6 +22,11 @@ function formatDate(dateStr: string): string {
           : "";
   return `${day}${suffix} of ${month} ${year}`;
 }
+
+export const metadata: Metadata = {
+  title: "Exhibition Archive | Ashley Saville",
+  description: "Archive of past exhibitions at Ashley Saville. Contemporary art gallery in London.",
+};
 
 export default async function ExhibitionsArchivePage() {
   const [archivedExhibitions, currentExhibition] = await Promise.all([

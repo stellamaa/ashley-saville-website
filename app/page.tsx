@@ -1,5 +1,23 @@
+import type { Metadata } from "next";
 import { getCurrentExhibition, getArtistSlugByName } from "@/sanity/sanity-utils";
 import LandingHero from "@/app/components/LandingHero";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const exhibition = await getCurrentExhibition();
+  const artistNames = exhibition?.artistNames?.length
+    ? exhibition.artistNames
+    : exhibition?.artistName
+      ? [exhibition.artistName]
+      : [];
+  const displayName = artistNames.join(", ") || exhibition?.artistName || exhibition?.exhibitionName || "";
+  const title = exhibition
+    ? `${exhibition.exhibitionName}${displayName ? ` — ${displayName}` : ""} | Ashley Saville`
+    : "Ashley Saville";
+  const description = exhibition
+    ? `${exhibition.exhibitionName}${displayName ? ` by ${displayName}` : ""}. Ashley Saville — contemporary art gallery in London.`
+    : "Ashley Saville — contemporary art gallery in London.";
+  return { title, description };
+}
 
 export default async function Home() {
   const exhibition = await getCurrentExhibition();

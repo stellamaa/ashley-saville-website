@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { getCurrentFair } from "@/sanity/sanity-utils";
 import { redirect } from "next/navigation";
-import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Fairs | Ashley Saville",
+  description: "Art fairs featuring Ashley Saville. Contemporary art gallery in London.",
+};
 
 export default async function FairsPage() {
   const currentFair = await getCurrentFair();

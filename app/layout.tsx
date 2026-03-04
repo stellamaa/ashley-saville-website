@@ -21,9 +21,27 @@ const vinter = localFont({
 
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.URL ||
+  "https://ashleysaville.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Ashley Saville",
-  description: "Ashley Saville",
+  description: "Ashley Saville — contemporary art gallery in London.",
+  openGraph: {
+    title: "Ashley Saville",
+    description: "Ashley Saville — contemporary art gallery in London.",
+    siteName: "Ashley Saville",
+    images: ["/opengraph-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ashley Saville",
+    description: "Ashley Saville — contemporary art gallery in London.",
+    images: ["/opengraph-image.png"],
+  },
   formatDetection: {
     telephone: false,
     address: false,

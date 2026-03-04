@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getExhibitionBySlug, getArtistSlugsByNames } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +23,18 @@ function formatDateRange(startStr: string, endStr: string): string {
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const exhibition = await getExhibitionBySlug(slug);
+  if (!exhibition) return {};
+  const artistNames = (exhibition.artistNames?.length ? exhibition.artistNames : exhibition.artistName ? [exhibition.artistName] : []) as string[];
+  const displayName = artistNames.join(", ") || exhibition.artistName || "";
+  return {
+    title: `${exhibition.exhibitionName}${displayName ? ` — ${displayName}` : ""} | Ashley Saville`,
+    description: `${exhibition.exhibitionName}${displayName ? ` by ${displayName}` : ""}. Ashley Saville — contemporary art gallery in London.`,
+  };
+}
 
 export default async function ExhibitionPage({ params }: Props) {
   const { slug } = await params;

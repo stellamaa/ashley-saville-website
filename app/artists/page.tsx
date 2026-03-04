@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { getArtists } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import Reveal from "@/app/components/Reveal";
+
+export const metadata: Metadata = {
+  title: "Artists | Ashley Saville",
+  description: "Artists represented by Ashley Saville. Contemporary art gallery in London.",
+};
 
 export default async function ArtistsPage() {
   const artists = await getArtists();

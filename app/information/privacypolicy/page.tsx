@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Ashley Saville",
+  description: "Privacy policy for Ashley Saville. How we collect, use and protect your personal information.",
+};
 
 export default function PrivacyPolicyPage() {
   return (
