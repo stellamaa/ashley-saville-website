@@ -14,8 +14,8 @@ const light = localFont({
 });
  
 const vinter = localFont({
-  src: "./fonts/ColumbiaSans-Light.otf",
-  variable: "--font-inter", // reused CSS variable for the sans font
+  src: "./fonts/ColumbiaSans-Regular.otf",
+  variable: "--font-inter", 
   weight: "400",
   style: "normal",
 
@@ -64,7 +64,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${vinter.variable} font-sans font-medium text-neutral-900 text-md antialiased`}
+        className={`${light.variable} ${vinter.variable} font-sans font-medium text-neutral-900 text-md antialiased`}
       >
         <Header 
           hasCurrentFair={hasCurrentFair}
