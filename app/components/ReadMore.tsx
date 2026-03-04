@@ -45,7 +45,7 @@ export default function ReadMore({ content }: Props) {
 
   return (
     <div>
-      <div className="prose prose-neutral max-w-none text-neutral-900 text-md">
+      <div className="prose prose-neutral max-w-none text-neutral-900 text-md mb-2">
         {/* Always show the visible part */}
         <PortableText value={visibleBlocks} components={components} />
   
@@ -59,7 +59,7 @@ export default function ReadMore({ content }: Props) {
       {hiddenBlocks.length > 0 && (
         <button
           onClick={handleToggle}
-          className="mt-0 underline underline decoration-1 underline underline-offset-2 text-neutral-900 hover:text-neutral-600 text-sm md:text-base"
+          className="mb-4 underline underline decoration-1 underline-offset-2 text-neutral-900 hover:text-neutral-600 text-base"
         >
           {expanded ? "Read less" : "Read more"}
         </button>

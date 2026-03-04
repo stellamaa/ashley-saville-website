@@ -49,13 +49,13 @@ export default async function FairPage({ params }: Props) {
           </Link>
         )}
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-10 ">
+        <h1 className="text-1xl text-neutral-800 font-bold text-left mt-0 sm:mt-20 mb-5 ">
           {fair.name}
         </h1>
         </Reveal>
         <Reveal delay={0}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-          <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify hyphens-auto">
+          <div id="text" className="lg:col-span-2 scroll-mt-32 text-left max-w-[665px]">
           
             <p className="text-md text-neutral-900 mt-0">{fair.location}</p>
             <p className="text-md text-neutral-900 mt-0">
@@ -106,10 +106,10 @@ export default async function FairPage({ params }: Props) {
           )}
 
           {fair.image && (
-            <div className="lg:col-span-3 mt-5">
+            <div className="lg:col-span-3 mt-5 lg:mt-9 lg:mb-10">
               <Link
                 href={`/fairs/${slug}/fair/0`}
-                className="block relative md:aspect-[16/9] aspect-[4/3] w-full overflow-hidden bg-white"
+                className="block relative aspect-[6/4] w-full overflow-hidden bg-white"
               >
                 <Image
                   src={fair.image}
@@ -126,13 +126,13 @@ export default async function FairPage({ params }: Props) {
  {fair.fairImages && fair.fairImages.length > 0 && (
         <h3
           id="installations"
-          className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+          className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32"
         >
           Installations
         </h3>
         )}
         {fair.fairImages && fair.fairImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-8 items-center justify-center">
             {fair.fairImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
               <Link
@@ -152,13 +152,13 @@ export default async function FairPage({ params }: Props) {
         {fair.worksImages && fair.worksImages.length > 0 && (
           <h3
             id="works"
-            className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+            className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32"
           >
             Works
           </h3>
         )}
         {fair.worksImages && fair.worksImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-8 items-center justify-center">
             {fair.worksImages.map((item, idx) => (
               <Reveal key={idx} delay={idx * 40}>
               <Link

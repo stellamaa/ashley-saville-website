@@ -26,7 +26,7 @@ export default async function InformationPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 lg:gap-16 mb-10">
           <Reveal delay={0}>
-            <div className="text-neutral-900 text-md leading-snug text-justify [&_p]:mb-1">
+            <div className="text-neutral-900 text-md leading-snug text-left max-w-[665px] [&_p]:mb-1">
               {information?.informationText && information.informationText.length > 0 ? (
                 <PortableText value={information.informationText} components={portableTextComponents} />
               ) : (
@@ -79,7 +79,7 @@ export default async function InformationPage() {
               <h2 className="text-md mt-7 lg:mt-0 text-neutral-900 mb-2 text-start">
                 Opening Hours
               </h2>
-              <div className="text-neutral-900 text-md leading-snug text-start [&_p]:mb-1">
+              <div className="text-neutral-900 text-md leading-snug text-start max-w-[665px] [&_p]:mb-1">
                 {information?.openingHours && information.openingHours.length > 0 ? (
                   <PortableText value={information.openingHours} components={portableTextComponents} />
                 ) : (

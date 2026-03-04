@@ -79,44 +79,53 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full bg:transparent flex justify-between items-center md:mt-2 fixed bottom-2 left-0 right-0 px-4 py-2 bg-neutral-white md:static md:px-0 md:py-0 bg-transparent overflow-hidden">
-      <div className=" overflow-hidden">
-        {hasPrev ? (
-          <Link
-            href={`${basePath}/${prevIndex}`}
-            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
-          >
-            Previous
-          </Link>
-        ) : backLabel ? (
-          <Link
-            href={backHref}
-            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
-          >
-            {backLabel}
-          </Link>
-        ) : (
-          <span className="text-md text-neutral-400 bg-transparent">Previous</span>
-        )}
+    <div className="w-full flex-shrink-0 flex flex-col items-center md:mt-2 fixed bottom-2 left-0 right-0 px-4 py-2 md:static md:py-0 overflow-hidden z-10">
+      <div className="flex justify-between items-center w-full max-w-4xl">
+        <div className="overflow-hidden">
+          {hasPrev ? (
+            <Link
+              href={`${basePath}/${prevIndex}`}
+              className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
+            >
+              Previous
+            </Link>
+          ) : backLabel ? (
+            <Link
+              href={backHref}
+              className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
+            >
+              {backLabel}
+            </Link>
+          ) : (
+            <span className="text-md text-neutral-400 bg-transparent">Previous</span>
+          )}
+        </div>
+        <div>
+          {hasNext ? (
+            <Link
+              href={`${basePath}/${nextIndex}`}
+              className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
+            >
+              Next
+            </Link>
+          ) : (
+            <span className="text-md text-neutral-400 bg-transparent">Next</span>
+          )}
+        </div>
       </div>
-      <div className="min-w-[5rem] text-right">
-        {hasNext ? (
-          <Link
-            href={`${basePath}/${nextIndex}`}
-            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
-          >
-            Next
-          </Link>
-        ) : (
-          <span className="text-md text-neutral-400 bg-transparent">Next</span>
-        )}
-      </div>
+      <button
+        type="button"
+        onClick={() => router.push(backHref)}
+        className="text-md text-neutral-900 hover:text-neutral-600 transition-colors duration-150 ease-out mt-2"
+      >
+        Close
+      </button>
     </div>
   );
 
   return (
     <div
-      className="min-h-screen bg-neutral-white lg:pt-20 pt-5 px-4 md:px-10 md:pb-16 cursor-default overflow-hidden md:min-h-screen"
+      className="min-h-screen bg-neutral-white lg:pt-20 pt-5 px-4 md:px-10 pb-24 md:pb-16 cursor-default overflow-hidden md:min-h-screen"
       onClick={() => router.push(backHref)}
       aria-label="Close gallery (click outside or press Escape)"
     >
@@ -125,17 +134,6 @@ export default function GalleryView({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col items-center">
-          {/* Top-right Close button */}
-          <div className="w-full flex justify-end mb-2 md:mb-6">
-            <button
-              type="button"
-              onClick={() => router.push(backHref)}
-              className="text-md text-neutral-900 hover:text-neutral-600 transition-colors duration-150 ease-out md:pr-0"
-            >
-              Close
-            </button>
-          </div>
-
           <div className="relative w-full h-[52vh] md:h-auto md:aspect-[4/3] overflow-hidden bg-neutral-white mb-0">
             <div
               key={currentIndex}
@@ -152,7 +150,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="gallery-mobile-caption mobile-bottom-nav fixed left-4 right-4 bottom-[calc(env(safe-area-inset-bottom)+3rem+5px)] z-20 text-sm font-medium text-neutral-900 text-center md:static md:w-full md:mt-5 md:mb-5">
+            <p className="gallery-mobile-caption mobile-bottom-nav fixed left-4 right-4 bottom-[calc(env(safe-area-inset-bottom)+3rem+5px)] z-20 text-sm font-medium text-neutral-900 text-center md:static md:w-full md:mt-2 md:mb-5">
               {current.caption}
             </p>
           )}

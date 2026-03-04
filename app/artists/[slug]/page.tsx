@@ -46,7 +46,7 @@ export default async function ArtistPage({ params }: Props) {
     <><div className="min-h-screen bg-white pt-12 px-5 md:px-10 pb-15 lg:pb-16 md:pt-12">
       <div className="max-w-4xl mx-auto">
         <Reveal>
-          <h1 className="text-1xl text-neutral-800 text-center mt-0 md:mt-20 mb-10">
+          <h1 className="text-1xl text-neutral-800 text-left font-bold mt-0 md:mt-20 mb-5">
             {artist.name}
           </h1>
 
@@ -55,7 +55,7 @@ export default async function ArtistPage({ params }: Props) {
         </Reveal>
         <Reveal>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-1">
-            <div id="biography" className="lg:col-span-2 scroll-mt-32 text-justify hyphens-auto">
+            <div id="biography" className="lg:col-span-2 scroll-mt-32 text-left max-w-[665px]">
 
               {artist.biography && artist.biography.length > 0 && (
                 <>
@@ -103,10 +103,10 @@ export default async function ArtistPage({ params }: Props) {
           </div>
         </Reveal>
         {artist.image && (
-          <div className="lg:col-span-3 mt-5">
+          <div className="lg:col-span-3 mt-5 lg:mt-9 lg:mb-10">
             <Link
               href={`/artists/${slug}/works/0`}
-              className="block relative md:aspect-[16/9] aspect-[4/3] w-full overflow-hidden bg-white"
+              className="block relative aspect-[6/4] w-full overflow-hidden bg-white"
             >
               <Image
                 src={artist.image}
@@ -119,7 +119,7 @@ export default async function ArtistPage({ params }: Props) {
         )}
 
         {artist.exhibitionImages && artist.exhibitionImages.length > 0 && (
-          <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
+          <h3 id="installations" className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32">
             Installations
           </h3>
 
@@ -127,7 +127,7 @@ export default async function ArtistPage({ params }: Props) {
    
 
         {artist.exhibitionImages && artist.exhibitionImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8 items-center justify-center">
             {artist.exhibitionImages.map((img, idx) => (
               <Reveal>
                 <Link key={idx} href={`/artists/${slug}/exhibition/${idx}`}>
@@ -142,13 +142,13 @@ export default async function ArtistPage({ params }: Props) {
           </div>
         )}
         {artist.worksImages && artist.worksImages.length > 0 && (
-          <h3 id="works" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
+          <h3 id="works" className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32">
             Works
           </h3>
 
         )}
         {artist.worksImages && artist.worksImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-10 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-10 mt-8 items-center justify-center">
             {artist.worksImages.map((img, idx) => (
               <Reveal>
                 <Link key={idx}
@@ -168,7 +168,7 @@ export default async function ArtistPage({ params }: Props) {
 
       {archivedExhibitions.length > 0 && (
         <>
-          <h3 id="exhibitions" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
+          <h3 id="exhibitions" className="text-md justify-center text-center font-bold text-neutral-900 mt-20 scroll-mt-32">
             Previous exhibitions
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-8 mb-16">

@@ -8,21 +8,15 @@ import ExhibitionDocuments from "./ExhibitionDocuments";
 import ExhibitionMobileNav from "./ExhibitionMobileNav";
 import Reveal from "@/app/components/Reveal";
 
-function formatDate(dateStr: string): string {
-  if (!dateStr) return "";
-  const date = new Date(dateStr);
-  const day = date.getDate();
-  const month = date.toLocaleDateString("en-GB", { month: "long" });
-  const year = date.getFullYear();
-  const suffix =
-    day === 1 || day === 21 || day === 31
-      ? ""
-      : day === 2 || day === 22
-        ? ""
-        : day === 3 || day === 23
-          ? ""
-          : "";
-  return `${day}${suffix} ${month} ${year}`;
+function formatDateRange(startStr: string, endStr: string): string {
+  if (!startStr || !endStr) return "";
+  const formatPart = (dateStr: string, includeYear: boolean) => {
+    const date = new Date(dateStr);
+    const day = date.getDate();
+    const month = date.toLocaleDateString("en-GB", { month: "long" });
+    return includeYear ? `${day} ${month} ${date.getFullYear()}` : `${day} ${month}`;
+  };
+  return `${formatPart(startStr, false)} - ${formatPart(endStr, true)}`;
 }
 
 type Props = {
@@ -50,13 +44,13 @@ export default async function ExhibitionPage({ params }: Props) {
       <div className="max-w-4xl mx-auto">
        
         <Reveal>
-        <h1 className="text-1xl text-neutral-800 text-base text-center sm:mt-20 mt-3 mb-5 lg:mb-10 ">
+        <h1 className="text-1xl text-neutral-800 text-base text-left font-bold sm:mt-20 mt-3 mb-5">
           {exhibition.exhibitionName}
         </h1>
         
     
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-          <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify hyphens-auto">
+          <div id="text" className="lg:col-span-2 scroll-mt-32 text-left max-w-[665px]">
             <p className="text-md text-neutral-800 mt-0 uppercase"></p>
             <h2 className="text-base mb-0 mt-0 text-neutral-800 ">
               {artistNames.length > 0 ? (
@@ -79,7 +73,7 @@ export default async function ExhibitionPage({ params }: Props) {
               )}
             </h2>
             <p className="text-base text-neutral-800 mt-0 mb-6">
-              {formatDate(exhibition.startDate)} - {formatDate(exhibition.endDate)}
+              {formatDateRange(exhibition.startDate, exhibition.endDate)}
             </p>
             {exhibition.content && exhibition.content.length > 0 && (
               <div className="mt-3 text-base md:text-base leading-snug">
@@ -130,10 +124,10 @@ export default async function ExhibitionPage({ params }: Props) {
 
           {/* Image: row 2 on desktop, sidebar spans this row too */}
           {exhibition.mainImage && (
-            <div className="lg:col-span-3 lg:mb-0 mt-5">
+            <div className="lg:col-span-3 mt-5 lg:mt-9 lg:mb-10">
               <Link
                 href={`/exhibitions/${slug}/exhibition/0`}
-                className="block relative md:aspect-[16/9] aspect-[4/3] w-full overflow-hidden"
+                className="block relative aspect-[6/4] w-full overflow-hidden"
               >
                 <Image
                   src={exhibition.mainImage}
@@ -151,14 +145,14 @@ export default async function ExhibitionPage({ params }: Props) {
           exhibition.exhibitionImages.length > 0 && (
             <h3
               id="installations"
-              className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+              className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32"
             >
               Installations
             </h3>
           )}
         {exhibition.exhibitionImages &&
           exhibition.exhibitionImages.length > 0 && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-20 items-center justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-8 items-center justify-center">
               {exhibition.exhibitionImages.map((item, idx) => (
                 <Link
                   key={idx}
@@ -180,14 +174,14 @@ export default async function ExhibitionPage({ params }: Props) {
             {" "}
             <h3
               id="works"
-              className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32"
+              className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32"
             >
               Works
             </h3>
           </>
         )}
         {exhibition.worksImages && exhibition.worksImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-10 mt-20 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 lg:gap-10 mt-8 items-center justify-center">
             {exhibition.worksImages.map((item, idx) => (
               <Link
                 key={idx}
