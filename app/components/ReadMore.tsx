@@ -31,7 +31,7 @@ export default function ReadMore({ content }: Props) {
     },
     hardBreak: () => <br />,
     types: {
-      lineBreak: () => <div className="h-2 shrink-0" aria-hidden />,
+      lineBreak: () => <div className="h-4 shrink-0" aria-hidden />,
     },
   };
 

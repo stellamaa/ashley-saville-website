@@ -1,20 +1,16 @@
-import type { Metadata } from "next";
 import { getFairBySlug } from "@/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ReadMore from "@/app/components/ReadMore";
-import FairDocuments from "./FairDocuments";
 import FairNavigation from "./FairNavigation";
-import FairMobileNav from "./FairMobileNav";
-import Reveal from "@/app/components/Reveal";
+import FairDocuments from "./FairDocuments";
 
 function formatDate(dateStr: string): string {
   if (!dateStr) return "";
   const date = new Date(dateStr);
   const day = date.getDate();
   const month = date.toLocaleDateString("en-GB", { month: "long" });
-  const year = date.getFullYear();
   const suffix =
     day === 1 || day === 21 || day === 31
       ? ""
@@ -23,22 +19,12 @@ function formatDate(dateStr: string): string {
         : day === 3 || day === 23
           ? ""
           : "";
-  return `${day}${suffix} ${month} ${year}`;
+  return `${day}${suffix} of ${month}`;
 }
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const fair = await getFairBySlug(slug);
-  if (!fair) return {};
-  return {
-    title: `${fair.name} | Ashley Saville`,
-    description: `${fair.name}${fair.location ? ` — ${fair.location}` : ""}. Ashley Saville — contemporary art gallery in London.`,
-  };
-}
 
 export default async function FairPage({ params }: Props) {
   const { slug } = await params;
@@ -49,104 +35,77 @@ export default async function FairPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-5 px-5 md:px-10 pb-24 lg:pb-16 md:pt-0">
+    <div className="min-h-screen bg-neutral-50 pt-24 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
-        {fair.isCurrent && (
-          <Link
-            href="/fairs/archive"
-            className="text-sm  text-neutral-600 hover:text-neutral-900 mb-4 text-white hover:text-white inline-block"
-          >
-            Archive
-          </Link>
-        )}
-        <Reveal>
-        <h1 className="text-1xl text-neutral-800 font-bold text-left mt-0 sm:mt-20 mb-0 md:mb-5">
-          {fair.name}
+        <h1 className="text-1xl text-neutral-800 font-medium text-center mt-0 sm:mt-20 mb-16">
+          {fair.isCurrent ? "Current Fair" : "Archive"}
         </h1>
-        </Reveal>
-        <Reveal delay={0}>
+        {/* Mobile Navigation */}
+        <div className="lg:hidden mb-5">
+          <FairNavigation />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-          <div id="text" className="lg:col-span-2 scroll-mt-32 text-left max-w-[665px]">
-          
-            <p className="text-md text-neutral-900 mt-0">{fair.location}</p>
+          <div id="text" className="lg:col-span-2 scroll-mt-32 text-justify">
+            <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
+              {fair.name}
+            </h2>
+            <p className="text-md text-neutral-900 mt-0">
+              {fair.location}
+            </p>
             <p className="text-md text-neutral-900 mt-0">
               {formatDate(fair.startDate)} - {formatDate(fair.endDate)}
             </p>
             {fair.content && fair.content.length > 0 && (
-              <div className="mt-3 text-md font-medium">
+              <div className="mt-3">
                 <ReadMore content={fair.content} />
               </div>
             )}
-            <div className="mt-4 flex flex-col gap-1">
-              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
-                Enquire about available works
-              </Link>
-              {fair.pressRelease && (
-                <a href={fair.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
-                  Download Press Release
-                </a>
-              )}
-              {fair.download && (
-                <a href={fair.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
-                  Download
-                </a>
-              )}
-            </div>
           </div>
-          <div className="lg:col-span-1  lg:text-right">
-            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex pt-0 lg:pt-[3.75rem]">
-              <div>
-                <FairNavigation 
-                  hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
-                  hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
-                />
+          <div className="lg:col-span-1 lg:text-right">
+            <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
+              <div className="mt-3">
+                <FairNavigation />
               </div>
-              {fair.pressLinks?.some(link => link.url) && (
-                <div className="mt-3">
-                  <FairDocuments pressLinks={fair.pressLinks} />
-                </div>
-              )}
+              <FairDocuments 
+                download={fair.download} 
+                pressRelease={fair.pressRelease} 
+                pressLinks={fair.pressLinks} 
+              />
             </div>
           </div>
-
+        
           {/* Mobile: Documents above image */}
-          {fair.pressLinks?.some(link => link.url) && (
-            <div className="grid grid-cols-1 lg:grid-cols- gap-2 lg:col-span-3    lg:hidden mb-5">
-              <FairDocuments pressLinks={fair.pressLinks} />
-            </div>
-          )}
-
-          {fair.image && (
-            <div className="lg:col-span-3 mt-5 lg:mt-9 lg:mb-10">
-              <Link
-                href={`/fairs/${slug}/fair/0`}
-                className="block relative aspect-[6/4] w-full overflow-hidden bg-white"
-              >
-                <Image
-                  src={fair.image}
-                  alt={fair.name}
-                  fill
-                  className="object-cover"
-                />
-              </Link>
+          <div className="lg:col-span-3 lg:hidden mb-5">
+            <FairDocuments 
+              download={fair.download} 
+              pressRelease={fair.pressRelease} 
+              pressLinks={fair.pressLinks} 
+            />
+          </div>
           
-            </div>
+          {fair.image && (
+            <Link
+              href={`/fairs/${slug}/fair/0`}
+              className="lg:col-span-3 mt-5 block relative aspect-[4/3] w-full overflow-hidden bg-neutral-200"
+            >
+              <Image
+                src={fair.image}
+                alt={fair.name}
+                fill
+                className="object-cover"
+              />
+            </Link>
           )}
         </div>
-        </Reveal>
- {fair.fairImages && fair.fairImages.length > 0 && (
-        <h3
-          id="installations"
-          className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32"
-        >
+
+        <h3 id="installations" className="text-md justify-center text-center font-medium text-neutral-900 mt-20 scroll-mt-32">
           Installations
         </h3>
-        )}
         {fair.fairImages && fair.fairImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-8 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-20 items-center justify-center">
             {fair.fairImages.map((item, idx) => (
-              <Reveal key={idx} delay={idx * 40}>
               <Link
+                key={idx}
                 href={`/fairs/${slug}/fair/${fair.image ? idx + 1 : idx}`}
               >
                 <Image
@@ -156,41 +115,10 @@ export default async function FairPage({ params }: Props) {
                   height={500}
                 />
               </Link>
-              </Reveal>
-            ))}
-          </div>
-        )}
-        {fair.worksImages && fair.worksImages.length > 0 && (
-          <h3
-            id="works"
-            className="text-md justify-center text-center font-bold text-neutral-900 mt-10 scroll-mt-32"
-          >
-            Works
-          </h3>
-        )}
-        {fair.worksImages && fair.worksImages.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 mt-8 items-center justify-center">
-            {fair.worksImages.map((item, idx) => (
-              <Reveal key={idx} delay={idx * 40}>
-              <Link
-                href={`/fairs/${slug}/works/${idx}`}
-              >
-                <Image
-                  src={item.url}
-                  alt={fair.name}
-                  width={500}
-                  height={500}
-                />
-              </Link>
-              </Reveal>
             ))}
           </div>
         )}
       </div>
-      <FairMobileNav
-        hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
-        hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}
-      />
     </div>
   );
 }
