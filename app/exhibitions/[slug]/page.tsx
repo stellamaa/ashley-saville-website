@@ -48,7 +48,7 @@ export default async function ExhibitionPage({ params }: Props) {
               />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-          <div id="text" className="lg:col-span-2 scroll-mt-32 text-left">
+          <div id="text" className="lg:col-span-2 lg:max-w-lg scroll-mt-32 text-left">
             <h2 className="text-md font-medium mb-0 mt-0 text-neutral-900">
               {exhibition.artistName}
             </h2>
@@ -60,10 +60,25 @@ export default async function ExhibitionPage({ params }: Props) {
                 <ReadMore content={exhibition.content} />
               </div>
             )}
+            <div className="mt-4 flex flex-col gap-1">
+              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
+                Enquire about available works
+              </Link>
+              {exhibition.download && (
+                <a href={exhibition.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
+                  Download Press Release
+                </a>
+              )}
+              {exhibition.pressRelease && (
+                <a href={exhibition.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline underline-offset-2 hover:text-neutral-600">
+                  Download Press Release
+                </a>
+              )}
+            </div>
           </div>
           <div className="lg:col-span-1 lg:text-right">
             <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
-              <div className="mt-3">
+              <div className="mt-16">
                 <ExhibitionNavigation
                 hasInstallations={(exhibition.exhibitionImages?.length ?? 0) > 0}
                 hasWorks={(exhibition.worksImages?.length ?? 0) > 0}

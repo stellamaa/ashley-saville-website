@@ -34,14 +34,7 @@ export default async function FairsArchivePage() {
   return (
     <div className="min-h-screen bg-white lg:pt--1 px-6 md:px-10 pb-16">
       <div className="max-w-4xl mx-auto">
-        {currentFair?.slug && (
-          <Link
-            href={`/fairs/${currentFair.slug}`}
-            className="mb-0 inline-block text-sm text-white lg:text-neutral-900 hover:text-neutral-600 lg:mt-10"
-          >
-            Current fair
-          </Link>
-        )}
+    
 
         <h1 className="text-md text-neutral-900 text-center mb-16 lg:mt-32 mt-11">Archive</h1>
 
@@ -63,7 +56,7 @@ export default async function FairsArchivePage() {
                   {/* Desktop hover overlay */}
                   <div className="absolute inset-0 bg-white/0 lg:group-hover:bg-white/70 transition flex items-center justify-center p-6">
                     <div className="text-black text-center opacity-0 lg:group-hover:opacity-100 transition">
-                      <p className="text-sm font-medium">{fair.name}</p>
+                      <p className="text-sm font-medium uppercase">{fair.name}</p>
                       <p className="text-sm text-black/90 font-medium">
                         {formatDate(fair.startDate)} -{" "}
                         {formatDate(fair.endDate)}
@@ -83,8 +76,18 @@ export default async function FairsArchivePage() {
               </Reveal>
             ) : null
           )}
+          
         </div>
+        {currentFair?.slug && (
+          <Link
+            href={`/fairs/${currentFair.slug}`}
+            className="mb-0 inline-block text-base  text-white lg:text-neutral-900 hover:text-neutral-600 lg:mt-10"
+          >
+            Current fair
+          </Link>
+        )}
       </div>
+      
     </div>
   );
 }

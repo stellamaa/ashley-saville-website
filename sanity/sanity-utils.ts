@@ -180,7 +180,7 @@ export async function getArtistBySlug(slug: string): Promise<Artist | null> {
 const fairProjection = groq`{
     _id,
     _createdAt,
-    name,
+    "name": fairName,
     location,
     startDate,
     endDate,
@@ -293,7 +293,7 @@ export async function getFairs(): Promise<Fair[]> {
     groq`* [_type == "fair"] {
             _id,
             _createdAt,
-            name,
+            "name": fairName,
             "slug": slug.current,
             "image": image.asset->url,
             "imageCaption": image.caption,

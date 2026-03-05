@@ -43,7 +43,7 @@ export default async function FairPage({ params }: Props) {
               />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-          <div id="text" className="lg:col-span-2 scroll-mt-32 text-left">
+          <div id="text" className="lg:col-span-2 lg:max-w-lg scroll-mt-32 text-left">
             <p className="text-md text-neutral-900 mt-0">
               {fair.location}
             </p>
@@ -51,14 +51,29 @@ export default async function FairPage({ params }: Props) {
               {formatDateRange(fair.startDate, fair.endDate)}
             </p>
             {fair.content && fair.content.length > 0 && (
-              <div className="mt-3">
+              <div className="mt-3 text-left">
                 <ReadMore content={fair.content} />
               </div>
             )}
+            <div className="mt-4 flex flex-col gap-1">
+              <Link href="mailto:ashley@ashleysaville.com" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
+                Enquire about available works
+              </Link>
+              {fair.download && (
+                <a href={fair.download} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
+                  Download Press Release
+                </a>
+              )}
+              {fair.pressRelease && (
+                <a href={fair.pressRelease} target="_blank" rel="noopener noreferrer" className="text underline decoration-1 underline-offset-2 hover:text-neutral-600">
+                  Download Press Release
+                </a>
+              )}
+            </div>
           </div>
           <div className="lg:col-span-1 lg:text-right">
             <div className="sticky top-32 flex flex-col items-start lg:items-end gap-7 hidden lg:flex">
-              <div className="mt-3">
+              <div className="mt-16">
                 <FairNavigation
                 hasInstallations={Array.isArray(fair.fairImages) && fair.fairImages.length > 0}
                 hasWorks={Array.isArray(fair.worksImages) && fair.worksImages.length > 0}

@@ -81,10 +81,10 @@ export default function Header({
   );
 
   const isOnFairsSection = pathname?.startsWith("/fairs");
-  const fairsBlockDesktop = hasCurrentFair ? (
+  const fairsBlockDesktop = (
     <div className="relative">
       <Link
-        href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"}
+        href={hasCurrentFair && currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"}
         className={linkHoverClass}
       >
         Fair
@@ -98,7 +98,7 @@ export default function Header({
         </Link>
       )}
     </div>
-  ) : null;
+  );
 
   const desktopNavLinks = (
     <>
@@ -128,17 +128,15 @@ export default function Header({
        
         </Link>
       </div>
-      {hasCurrentFair && (
-        <div className="flex flex-col items-center">
-          <Link
-            href={currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs"}
-            className={linkHoverClass}
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Fair
-          </Link>
-        </div>
-      )}
+      <div className="flex flex-col items-center">
+        <Link
+          href={hasCurrentFair && currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"}
+          className={linkHoverClass}
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          Fair
+        </Link>
+      </div>
       <Link href="/information" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
         Information
       </Link>
