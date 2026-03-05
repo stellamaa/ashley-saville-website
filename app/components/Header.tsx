@@ -147,15 +147,15 @@ export default function Header({
     <header className="relative md:fixed left-0 right-0 top-0 z-20 flex items-start justify-between px-3 py-2 pr-14 md:px-1 md:pr-1 lg:px-6 lg:pr-6 lg:py-1 bg-transparent">
       <Link
         href="/"
-        className={`text-lg font-medium z-22 fixed left-0 top-0 py-2 pl-3 md:static md:py-0 md:pl-0 ${navTextClass} ${linkHoverClass}`}
+        className={`text-lg font-medium z-22 ${navTextClass} ${linkHoverClass}`}
         onClick={handleLogoClick}
         data-logo-link
       >
         <Image src="/logo.png" alt="Ashley Saville" width={200} height={186} className={`ml-1 mt-0 z-22 w-[140px] h-auto md:w-[220px] lg:mt-0 lg:-ml-1 ${logoClass || "opacity-90"}`} />
       </Link>
 
-      {/* Mobile: only logo is sticky; menu scrolls. Desktop: all nav links on the right */}
-      <div className="flex justify-end md:static md:py-0 md:pr-0 py-2 pr-3 z-30">
+      {/* Mobile: menu (right) sticky; Ashley logo (left) scrolls. Desktop: all nav links on the right */}
+      <div className="flex justify-end fixed right-0 top-0 py-2 pr-3 z-30 md:static md:py-0 md:pr-0">
         <nav className={`hidden md:flex gap-6 text-md lg:mt-3 ${navTextClass}`}>
           {desktopNavLinks}
         </nav>
