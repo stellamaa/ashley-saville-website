@@ -153,7 +153,7 @@ export default function Header({
         onClick={handleLogoClick}
         data-logo-link
       >
-        <Image src="/logo.png" alt="Ashley Saville" width={200} height={186} className={`ml-1 mt-0 z-22 w-[140px] h-auto md:w-[150px] lg:mt-0 lg:-ml-4 ${logoClass || "opacity-90"}`} />
+        <Image src="/logo.png" alt="Ashley Saville" width={200} height={186} className={`ml-1 mt-0 z-22 w-[140px] h-auto md:w-[220px] lg:mt-0 lg:-ml-1 ${logoClass || "opacity-90"}`} />
       </Link>
 
       {/* Mobile: menu button sticky. Desktop: all nav links on the right */}
