@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import FairsArchivePage from "../archive/page";
 
 type SectionId = "text" | "installations" | "works";
 
@@ -85,7 +86,8 @@ export default function FairMobileNav({
           >
             Installations
           </button>
-          {hasWorks && <span className="text-neutral-500">★</span>}
+           <span className="text-neutral-500">★</span>
+        
         </>
       )}
       {hasWorks && (
@@ -108,6 +110,8 @@ export default function FairMobileNav({
       >
         Archive
       </Link>
+            
+
     </nav>
   );
 }
