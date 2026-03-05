@@ -209,6 +209,19 @@ export async function getCurrentFair(): Promise<Fair | null> {
   return result;
 }
 
+export async function hasAnyFairs(): Promise<boolean> {
+  const client = createClient({
+    projectId: "chae03x8",
+    dataset: "production",
+    apiVersion: "2026-01-26",
+  });
+
+  const count = await client.fetch<number>(
+    groq`count(*[_type == "fair"])`,
+  );
+  return (count ?? 0) > 0;
+}
+
 export async function getArchivedFairs(): Promise<Fair[]> {
   const client = createClient({
     projectId: "chae03x8",

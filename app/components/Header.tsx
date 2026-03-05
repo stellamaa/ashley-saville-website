@@ -11,12 +11,14 @@ interface HeaderProps {
   hasCurrentFair?: boolean;
   currentExhibitionSlug?: string;
   currentFairSlug?: string;
+  showFairTab?: boolean;
 }
 
 export default function Header({
   hasCurrentFair,
   currentExhibitionSlug,
   currentFairSlug,
+  showFairTab = false,
 }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
@@ -81,7 +83,7 @@ export default function Header({
   );
 
   const isOnFairsSection = pathname?.startsWith("/fairs");
-  const fairsBlockDesktop = (
+  const fairsBlockDesktop = showFairTab ? (
     <div className="relative">
       <Link
         href={hasCurrentFair && currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"}
@@ -98,7 +100,7 @@ export default function Header({
         </Link>
       )}
     </div>
-  );
+  ) : null;
 
   const desktopNavLinks = (
     <>
@@ -128,15 +130,17 @@ export default function Header({
        
         </Link>
       </div>
-      <div className="flex flex-col items-center">
-        <Link
-          href={hasCurrentFair && currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"}
-          className={linkHoverClass}
-          onClick={() => setMobileMenuOpen(false)}
-        >
-          Fair
-        </Link>
-      </div>
+      {showFairTab && (
+        <div className="flex flex-col items-center">
+          <Link
+            href={hasCurrentFair && currentFairSlug ? `/fairs/${currentFairSlug}` : "/fairs/archive"}
+            className={linkHoverClass}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Fair
+          </Link>
+        </div>
+      )}
       <Link href="/information" className={linkHoverClass} onClick={() => setMobileMenuOpen(false)}>
         Information
       </Link>

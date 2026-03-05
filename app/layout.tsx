@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import PageTransition from "@/app/components/PageTransition";
-import { getCurrentFair, getCurrentExhibition } from "@/sanity/sanity-utils";
+import { getCurrentFair, getCurrentExhibition, hasAnyFairs } from "@/sanity/sanity-utils";
 export const revalidate = 60;
 
 const light = localFont({
@@ -57,8 +57,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentFair = await getCurrentFair();
-  const currentExhibition = await getCurrentExhibition();
+  const [currentFair, currentExhibition, showFairTab] = await Promise.all([
+    getCurrentFair(),
+    getCurrentExhibition(),
+    hasAnyFairs(),
+  ]);
   const hasCurrentFair = !!currentFair;
 
   return (
@@ -70,6 +73,7 @@ export default async function RootLayout({
           hasCurrentFair={hasCurrentFair}
           currentExhibitionSlug={currentExhibition?.slug}
           currentFairSlug={currentFair?.slug}
+          showFairTab={showFairTab}
         />
         <PageTransition>{children}</PageTransition>
       </body>
