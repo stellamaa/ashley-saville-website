@@ -93,38 +93,16 @@ export default function GalleryView({
   const navBar = (
     <div className="w-full overflow-hidden flex-shrink-0 flex flex-row justify-between items-center md:mt-2 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
       <div className="overflow-hidden flex items-center min-w-[4.5rem]">
-        {/* Mobile: Next (disabled when no previous); Desktop: Previous or backLabel */}
-        <span className="md:hidden">
-          {hasPrev ? (
-            <Link
-              href={`${basePath}/${prevIndex}`}
-              className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
-            >
-              Previous
-            </Link>
-          ) : (
-            <span className="text-md text-neutral-400 bg-transparent">Next</span>
-          )}
-        </span>
-        <span className="hidden md:inline">
-          {hasPrev ? (
-            <Link
-              href={`${basePath}/${prevIndex}`}
-              className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
-            >
-              Previous
-            </Link>
-          ) : backLabel ? (
-            <Link
-              href={backHref}
-              className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
-            >
-              {backLabel}
-            </Link>
-          ) : (
-            <span className="text-md text-neutral-400 bg-transparent">Previous</span>
-          )}
-        </span>
+        {hasPrev ? (
+          <Link
+            href={`${basePath}/${prevIndex}`}
+            className="text-md text-neutral-900 hover:text-neutral-600 bg-transparent transition-colors duration-150 ease-out"
+          >
+            Previous
+          </Link>
+        ) : (
+          <span className="text-md text-neutral-400 bg-transparent">Next</span>
+        )}
       </div>
       <button
         type="button"
