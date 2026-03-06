@@ -66,7 +66,7 @@ export default async function ArtistPage({ params }: Props) {
         </Reveal>
         <Reveal>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-1">
-            <div id="biography" className="lg:col-span-2 lg:max-w-lg scroll-mt-32 text-left">
+            <div id="biography" className="lg:col-span-2 lg:max-w-md scroll-mt-32 text-left">
 
               {artist.biography && artist.biography.length > 0 && (
                 <>

@@ -62,7 +62,7 @@ export default async function ExhibitionPage({ params }: Props) {
           </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-              <div id="text" className="lg:col-span-2 lg:max-w-lg scroll-mt-32 text-left">
+              <div id="text" className="lg:col-span-2 lg:max-w-md scroll-mt-32 text-left">
                 <p className="text-md text-neutral-800 mt-0 uppercase"></p>
                 <h2 className="text-base mb-0 mt-0 text-neutral-800 ">
                   {artistNames.length > 0 ? (
