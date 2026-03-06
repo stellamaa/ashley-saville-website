@@ -104,7 +104,7 @@ export default function LandingHero({
             </p>
             <Link
               href={exhibitionHref}
-              className="mt-0 text-sm text-white underline underline decoration-1 underline underline-offset-2 hover:text-white/90"
+              className="mt-0 text-sm text-white underline underline decoration-0 underline underline-offset-3 hover:text-white/90"
               prefetch
             >
               Find out more
