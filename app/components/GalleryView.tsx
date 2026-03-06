@@ -144,7 +144,7 @@ export default function GalleryView({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-start md:flex-1 md:min-h-0">
-          <div className="relative w-full h-[55vh] min-h-0 md:mt-auto md:max-h-[calc(100vh-14rem)] md:h-[70vh] overflow-hidden bg-neutral-white">
+          <div className="relative w-full h-[60vh] min-h-0 md:mt-auto md:max-h-[calc(100vh-14rem)] md:h-[70vh] overflow-hidden bg-neutral-white">
             <div
               key={currentIndex}
               className={`absolute inset-0 ${slideDirection ? "animate-gallery-fade" : ""}`}
