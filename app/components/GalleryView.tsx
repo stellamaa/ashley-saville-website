@@ -91,7 +91,7 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full flex-shrink-0 flex flex-row justify-between items-center mt-2 md:mt-2 overflow-hidden z-10 max-w-4xl">
+    <div className="w-full flex-shrink-0 flex flex-row justify-between items-center md:mt-2 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
       <div className="overflow-hidden">
         {hasPrev ? (
           <Link
@@ -135,16 +135,16 @@ export default function GalleryView({
 
   return (
     <div
-      className="h-dvh md:h-screen overflow-hidden bg-neutral-white pt-4 lg:pt-20 px-4 md:px-10 pb-6 md:pb-16 cursor-default"
+      className="h-dvh md:h-screen md:min-h-0 bg-neutral-white pt-4 lg:pt-20 px-4 md:px-10 pb-24 md:pb-16 cursor-default overflow-hidden"
       onClick={() => router.push(backHref)}
       aria-label="Close gallery (click outside or press Escape)"
     >
       <div
-        className="h-full min-h-0 max-w-4xl mx-auto flex flex-col items-center w-full cursor-auto"
+        className="h-full md:min-h-0 max-w-4xl mx-auto flex flex-col items-center w-full cursor-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-center md:justify-start">
-          <div className="relative w-full flex-1 min-h-0 md:flex-none md:mt-auto md:max-h-[calc(100vh-14rem)] md:h-[60vh] overflow-hidden bg-neutral-white">
+        <div className="flex-1 min-h-0 w-full flex flex-col items-center justify-start md:flex-1 md:min-h-0">
+          <div className="relative w-full h-[55vh] min-h-0 md:mt-auto md:max-h-[calc(100vh-14rem)] md:h-[70vh] overflow-hidden bg-neutral-white">
             <div
               key={currentIndex}
               className={`absolute inset-0 ${slideDirection ? "animate-gallery-fade" : ""}`}
@@ -160,7 +160,7 @@ export default function GalleryView({
           </div>
 
           {(current.caption ?? "").trim() && (
-            <p className="gallery-mobile-caption mobile-bottom-nav flex-shrink-0 mt-2 px-4 z-20 text-sm font-medium text-neutral-900 text-center md:w-full md:mt-4 md:px-0">
+            <p className="gallery-mobile-caption mobile-bottom-nav flex-shrink-0 mt-1 px-4 z-20 text-sm font-medium text-neutral-900 text-center md:w-full md:mt-3 md:mb-5 md:px-0">
               {current.caption}
             </p>
           )}

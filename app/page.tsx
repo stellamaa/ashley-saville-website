@@ -44,7 +44,7 @@ export default async function Home() {
         : null;
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
+    <div className="relative h-dvh md:h-screen overflow-hidden">
       <LandingHero
           image={exhibition.heroImage}
           alt={displayName}

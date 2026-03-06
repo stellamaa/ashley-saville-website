@@ -63,8 +63,8 @@ export default function LandingHero({
     : "transition-all duration-[2s] ease-[cubic-bezier(0.22,1,0.36,1)]";
 
   return (
-    <div className="fixed inset-0 md:relative md:min-h-screen overflow-x-hidden z-0">
-      <section className="absolute inset-0 md:relative md:min-h-screen w-full overflow-hidden bg-white">
+    <div className="fixed inset-0 md:relative h-dvh md:h-screen overflow-hidden z-0">
+      <section className="absolute inset-0 md:relative h-full w-full overflow-hidden bg-white">
         <div className="absolute inset-0">
           <div
             className={`absolute inset-0 ${transitionClass} ${
@@ -85,7 +85,7 @@ export default function LandingHero({
           </div>
         </div>
 
-        <div className="relative z-10 flex min-h-screen flex-col md:items-center items-end px-6 py-10">
+        <div className="relative z-10 flex h-full min-h-0 flex-col md:items-center items-end px-6 py-10">
           <div className="flex-1 min-h-[1px]" />
           <div className="flex-1 min-h-[1px]" />
           <div className="flex flex-col items-center gap-0 pb-0 md:absolute md:bottom-12 md:right-15 md:pb-0 text-sm">
