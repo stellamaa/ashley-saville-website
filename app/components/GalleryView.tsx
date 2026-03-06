@@ -91,7 +91,7 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full flex-shrink-0 flex flex-row justify-between items-center md:mt-2 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
+    <div className="w-full overflow-hidden flex-shrink-0 flex flex-row justify-between items-center md:mt-2 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
       <div className="overflow-hidden flex items-center min-w-[4.5rem]">
         {/* Mobile: Next (disabled when no previous); Desktop: Previous or backLabel */}
         <span className="md:hidden">
