@@ -99,8 +99,8 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full overflow-hidden flex-shrink-0 flex flex-row justify-between items-center md:mt-2 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
-      <div className="overflow-hidden flex items-center min-w-[4.5rem]">
+    <div className="w-full flex-shrink-0 grid grid-cols-3 items-center md:mt-2 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
+      <div className="flex justify-start overflow-hidden">
         {hasPrev ? (
           <Link
             href={`${basePath}/${prevIndex}`}
@@ -115,11 +115,11 @@ export default function GalleryView({
       <button
         type="button"
         onClick={() => router.push(backHref)}
-        className="text-md text-neutral-900 hover:text-neutral-600 transition-colors duration-150 ease-out"
+        className="text-md text-neutral-900 hover:text-neutral-600 transition-colors duration-150 ease-out justify-self-center"
       >
         Close
       </button>
-      <div>
+      <div className="flex justify-end overflow-hidden">
         {hasNext ? (
           <Link
             href={`${basePath}/${nextIndex}`}
