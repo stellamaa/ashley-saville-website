@@ -80,6 +80,14 @@ export default function GalleryView({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleClose]);
 
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, []);
+
   if (images.length === 0) return null;
 
   const current = images[currentIndex];
