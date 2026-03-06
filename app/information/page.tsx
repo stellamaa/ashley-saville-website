@@ -151,7 +151,7 @@ export default async function InformationPage() {
                 rel="noopener noreferrer"
                 className="hover:text-neutral-700"
               >
-                Site credit: Stella Mathioudakis
+                Website by Stella Mathioudakis
               </Link>
               <span className="text-neutral-500">★ </span>
               <Link href="/information/privacypolicy" className="hover:text-neutral-700">
