@@ -160,7 +160,7 @@ export default function Header({
 
       {/* Mobile: menu (right) sticky; Ashley logo (left) scrolls. Desktop: all nav links on the right */}
       <div className="flex justify-end fixed right-0 top-0 py-2 pr-3 z-30 md:static md:py-0 md:pr-0">
-        <nav className={`hidden md:flex gap-6 text-md lg:mt-3 ${navTextClass}`}>
+        <nav className={`hidden md:flex gap-6 text-md md:mt-5 ${navTextClass}`}>
           {desktopNavLinks}
         </nav>
         <button

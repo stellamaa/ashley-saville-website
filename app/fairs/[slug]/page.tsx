@@ -66,7 +66,7 @@ Archive
 </Reveal>
 <Reveal delay={0}>
 <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mb-16">
-<div id="text" className="lg:col-span-2 lg:max-w-md scroll-mt-32 text-left">
+<div id="text" className="lg:col-span-2 lg:max-w-[490px] scroll-mt-32 text-left">
 
 <p className="text-md text-neutral-900 mt-0">{fair.location}</p>
 <p className="text-md text-neutral-900 mt-0">

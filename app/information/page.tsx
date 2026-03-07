@@ -153,11 +153,11 @@ export default async function InformationPage() {
               >
                 Website by Stella Mathioudakis
               </Link>
-              <span className="text-neutral-500">★ </span>
+              <span className="text-neutral-500 mb-2 md:mb-0">★ </span>
               <Link href="/information/privacypolicy" className="hover:text-neutral-700">
                 Privacy Policy
               </Link>
-              <span className="text-neutral-500">★ </span>
+              <span className="text-neutral-500 mb-2 md:mb-0">★ </span>
               <span> © - 2026 Ashley Saville. All rights reserved.</span>
             </div>
           </footer>

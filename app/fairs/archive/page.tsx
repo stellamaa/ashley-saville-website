@@ -5,21 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/app/components/Reveal";
 
-function formatDate(dateStr: string): string {
-  if (!dateStr) return "";
-  const date = new Date(dateStr);
-  const day = date.getDate();
-  const month = date.toLocaleDateString("en-GB", { month: "long" });
-  const year = date.getFullYear();
-  const suffix =
-    day === 1 || day === 21 || day === 31
-      ? ""
-      : day === 2 || day === 22
-        ? ""
-        : day === 3 || day === 23
-          ? ""
-          : "";
-  return `${day}${suffix} of ${month} ${year}`;
+function formatDateRange(startStr: string, endStr: string): string {
+  if (!startStr || !endStr) return "";
+  const formatPart = (dateStr: string, includeYear: boolean) => {
+    const date = new Date(dateStr);
+    const day = date.getDate();
+    const month = date.toLocaleDateString("en-GB", { month: "long" });
+    return includeYear ? `${day} ${month} ${date.getFullYear()}` : `${day} ${month}`;
+  };
+  return `${formatPart(startStr, false)} - ${formatPart(endStr, true)}`;
 }
 
 export const metadata: Metadata = {
@@ -58,8 +52,7 @@ export default async function FairsArchivePage() {
                     <div className="text-black text-center opacity-0 lg:group-hover:opacity-100 transition">
                       <p className="text-sm font-medium uppercase">{fair.name}</p>
                       <p className="text-sm text-black/90 font-medium">
-                        {formatDate(fair.startDate)} -{" "}
-                        {formatDate(fair.endDate)}
+                        {formatDateRange(fair.startDate, fair.endDate)}
                       </p>
                     </div>
                   </div>
@@ -68,8 +61,7 @@ export default async function FairsArchivePage() {
                 <div className="lg:hidden mt-2 mb-2 text-center">
                   <p className="text-sm font-medium text-neutral-900">{fair.name}</p>
                   <p className="text-sm text-neutral-600">
-                    {formatDate(fair.startDate)} -{" "}
-                    {formatDate(fair.endDate)}
+                    {formatDateRange(fair.startDate, fair.endDate)}
                   </p>
                 </div>
               </div>

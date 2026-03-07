@@ -99,7 +99,7 @@ export default function GalleryView({
   const hasNext = nextIndex < images.length;
 
   const navBar = (
-    <div className="w-full flex-shrink-0 grid grid-cols-3 items-center md:mt-2 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
+    <div className="w-full flex-shrink-0 grid grid-cols-3 items-center md:mt-4 fixed bottom-0 left-0 right-0 px-4 pt-4 pb-6 md:static md:pt-0 md:pb-0 overflow-hidden z-10 max-w-4xl">
       <div className="flex justify-start overflow-hidden">
         {hasPrev ? (
           <Link
@@ -154,7 +154,7 @@ export default function GalleryView({
                 src={current.url}
                 alt={alt || current.caption || "Gallery image"}
                 fill
-                className="object-contain md:object-bottom "
+                className="object-contain object-bottom "
                 loading="eager"
               />
             </div>
